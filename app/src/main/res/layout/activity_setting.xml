@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:background="@drawable/bg_wtsp"
+    >
+
+    <!--HeaderVIew  Start-->
+    <RelativeLayout
+
+       android:id="@+id/rlvHeaderMainViewID"
+       android:layout_width="match_parent"
+       android:layout_height="@dimen/_50sdp"
+       android:background="@color/colorOrange">
+
+       <LinearLayout
+           android:orientation="horizontal"
+           android:background="@android:color/transparent"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:weightSum="3">
+
+           <RelativeLayout
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:layout_weight="1.2"
+               >
+
+               <ImageView
+                   android:layout_width="@dimen/_20sdp"
+                   android:layout_height="@dimen/_40sdp"
+                   android:src="@drawable/back"
+                   android:layout_centerVertical="true"/>
+
+           </RelativeLayout>
+           <RelativeLayout
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:layout_weight="0.8"
+               >
+
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="Welcome Shakti"
+                   android:layout_centerInParent="true"
+                   android:textSize="@dimen/_15ssp"
+                   android:textColor="@color/colorWhite"
+                   android:textStyle="bold"/>
+
+           </RelativeLayout>
+           <RelativeLayout
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:layout_weight="1"
+               >
+
+               <RelativeLayout
+                   android:layout_width="@dimen/_99sdp"
+                   android:layout_height="wrap_content"
+                   android:layout_alignParentEnd="true"
+                   android:layout_centerVertical="true"
+                   android:background="@drawable/white_bg_round_corner">
+
+                   <ImageView
+                       android:id="@+id/imgInternetToggleID"
+                       android:layout_width="@dimen/_20sdp"
+                       android:layout_height="@dimen/_18sdp"
+                       android:layout_centerVertical="true"
+                       android:layout_marginEnd="@dimen/_3sdp"
+                       android:layout_toStartOf="@+id/switch1"
+                       android:padding="@dimen/_2sdp"
+                       android:paddingTop="@dimen/_12sdp"
+                       android:paddingBottom="@dimen/_12sdp"
+                       android:src="@drawable/iv_connection_selected" />
+
+                   <Switch
+                       android:id="@+id/switch1"
+                       android:layout_width="@dimen/_36sdp"
+                       android:layout_height="@dimen/_28sdp"
+                       android:layout_centerVertical="true"
+                       android:layout_marginStart="@dimen/_5sdp"
+                       android:layout_marginEnd="@dimen/_3sdp"
+                       android:layout_toStartOf="@+id/imgBTToggleID"
+                       android:checked="false"
+                       android:scaleX="1.3"
+                       android:scaleY="1.2"
+                       android:theme="@style/SwitchTheme"
+                       />
+
+                   <ImageView
+                       android:id="@+id/imgBTToggleID"
+                       android:layout_width="@dimen/_20sdp"
+                       android:layout_height="@dimen/_18sdp"
+                       android:layout_alignParentEnd="true"
+                       android:layout_centerVertical="true"
+                       android:layout_marginEnd="@dimen/_2sdp"
+                       android:padding="@dimen/_2sdp"
+                       android:paddingTop="@dimen/_12sdp"
+                       android:paddingBottom="@dimen/_12sdp"
+                       android:src="@drawable/iv_bluetooth_unselected" />
+
+               </RelativeLayout>
+           </RelativeLayout>
+
+       </LinearLayout>
+
+   </RelativeLayout>
+    <!--HeaderVIew  End-->
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_below="@+id/rlvHeaderMainViewID"
+        android:id="@+id/rclvListViewID"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent"
+        android:scrollbars="vertical"
+        />
+
+    <!--Footer start-->
+    <RelativeLayout
+        android:visibility="gone"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/rlvFooterMainViewID"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_50sdp"
+        android:background="@color/colorOrange">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:background="@android:color/transparent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="4">
+
+            <RelativeLayout
+                android:id="@+id/rlvFooterID1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                >
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/rlvFooterID2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                >
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rlvFooterID3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                >
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/rlvFooterID4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                >
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+    <!--Footer end-->
+
+</RelativeLayout>

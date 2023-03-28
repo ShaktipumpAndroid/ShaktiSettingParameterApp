@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/header_container"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_xxlarge50"
+        android:background="@color/header_color"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/back"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:background="@drawable/selector_trans"
+            android:contentDescription="@string/app_name"
+            android:padding="@dimen/space_large15"
+            android:src="@drawable/icn_back" />
+
+
+        <TextView
+            android:id="@+id/attedance_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:paddingRight="10dp"
+            android:singleLine="true"
+            android:text="Attendance"
+            android:textColor="@color/white"
+            android:textSize="@dimen/size_large18" />
+
+
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/header_container">
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/icn_markattendence" />
+
+        <TextView
+            android:id="@+id/capture"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/bottom_layout"
+
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/space_large20"
+            android:drawableTop="@drawable/icn_capture"
+            android:text="Capture Image" />
+
+        <LinearLayout
+            android:id="@+id/bottom_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:gravity="center_horizontal">
+
+            <ImageView
+                android:id="@+id/icn_save"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/space_mid10"
+                android:src="@drawable/icn_save" />
+
+            <ImageView
+                android:id="@+id/icn_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/space_mid10"
+                android:src="@drawable/icn_cancel" />
+
+        </LinearLayout>
+    </RelativeLayout>
+
+
+    <TextView
+
+        android:id="@+id/geo_tag"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableRight="@drawable/ic_location"
+        android:gravity="center_vertical"
+        android:hint="Geo Tag"
+        android:padding="@dimen/space_mid10"
+        android:textSize="@dimen/size_xlarge20"
+        android:visibility="gone" />
+</RelativeLayout>

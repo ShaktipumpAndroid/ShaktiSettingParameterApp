@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "145887296435",
+    "firebase_url": "https://shakti-sales-employee.firebaseio.com",
+    "project_id": "shakti-sales-employee",
+    "storage_bucket": "shakti-sales-employee.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:145887296435:android:d3ed5b60b1924319",
+        "android_client_info": {
+          "package_name": "com.shaktipumps.shakti.shaktisalesemployee"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "145887296435-7cbvcs3550e6l5rk94am1ap0u1vcjpt6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDGJ2_emwWjtQi4JXAacrdAkglvktOtSB8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

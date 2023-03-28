@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical">
+
+    <include layout="@layout/toolbar" />
+
+    <LinearLayout
+        android:id="@+id/personal_ll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar"
+        android:layout_centerVertical="true"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/review"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:baselineAligned="false"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+
+                <LinearLayout
+                    android:id="@+id/review_datem"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="10dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/space_tinny4"
+                        android:layout_weight="1"
+                        android:textColorHint="@color/colorPrimary">
+
+                        <EditText
+                            android:id="@+id/review_date"
+                            style="@style/under_line_et"
+                            android:drawableEnd="@drawable/ic_mendotry"
+                            android:hint="From Date"
+                            android:padding="10dp"
+                            android:singleLine="true"
+                            android:textColorHint="@color/colorPrimary" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <ImageButton
+                        android:id="@+id/review_date_img"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:background="@color/white"
+                        android:onClick="setDate"
+                        android:src="@drawable/ic_date"
+                        android:visibility="gone" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/review_datem1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="10dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/space_tinny4"
+                        android:layout_weight="1"
+                        android:textColorHint="@color/colorPrimary">
+
+                        <EditText
+                            android:id="@+id/review_date1"
+                            style="@style/under_line_et"
+                            android:drawableEnd="@drawable/ic_mendotry"
+                            android:hint="To Date"
+                            android:padding="10dp"
+                            android:singleLine="true"
+                            android:textColorHint="@color/colorPrimary" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <ImageButton
+                        android:id="@+id/review_date_img1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:background="@color/white"
+                        android:onClick="setDate"
+                        android:src="@drawable/ic_date"
+                        android:visibility="gone" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:baselineAligned="false">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="10dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/space_tinny4"
+                        android:layout_weight="1"
+                        android:textColorHint="@color/colorPrimary">
+
+                        <EditText
+                            android:id="@+id/plant_code"
+                            style="@style/under_line_et"
+                            android:hint="Enter Plant Code"
+                            android:padding="10dp"
+                            android:singleLine="true"
+                            android:textColorHint="@color/colorPrimary" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/pos_od_visitplace"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+
+                    android:baselineAligned="false">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="10dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/space_tinny4"
+                        android:layout_weight="1"
+                        android:textColorHint="@color/colorPrimary">
+
+                        <EditText
+                            android:id="@+id/complaint_no"
+                            style="@style/under_line_et"
+                            android:hint="Enter Complaint No."
+                            android:inputType="textCapSentences"
+                            android:padding="10dp"
+                            android:singleLine="true"
+                            android:textColorHint="@color/colorPrimary" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/done"
+                android:layout_width="95dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:background="@color/colorPrimary"
+                android:gravity="center"
+                android:text="SUBMIT"
+                android:textColor="@color/white"
+                android:textSize="16dp"
+
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lin1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/complaint_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="5dp"
+                android:divider="@null"
+                android:dividerHeight="@dimen/space_mid10" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lin2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/review"
+            android:layout_centerInParent="true"
+            android:layout_margin="8dp"
+            android:background="@color/edit_text_border_bg"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="Data not Available"
+                android:textAlignment="center"
+                android:textColor="@color/black" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

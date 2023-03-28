@@ -1,0 +1,527 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/_3sdp"
+    android:padding="@dimen/_5sdp"
+    android:background="@android:color/transparent"
+    >
+    <androidx.cardview.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/card_view"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        card_view:cardCornerRadius="@dimen/_6sdp">
+         <RelativeLayout
+                android:background="@drawable/text_shape_bg"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+           >
+
+            <RelativeLayout
+                android:background="@drawable/text_shape_bg"
+                android:layout_marginTop="@dimen/_1sdp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <TextView
+                    android:fontFamily="@font/open_sans_regular"
+                    android:id="@+id/txtwarranteeHeadID"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Warrantee:"
+                    android:textSize="@dimen/_12ssp"
+                    android:textColor="@color/black"
+                    />
+
+                <TextView
+                    android:layout_toEndOf="@+id/txtwarranteeHeadID"
+                    android:id="@+id/txtwarranteeValueID"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Under"
+                    android:fontFamily="@font/open_sans_bold"
+                    android:textSize="@dimen/_12ssp"
+                    android:textColor="@color/blue_fb"
+                    android:background="@android:color/transparent"
+                    />
+
+
+                <TextView
+                    android:layout_toStartOf="@+id/txtComplainDateValueID"
+
+                    android:id="@+id/txtComplainDateHeadID"
+                    android:fontFamily="@font/open_sans_regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Warr. end Date: "
+                    android:textSize="@dimen/_12ssp"
+                    android:textColor="@color/black"
+                    />
+
+                <TextView
+                    android:layout_alignParentEnd="true"
+
+                    android:id="@+id/txtComplainDateValueID"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="19.12.2014 "
+                    android:fontFamily="@font/open_sans_bold"
+                    android:textSize="@dimen/_12ssp"
+                    android:textColor="@color/blue_fb"
+                    android:background="@android:color/transparent"
+                    />
+
+
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:background="@drawable/text_shape_bg"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+
+
+                    android:id="@+id/txtComplainnoHdadID"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Comp. no.: "
+                    android:fontFamily="@font/open_sans_regular"
+                    android:textSize="@dimen/_12ssp"
+                    android:textColor="@color/black"
+                    />
+
+                <TextView
+
+
+                    android:layout_marginStart="@dimen/_3sdp"
+                    android:layout_toEndOf="@+id/txtComplainnoHdadID"
+                    android:id="@+id/txtComplainnoValueID"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="805857434872 "
+                    android:fontFamily="@font/open_sans_regular"
+                    android:textSize="@dimen/_12ssp"
+                    android:textStyle="bold"
+                    android:textColor="@color/blue_fb"
+                    android:background="@android:color/transparent"
+                    />
+
+                <!--    <TextView
+                        android:layout_toStartOf="@+id/txtwarranteeValueID"
+
+                        android:id="@+id/txtwarranteeHeadID"
+                        android:fontFamily="@font/open_sans_regular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Warrantee: "
+                        android:textSize="@dimen/_12ssp"
+                        android:textColor="@color/black"
+                        />
+
+                    <TextView
+                        android:layout_alignParentEnd="true"
+
+                        android:id="@+id/txtwarranteeValueID"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Under"
+                        android:fontFamily="@font/open_sans_bold"
+                        android:textSize="@dimen/_12ssp"
+                        android:textColor="@color/blue_fb"
+                        android:background="@android:color/transparent"
+                        />-->
+
+
+
+
+            </RelativeLayout>
+
+            <!--1-->
+            <RelativeLayout
+                android:background="@drawable/text_shape_bg"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+
+                    android:id="@+id/txtMaterialNoHdadID"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/open_sans_regular"
+                    android:text="Material no.: "
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12ssp" />
+
+                <TextView
+android:singleLine="true"
+                    android:layout_marginStart="@dimen/_3sdp"
+                    android:layout_toEndOf="@+id/txtMaterialNoHdadID"
+                    android:id="@+id/txtMaterialNoValueID"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="9500001082"
+                    android:fontFamily="@font/open_sans_regular"
+                    android:textSize="@dimen/_12ssp"
+                    android:textColor="@color/blue_fb"
+                    android:textStyle="bold"
+                    android:background="@android:color/transparent"
+                    />
+
+               <!-- <TextView
+                    android:layout_toStartOf="@+id/txtComplainDateValueID"
+
+                    android:id="@+id/txtComplainDateHeadID"
+                    android:fontFamily="@font/open_sans_regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Comp. Date: "
+                    android:textSize="@dimen/_10ssp"
+                    android:textColor="@color/black"
+                    />
+
+                <TextView
+                    android:layout_alignParentEnd="true"
+
+                    android:id="@+id/txtComplainDateValueID"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="19.12.2014 "
+                    android:fontFamily="@font/open_sans_bold"
+                    android:textSize="@dimen/_10ssp"
+                    android:textColor="@color/black"
+                    android:background="@android:color/transparent"
+                    />-->
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:background="@drawable/text_shape_bg"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+
+                    android:id="@+id/txtMaterialDescHdadID"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/open_sans_regular"
+                    android:text="Material desc.: "
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12ssp" />
+
+                <TextView
+
+                    android:layout_marginStart="@dimen/_3sdp"
+                    android:layout_toEndOf="@+id/txtMaterialDescHdadID"
+                    android:id="@+id/txtMaterialDescValueID"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="9500001082"
+                    android:fontFamily="@font/open_sans_regular"
+                    android:textSize="@dimen/_12ssp"
+                    android:textColor="@color/blue_fb"
+                    android:textStyle="bold"
+                    android:background="@android:color/transparent"
+                    />
+
+
+
+                <!-- <TextView
+                     android:layout_toStartOf="@+id/txtComplainDateValueID"
+
+                     android:id="@+id/txtComplainDateHeadID"
+                     android:fontFamily="@font/open_sans_regular"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:text="Comp. Date: "
+                     android:textSize="@dimen/_10ssp"
+                     android:textColor="@color/black"
+                     />
+
+                 <TextView
+                     android:layout_alignParentEnd="true"
+
+                     android:id="@+id/txtComplainDateValueID"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:text="19.12.2014 "
+                     android:fontFamily="@font/open_sans_bold"
+                     android:textSize="@dimen/_10ssp"
+                     android:textColor="@color/black"
+                     android:background="@android:color/transparent"
+                     />-->
+            </RelativeLayout>
+
+<!--2-->
+
+            <!--3-->
+            <RelativeLayout
+                android:visibility="gone"
+                android:background="@drawable/text_shape_bg"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+
+
+                    android:id="@+id/txtMOBNumberHeadID"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Mob Number:"
+                    android:textSize="@dimen/_12ssp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/open_sans_regular"
+                    />
+
+                <TextView
+                    android:layout_toEndOf="@+id/txtMOBNumberHeadID"
+                    android:layout_marginStart="@dimen/_2sdp"
+
+                    android:id="@+id/txtMOBNumberValueID"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="7607107654"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/_12ssp"
+                    android:textColor="@color/blue_fb"
+                    android:fontFamily="@font/open_sans_regular"
+                    />
+
+            </RelativeLayout>
+            <!--vikas add Lr date-->
+<!--end-->
+            <!--3-->
+  <RelativeLayout
+      android:background="@drawable/text_shape_bg"
+      android:layout_marginTop="@dimen/_6sdp"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content">
+      <TextView
+
+
+
+          android:id="@+id/txtsernrHeadID"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="Serial no.: "
+          android:textSize="@dimen/_12ssp"
+          android:textColor="@color/black"
+          android:fontFamily="@font/open_sans_regular"
+          />
+
+
+      <TextView
+          android:id="@+id/txtsernrValueID"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="@dimen/_2sdp"
+          android:layout_toEndOf="@+id/txtsernrHeadID"
+          android:fontFamily="@font/open_sans_regular"
+          android:singleLine="true"
+          android:text="2121614104"
+          android:textColor="@color/blue_fb"
+          android:textSize="@dimen/_12ssp"
+          android:textStyle="bold" />
+
+      <ImageView
+          android:id="@+id/imgShareID"
+          android:layout_width="@dimen/_30sdp"
+          android:layout_height="@dimen/_20sdp"
+          android:layout_alignParentEnd="true"
+          android:src="@drawable/ic_share_img"/>
+  </RelativeLayout>
+
+<!--warrntee conditions-->
+
+            <RelativeLayout
+                android:background="@drawable/text_shape_bg"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+
+                    android:id="@+id/txtWarrenteeConditionsHeadID"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Warranty condition:"
+                    android:textSize="@dimen/_12ssp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/open_sans_regular"
+                    />
+
+                <TextView
+                    android:layout_marginStart="@dimen/_2sdp"
+
+
+                    android:layout_toEndOf="@+id/txtWarrenteeConditionsHeadID"
+                    android:id="@+id/txtWarrenteeConditionsValueID"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="MOTOR NOT WORKING"
+                    android:textSize="@dimen/_12ssp"
+                    android:textColor="@color/blue_fb"
+                    android:fontFamily="@font/open_sans_bold"
+                    />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:background="@drawable/text_shape_bg"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+
+                    android:id="@+id/txtReasonHeadID"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Reason:"
+                    android:textSize="@dimen/_12ssp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/open_sans_regular"
+                    />
+
+                <TextView
+                    android:layout_marginStart="@dimen/_2sdp"
+
+
+                    android:layout_toEndOf="@+id/txtReasonHeadID"
+                    android:id="@+id/txtReasonValueID"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="MOTOR NOT WORKING"
+                    android:textSize="@dimen/_12ssp"
+                    android:textColor="@color/blue_fb"
+                    android:fontFamily="@font/open_sans_bold"
+                    />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <com.andexert.library.RippleView
+                    android:id="@+id/rlpCheckINID"
+                    android:layout_width="@dimen/_90sdp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:background="@drawable/circl_shape"
+                    android:layout_margin="10dp"
+                    rv_centered="true">
+
+                <TextView
+                    android:layout_width="@dimen/_90sdp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:text="Check In"
+                   android:layout_centerInParent="true"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_12ssp"
+                    android:background="@android:color/transparent"/>
+
+                </com.andexert.library.RippleView>
+
+                <com.andexert.library.RippleView
+                    android:layout_alignParentEnd="true"
+                    android:id="@+id/rlpCheckOUTID"
+                    android:layout_width="@dimen/_90sdp"
+                    android:layout_height="@dimen/_30sdp"
+android:background="@drawable/circl_shape"
+                    android:layout_margin="10dp"
+                    rv_centered="true">
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Check Out"
+                   android:layout_centerInParent="true"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_12ssp"
+                    android:background="@android:color/transparent"/>
+
+                </com.andexert.library.RippleView>
+
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <com.andexert.library.RippleView
+                    android:id="@+id/rlpStartID"
+                    android:layout_width="@dimen/_90sdp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:background="@drawable/circl_shape"
+                    android:layout_margin="@dimen/_10sdp"
+                    rv_centered="true">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Start"
+                       android:layout_centerInParent="true"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_12ssp"
+                        android:background="@android:color/transparent"/>
+                </com.andexert.library.RippleView>
+
+                <com.andexert.library.RippleView
+                    android:layout_alignParentEnd="true"
+                    android:id="@+id/rlpStopID"
+                    android:layout_width="@dimen/_90sdp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:background="@drawable/circl_shape"
+                    android:layout_margin="@dimen/_10sdp"
+                    rv_centered="true">
+
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="stop"
+
+                        android:layout_centerInParent="true"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_12ssp"
+                        android:background="@android:color/transparent"/>
+
+                </com.andexert.library.RippleView>
+
+
+            </RelativeLayout>
+
+
+        </LinearLayout><!--hhhhhhhhhhhhhhhh ggggg-->
+
+
+
+
+</RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+
+</RelativeLayout>

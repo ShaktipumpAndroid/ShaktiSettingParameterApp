@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="@dimen/_50sdp"
+    android:layout_marginStart="@dimen/_50sdp"
+    android:background="@color/colorWhite"
+    android:orientation="horizontal"
+    android:padding="@dimen/_2sdp">
+
+    <TextView
+        android:id="@+id/txtLoadingHeadID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="@dimen/_5sdp"
+        android:text="@string/app_name"
+        android:fontFamily="@font/open_sans_semibold"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/colorOrange"
+        android:visibility="gone"
+        android:textSize="@dimen/_14ssp" />
+
+    <LinearLayout
+        android:layout_below="@+id/txtLoadingHeadID"
+        android:layout_width="@dimen/_300sdp"
+        android:layout_height="wrap_content"
+        android:background="@color/colorWhite"
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal"
+        android:padding="@dimen/_15sdp">
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:progress="300" />
+
+        <TextView
+            android:id="@+id/loader_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/_5sdp"
+            android:text="Loading.."
+            android:fontFamily="@font/open_sans_semibold"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/_14ssp" />
+    </LinearLayout>
+
+</RelativeLayout>
+
+
+    <!--
+    <?xml version="1.0" encoding="utf-8"?>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:background="@android:color/transparent"
+        >
+
+      <lal.adhish.gifprogressbar.GifView
+          android:id="@+id/progressBar"
+          android:layout_width="@dimen/_150sdp"
+          android:layout_centerInParent="true"
+          android:layout_margin="@dimen/_5sdp"
+          android:layout_height="@dimen/_150sdp"
+          android:layout_gravity="center"
+          />
+
+
+
+    </LinearLayout>
+    -->

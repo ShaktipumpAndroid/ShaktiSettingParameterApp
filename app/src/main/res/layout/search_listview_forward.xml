@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp">
+
+
+        <TextView
+            android:id="@+id/partner_code_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginTop="8dp"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+
+        <TextView
+            android:id="@+id/partner_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginLeft="1dp"
+            android:layout_marginTop="8dp"
+            android:layout_toRightOf="@+id/partner_code_txt"
+            android:textSize="15sp" />
+
+
+        <TextView
+            android:id="@+id/partner_name_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_below="@+id/partner_code_txt"
+            android:layout_gravity="left"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="15dp"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+
+        <TextView
+            android:id="@+id/partner_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/partner_code_txt"
+            android:layout_gravity="left"
+            android:layout_marginLeft="1dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="15dp"
+            android:layout_toRightOf="@+id/partner_code_txt"
+            android:textSize="15sp" />
+
+
+    </RelativeLayout>
+
+
+    <!--   </LinearLayout>-->
+
+</LinearLayout>

@@ -1,0 +1,2137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include layout="@layout/toolbar" />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/white">
+
+        <ScrollView
+            android:id="@+id/layout1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/bottom_layout"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@color/white"
+            android:fillViewport="true"
+            android:scrollbarStyle="outsideInset"
+            android:scrollbars="horizontal|vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/space_tinny4"
+                        android:layout_weight="1">
+
+                        <EditText
+                            android:id="@+id/cmp_customer_name"
+                            style="@style/under_line_et"
+                            android:editable="false"
+                            android:focusable="false"
+                            android:hint="Customer Name"
+                            android:padding="10dp"
+                            android:singleLine="true"
+
+                            />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/space_tinny4"
+                        android:layout_weight="1"
+
+                        >
+
+                        <EditText
+                            android:id="@+id/cmp_address"
+                            style="@style/under_line_et"
+                            android:editable="false"
+                            android:focusable="false"
+                            android:hint="Address"
+                            android:padding="10dp"
+                            android:singleLine="true"
+                            android:text="" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:orientation="horizontal">
+
+
+                        <TextView
+                            android:id="@+id/cmp_category_txt"
+                            style="@style/under_line_et"
+                            android:focusable="false"
+
+                            android:hint="Category      "
+                            android:padding="10dp"
+                            android:singleLine="true"
+                            android:text="" />
+
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <Spinner
+                            android:id="@+id/cmp_category"
+                            android:layout_width="match_parent"
+
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:drawableLeft="@drawable/ic_mendotry"
+                            android:spinnerMode="dialog" />
+
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+                <!--  item 1 -->
+                <LinearLayout
+                    android:id="@+id/item_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/background_floating_material_light"
+
+                    android:orientation="vertical">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="@dimen/space_tinny4"
+                            android:layout_weight="1">
+
+                            <EditText
+                                android:id="@+id/material_code_1"
+                                style="@style/under_line_et"
+                                android:background="@color/background_floating_material_light"
+                                android:editable="false"
+                                android:focusable="false"
+                                android:hint="Material Code"
+
+                                android:padding="10dp"
+                                android:singleLine="true"
+
+                                />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/space_tinny4"
+                            android:layout_weight="1"
+
+                            >
+
+                            <EditText
+                                android:id="@+id/material_name_1"
+                                style="@style/under_line_et"
+                                android:background="@color/background_floating_material_light"
+                                android:editable="false"
+                                android:focusable="false"
+                                android:hint="Material Name"
+                                android:padding="10dp"
+                                android:singleLine="true" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/cmp_reason_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@color/background_floating_material_light"
+                            android:padding="10dp" />
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="@dimen/space_tinny4"
+                            android:layout_weight="1">
+
+                            <EditText
+                                android:id="@+id/serial_no_1"
+                                style="@style/under_line_et"
+                                android:background="@color/background_floating_material_light"
+                                android:editable="false"
+                                android:focusable="false"
+                                android:hint="Serial No"
+                                android:padding="10dp"
+                                android:singleLine="true" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/space_tinny4"
+                            android:layout_weight="1">
+
+                            <EditText
+                                android:id="@+id/warranty_1"
+                                style="@style/under_line_et"
+                                android:background="@color/background_floating_material_light"
+                                android:editable="false"
+                                android:focusable="false"
+                                android:hint="Warranty"
+                                android:padding="10dp"
+                                android:singleLine="true" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="@dimen/space_tinny4"
+                            android:layout_weight="1">
+
+                            <EditText
+                                android:id="@+id/bill_no_1"
+                                style="@style/under_line_et"
+                                android:background="@color/background_floating_material_light"
+                                android:editable="false"
+                                android:focusable="false"
+                                android:hint="Bill No"
+                                android:padding="10dp"
+                                android:singleLine="true" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/space_tinny4"
+                            android:layout_weight="1">
+
+                            <EditText
+                                android:id="@+id/bill_dt_1"
+                                style="@style/under_line_et"
+                                android:background="@color/background_floating_material_light"
+                                android:editable="false"
+                                android:focusable="false"
+                                android:hint="Bill Date"
+                                android:padding="10dp"
+                                android:singleLine="true" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="@dimen/space_tinny4"
+                            android:layout_weight="1">
+
+                            <EditText
+                                android:id="@+id/warn_cond_1"
+                                style="@style/under_line_et"
+                                android:background="@color/background_floating_material_light"
+                                android:editable="false"
+                                android:focusable="false"
+                                android:hint="Warranty Condition"
+                                android:padding="10dp"
+                                android:singleLine="true" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="@dimen/space_tinny4"
+                            android:layout_weight="1">
+
+                            <EditText
+                                android:id="@+id/warn_exp_dt_1"
+                                style="@style/under_line_et"
+                                android:background="@color/background_floating_material_light"
+                                android:editable="false"
+                                android:focusable="false"
+                                android:hint="Warranty Expiry Date"
+                                android:padding="10dp"
+                                android:singleLine="true" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/space_tinny4"
+                            android:layout_weight="1">
+
+                            <EditText
+                                android:id="@+id/insu_txt_1"
+                                style="@style/under_line_et"
+                                android:background="@color/background_floating_material_light"
+                                android:editable="false"
+                                android:focusable="false"
+                                android:hint="Insurance Condition"
+                                android:padding="10dp"
+                                android:singleLine="true" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/space_tinny4"
+                        android:background="@color/background_floating_material_light"
+                        android:orientation="horizontal"
+                        android:visibility="gone">
+
+
+                        <Spinner
+                            android:id="@+id/cmp_payment_by_1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/space_tinny4"
+                            android:layout_marginTop="15dp"
+                            android:drawableLeft="@drawable/ic_mendotry"
+                            android:spinnerMode="dialog" />
+
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/background_floating_material_light"
+                        android:orientation="horizontal">
+
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/space_tinny4"
+                            android:layout_weight="1">
+
+                            <EditText
+                                android:id="@+id/pay_by_customer_1"
+                                style="@style/under_line_et"
+                                android:background="@color/background_floating_material_light"
+                                android:hint="Customer"
+                                android:inputType="number"
+
+                                android:padding="10dp"
+                                android:singleLine="true" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/space_tinny4"
+                            android:layout_weight="1">
+
+                            <EditText
+                                android:id="@+id/pay_by_dealer_1"
+                                style="@style/under_line_et"
+                                android:background="@color/background_floating_material_light"
+
+                                android:hint="Dealer"
+                                android:inputType="number"
+                                android:padding="10dp"
+                                android:singleLine="true" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/space_tinny4"
+                            android:layout_weight="1">
+
+                            <EditText
+                                android:id="@+id/pay_by_company_1"
+                                style="@style/under_line_et"
+                                android:background="@color/background_floating_material_light"
+
+                                android:hint="Company"
+                                android:inputType="number"
+                                android:padding="10dp"
+                                android:singleLine="true" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/space_tinny4"
+                            android:layout_weight="1">
+
+                            <EditText
+                                android:id="@+id/foc_amt_1"
+                                style="@style/under_line_et"
+                                android:background="@color/background_floating_material_light"
+                                android:hint="Foc Amount"
+                                android:inputType="number"
+                                android:padding="10dp"
+                                android:singleLine="true" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/space_tinny4"
+                            android:layout_weight="1">
+
+                            <EditText
+                                android:id="@+id/pay_by_dea_1"
+                                style="@style/under_line_et"
+                                android:background="@color/background_floating_material_light"
+                                android:hint="Return by Dealer"
+                                android:inputType="number"
+                                android:padding="10dp"
+                                android:singleLine="true" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/space_tinny4"
+                            android:layout_weight="1">
+
+                            <EditText
+                                android:id="@+id/pay_by_com_1"
+                                style="@style/under_line_et"
+                                android:background="@color/background_floating_material_light"
+
+                                android:hint="Return by Company"
+                                android:inputType="number"
+                                android:padding="10dp"
+                                android:singleLine="true" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal">
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal">
+
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+
+                                android:layout_marginLeft="@dimen/space_tinny4"
+                                android:layout_weight="1">
+
+                                <EditText
+                                    android:id="@+id/pay_to_freelancer_1"
+
+                                    style="@style/under_line_et"
+                                    android:background="@color/background_floating_material_light"
+                                    android:hint="Pay to Freelancer"
+
+                                    android:inputType="number"
+
+                                    android:padding="10dp"
+                                    android:singleLine="true" />
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal">
+
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:orientation="horizontal">
+
+
+                            <TextView
+                                android:id="@+id/cmp_closer_txt_1"
+                                style="@style/under_line_et"
+                                android:background="@color/background_floating_material_light"
+                                android:focusable="false"
+                                android:hint="Closer Reason"
+                                android:padding="10dp"
+                                android:singleLine="true"
+                                android:text="" />
+
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <Spinner
+
+                                android:id="@+id/cmp_close_reason_1"
+                                android:layout_width="match_parent"
+
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="15dp"
+                                android:drawableLeft="@drawable/ic_mendotry"
+                                android:spinnerMode="dialog" />
+
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:orientation="horizontal">
+
+
+                            <TextView
+                                android:id="@+id/cmp_defect_txt_1"
+                                style="@style/under_line_et"
+                                android:background="@color/background_floating_material_light"
+                                android:focusable="false"
+                                android:hint="Defect Type  "
+                                android:padding="10dp"
+                                android:singleLine="true"
+                                android:text="" />
+
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <Spinner
+                                android:id="@+id/cmp_defect_type_1"
+                                android:layout_width="match_parent"
+
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="15dp"
+                                android:drawableLeft="@drawable/ic_mendotry"
+                                android:spinnerMode="dialog" />
+
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+
+                            <TextView
+                                android:id="@+id/cmp_relt_to_txt_1"
+                                style="@style/under_line_et"
+                                android:background="@color/background_floating_material_light"
+                                android:focusable="false"
+                                android:hint="Complain \nRelated to  "
+                                android:padding="10dp"
+                                android:singleLine="true"
+                                android:text="" />
+
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <Spinner
+                                android:id="@+id/cmp_relt_to_1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="15dp"
+                                android:drawableStart="@drawable/ic_mendotry"
+                                android:spinnerMode="dialog" />
+
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:visibility="gone">
+
+
+                            <TextView
+                                android:id="@+id/capture_image_1"
+                                android:layout_width="0dp"
+                                android:layout_height="fill_parent"
+                                android:layout_weight="1"
+                                android:drawableTop="@drawable/complaint_image"
+                                android:drawablePadding="@dimen/space_tinny4"
+
+                                android:gravity="center_horizontal"
+                                android:padding="@dimen/space_tinny4"
+                                android:text="Capture \nPhoto"
+                                android:textColor="@color/dark_header_color"
+                                android:textSize="@dimen/size_tinny9"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:orientation="horizontal">
+
+
+                            <TextView
+                                android:id="@+id/serail_history_1"
+                                android:layout_width="0dp"
+                                android:layout_height="fill_parent"
+                                android:layout_gravity="right"
+                                android:layout_weight="1"
+
+                                android:drawableTop="@drawable/serial_no_history"
+                                android:drawablePadding="@dimen/space_tinny4"
+                                android:gravity="center_horizontal"
+                                android:padding="@dimen/space_tinny4"
+                                android:text="Serial No \nHistory"
+                                android:textColor="@color/dark_header_color"
+                                android:textSize="@dimen/size_tinny9"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <!--  item 2 -->
+                <LinearLayout
+                    android:id="@+id/item_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/background_floating_material_light"
+                    android:orientation="vertical">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="@dimen/space_tinny4"
+                            android:layout_weight="1"
+
+                            >
+
+                            <EditText
+                                android:id="@+id/material_code_2"
+                                style="@style/under_line_et"
+                                android:background="@color/background_floating_material_light"
+                                android:editable="false"
+                                android:focusable="false"
+                                android:hint="Material Code"
+                                android:padding="10dp"
+                                android:singleLine="true"
+
+                                />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/space_tinny4"
+                            android:layout_weight="1"
+
+                            >
+
+                            <EditText
+                                android:id="@+id/material_name_2"
+                                style="@style/under_line_et"
+                                android:background="@color/background_floating_material_light"
+                                android:editable="false"
+                                android:focusable="false"
+                                android:hint="Material Name"
+                                android:padding="10dp"
+                                android:singleLine="true" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/cmp_reason_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@color/background_floating_material_light"
+                            android:padding="10dp" />
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="@dimen/space_tinny4"
+                            android:layout_weight="1">
+
+                            <EditText
+                                android:id="@+id/serial_no_2"
+                                style="@style/under_line_et"
+                                android:background="@color/background_floating_material_light"
+                                android:editable="false"
+                                android:focusable="false"
+                                android:hint="Serial No"
+                                android:padding="10dp"
+                                android:singleLine="true" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/space_tinny4"
+                            android:layout_weight="1">
+
+                            <EditText
+                                android:id="@+id/warranty_2"
+                                style="@style/under_line_et"
+                                android:background="@color/background_floating_material_light"
+                                android:editable="false"
+                                android:focusable="false"
+                                android:hint="Warranty"
+                                android:padding="10dp"
+                                android:singleLine="true" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="@dimen/space_tinny4"
+                            android:layout_weight="1">
+
+                            <EditText
+                                android:id="@+id/bill_no_2"
+                                style="@style/under_line_et"
+                                android:background="@color/background_floating_material_light"
+                                android:editable="false"
+                                android:focusable="false"
+                                android:hint="Bill No"
+                                android:padding="10dp"
+                                android:singleLine="true" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/space_tinny4"
+                            android:layout_weight="1">
+
+                            <EditText
+                                android:id="@+id/bill_dt_2"
+                                style="@style/under_line_et"
+                                android:background="@color/background_floating_material_light"
+                                android:editable="false"
+                                android:focusable="false"
+                                android:hint="Bill Date"
+                                android:padding="10dp"
+                                android:singleLine="true" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="@dimen/space_tinny4"
+                            android:layout_weight="1">
+
+                            <EditText
+                                android:id="@+id/warn_cond_2"
+                                style="@style/under_line_et"
+                                android:background="@color/background_floating_material_light"
+                                android:editable="false"
+                                android:focusable="false"
+                                android:hint="Warranty Condition"
+                                android:padding="10dp"
+                                android:singleLine="true" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="@dimen/space_tinny4"
+                            android:layout_weight="1">
+
+                            <EditText
+                                android:id="@+id/warn_exp_dt_2"
+                                style="@style/under_line_et"
+                                android:background="@color/background_floating_material_light"
+                                android:editable="false"
+                                android:focusable="false"
+                                android:hint="Warranty Expiry Date"
+                                android:padding="10dp"
+                                android:singleLine="true" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/space_tinny4"
+                            android:layout_weight="1">
+
+                            <EditText
+                                android:id="@+id/insu_txt_2"
+                                style="@style/under_line_et"
+                                android:background="@color/background_floating_material_light"
+                                android:editable="false"
+                                android:focusable="false"
+                                android:hint="Insurance Condition"
+                                android:padding="10dp"
+                                android:singleLine="true" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/space_tinny4"
+                        android:background="@color/background_floating_material_light"
+                        android:orientation="horizontal">
+
+
+                        <Spinner
+                            android:id="@+id/cmp_payment_by_2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/space_tinny4"
+                            android:layout_marginTop="15dp"
+                            android:drawableLeft="@drawable/ic_mendotry"
+                            android:spinnerMode="dialog"
+                            android:visibility="gone" />
+
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/background_floating_material_light"
+                        android:orientation="horizontal">
+
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/space_tinny4"
+                            android:layout_weight="1">
+
+                            <EditText
+                                android:id="@+id/pay_by_customer_2"
+                                style="@style/under_line_et"
+                                android:background="@color/background_floating_material_light"
+                                android:hint="Customer"
+                                android:inputType="number"
+
+                                android:padding="10dp"
+                                android:singleLine="true" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/space_tinny4"
+                            android:layout_weight="1">
+
+                            <EditText
+                                android:id="@+id/pay_by_company_2"
+                                style="@style/under_line_et"
+                                android:background="@color/background_floating_material_light"
+
+                                android:hint="Company"
+                                android:inputType="number"
+                                android:padding="10dp"
+                                android:singleLine="true" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/space_tinny4"
+                            android:layout_weight="1">
+
+                            <EditText
+                                android:id="@+id/foc_amt_2"
+                                style="@style/under_line_et"
+                                android:background="@color/background_floating_material_light"
+                                android:hint="Foc Amount"
+                                android:inputType="number"
+                                android:padding="10dp"
+                                android:singleLine="true" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/space_tinny4"
+                            android:layout_weight="1">
+
+                            <EditText
+                                android:id="@+id/pay_by_dea_2"
+                                style="@style/under_line_et"
+                                android:background="@color/background_floating_material_light"
+
+                                android:hint="Return by Dealer"
+                                android:inputType="number"
+                                android:padding="10dp"
+                                android:singleLine="true" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/space_tinny4"
+                            android:layout_weight="1">
+
+                            <EditText
+                                android:id="@+id/pay_by_com_2"
+                                style="@style/under_line_et"
+                                android:background="@color/background_floating_material_light"
+
+                                android:hint="Return by Company"
+                                android:inputType="number"
+                                android:padding="10dp"
+                                android:singleLine="true" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal">
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal">
+
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+
+                                android:layout_marginLeft="@dimen/space_tinny4"
+                                android:layout_weight="1">
+
+                                <EditText
+                                    android:id="@+id/pay_to_freelancer_2"
+
+                                    style="@style/under_line_et"
+                                    android:background="@color/background_floating_material_light"
+                                    android:hint="Pay to Freelancer"
+
+                                    android:inputType="number"
+
+                                    android:padding="10dp"
+                                    android:singleLine="true" />
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal">
+
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:orientation="horizontal">
+
+
+                            <TextView
+                                android:id="@+id/cmp_closer_txt_2"
+                                style="@style/under_line_et"
+                                android:background="@color/background_floating_material_light"
+                                android:focusable="false"
+                                android:hint="Closer Reason"
+                                android:padding="10dp"
+                                android:singleLine="true"
+                                android:text="" />
+
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <Spinner
+
+                                android:id="@+id/cmp_close_reason_2"
+                                android:layout_width="match_parent"
+
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="15dp"
+                                android:drawableLeft="@drawable/ic_mendotry"
+                                android:spinnerMode="dialog" />
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/space_tinny4"
+                                android:layout_weight="1">
+
+                                <EditText
+                                    android:id="@+id/pay_by_dealer_2"
+                                    style="@style/under_line_et"
+                                    android:background="@color/background_floating_material_light"
+
+                                    android:hint="Dealer"
+                                    android:inputType="number"
+                                    android:padding="10dp"
+                                    android:singleLine="true" />
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <!--<LinearLayout-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:orientation="horizontal">-->
+                        <!--<Spinner-->
+                        <!--android:id="@+id/cmp_defect_type"-->
+                        <!--android:drawableLeft="@drawable/ic_mendotry"-->
+
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_marginTop="15dp"-->
+                        <!--android:spinnerMode="dialog"/>-->
+
+
+                        <!--</LinearLayout>-->
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:orientation="horizontal">
+
+
+                            <TextView
+                                android:id="@+id/cmp_defect_txt_2"
+                                style="@style/under_line_et"
+                                android:background="@color/background_floating_material_light"
+                                android:focusable="false"
+                                android:hint="Defect Type  "
+                                android:padding="10dp"
+                                android:singleLine="true"
+                                android:text="" />
+
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <Spinner
+                                android:id="@+id/cmp_defect_type_2"
+                                android:layout_width="match_parent"
+
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="15dp"
+                                android:drawableLeft="@drawable/ic_mendotry"
+                                android:spinnerMode="dialog" />
+
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:orientation="horizontal">
+
+
+                            <TextView
+                                android:id="@+id/cmp_relt_to_txt_2"
+                                style="@style/under_line_et"
+                                android:background="@color/background_floating_material_light"
+                                android:focusable="false"
+                                android:hint="Complain \nRelated to  "
+                                android:padding="10dp"
+                                android:singleLine="true"
+                                android:text="" />
+
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <Spinner
+                                android:id="@+id/cmp_relt_to_2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="15dp"
+                                android:drawableStart="@drawable/ic_mendotry"
+                                android:spinnerMode="dialog" />
+
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:visibility="gone">
+
+
+                            <TextView
+                                android:id="@+id/capture_image_2"
+                                android:layout_width="0dp"
+                                android:layout_height="fill_parent"
+                                android:layout_weight="1"
+                                android:drawableTop="@drawable/complaint_image"
+                                android:drawablePadding="@dimen/space_tinny4"
+                                android:gravity="center_horizontal"
+
+                                android:padding="@dimen/space_tinny4"
+                                android:text="Capture \nPhoto"
+                                android:textColor="@color/dark_header_color"
+                                android:textSize="@dimen/size_tinny9"
+
+                                android:textStyle="bold" />
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:orientation="horizontal">
+
+
+                            <TextView
+                                android:id="@+id/serail_history_2"
+                                android:layout_width="0dp"
+                                android:layout_height="fill_parent"
+                                android:layout_gravity="right"
+                                android:layout_weight="1"
+
+                                android:drawableTop="@drawable/serial_no_history"
+                                android:drawablePadding="@dimen/space_tinny4"
+                                android:gravity="center_horizontal"
+                                android:padding="@dimen/space_tinny4"
+                                android:text="Serial No \nHistory"
+                                android:textColor="@color/dark_header_color"
+                                android:textSize="@dimen/size_tinny9"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <!--  item 3 -->
+
+                <LinearLayout
+                    android:id="@+id/item_3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/background_floating_material_light"
+
+                    android:orientation="vertical">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="@dimen/space_tinny4"
+                            android:layout_weight="1">
+
+                            <EditText
+                                android:id="@+id/material_code_3"
+                                style="@style/under_line_et"
+                                android:background="@color/background_floating_material_light"
+                                android:editable="false"
+                                android:focusable="false"
+                                android:hint="Material Code"
+
+                                android:padding="10dp"
+                                android:singleLine="true"
+
+                                />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/space_tinny4"
+                            android:layout_weight="1"
+
+                            >
+
+                            <EditText
+                                android:id="@+id/material_name_3"
+                                style="@style/under_line_et"
+                                android:background="@color/background_floating_material_light"
+                                android:editable="false"
+                                android:focusable="false"
+                                android:hint="Material Name"
+                                android:padding="10dp"
+                                android:singleLine="true" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/cmp_reason_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@color/background_floating_material_light"
+                            android:padding="10dp" />
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="@dimen/space_tinny4"
+                            android:layout_weight="1">
+
+                            <EditText
+                                android:id="@+id/serial_no_3"
+                                style="@style/under_line_et"
+                                android:background="@color/background_floating_material_light"
+                                android:editable="false"
+                                android:focusable="false"
+
+                                android:hint="Serial No"
+                                android:padding="10dp"
+                                android:singleLine="true" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/space_tinny4"
+                            android:layout_weight="1">
+
+                            <EditText
+                                android:id="@+id/warranty_3"
+                                style="@style/under_line_et"
+                                android:background="@color/background_floating_material_light"
+                                android:editable="false"
+                                android:focusable="false"
+                                android:hint="Warranty"
+                                android:padding="10dp"
+                                android:singleLine="true" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="@dimen/space_tinny4"
+                            android:layout_weight="1">
+
+                            <EditText
+                                android:id="@+id/bill_no_3"
+                                style="@style/under_line_et"
+                                android:background="@color/background_floating_material_light"
+                                android:editable="false"
+                                android:focusable="false"
+                                android:hint="Bill No"
+                                android:padding="10dp"
+                                android:singleLine="true" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/space_tinny4"
+                            android:layout_weight="1">
+
+                            <EditText
+                                android:id="@+id/bill_dt_3"
+                                style="@style/under_line_et"
+                                android:background="@color/background_floating_material_light"
+                                android:editable="false"
+                                android:focusable="false"
+                                android:hint="Bill Date"
+                                android:padding="10dp"
+                                android:singleLine="true" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="@dimen/space_tinny4"
+                            android:layout_weight="1">
+
+                            <EditText
+                                android:id="@+id/warn_cond_3"
+                                style="@style/under_line_et"
+                                android:background="@color/background_floating_material_light"
+                                android:editable="false"
+                                android:focusable="false"
+                                android:hint="Warranty Condition"
+                                android:padding="10dp"
+                                android:singleLine="true" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="@dimen/space_tinny4"
+                            android:layout_weight="1">
+
+                            <EditText
+                                android:id="@+id/warn_exp_dt_3"
+                                style="@style/under_line_et"
+                                android:background="@color/background_floating_material_light"
+                                android:editable="false"
+                                android:focusable="false"
+                                android:hint="Warranty Expiry Date"
+                                android:padding="10dp"
+                                android:singleLine="true" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/space_tinny4"
+                            android:layout_weight="1">
+
+                            <EditText
+                                android:id="@+id/insu_txt_3"
+                                style="@style/under_line_et"
+                                android:background="@color/background_floating_material_light"
+                                android:editable="false"
+                                android:focusable="false"
+                                android:hint="Insurance Condition"
+                                android:padding="10dp"
+                                android:singleLine="true" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/space_tinny4"
+                        android:background="@color/background_floating_material_light"
+                        android:orientation="horizontal">
+
+
+                        <Spinner
+                            android:id="@+id/cmp_payment_by_3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/space_tinny4"
+                            android:layout_marginTop="15dp"
+                            android:drawableLeft="@drawable/ic_mendotry"
+                            android:spinnerMode="dialog"
+                            android:visibility="gone" />
+
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/background_floating_material_light"
+                        android:orientation="horizontal">
+
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/space_tinny4"
+                            android:layout_weight="1">
+
+                            <EditText
+                                android:id="@+id/pay_by_customer_3"
+                                style="@style/under_line_et"
+                                android:background="@color/background_floating_material_light"
+                                android:hint="Customer"
+                                android:inputType="number"
+
+                                android:padding="10dp"
+                                android:singleLine="true" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/space_tinny4"
+                            android:layout_weight="1">
+
+                            <EditText
+                                android:id="@+id/pay_by_dealer_3"
+                                style="@style/under_line_et"
+                                android:background="@color/background_floating_material_light"
+
+                                android:hint="Dealer"
+                                android:inputType="number"
+                                android:padding="10dp"
+                                android:singleLine="true" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/space_tinny4"
+                            android:layout_weight="1">
+
+                            <EditText
+                                android:id="@+id/pay_by_company_3"
+                                style="@style/under_line_et"
+                                android:background="@color/background_floating_material_light"
+
+                                android:hint="Company"
+                                android:inputType="number"
+                                android:padding="10dp"
+                                android:singleLine="true" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/space_tinny4"
+                            android:layout_weight="1">
+
+                            <EditText
+                                android:id="@+id/foc_amt_3"
+                                style="@style/under_line_et"
+                                android:background="@color/background_floating_material_light"
+                                android:hint="Foc Amount"
+                                android:inputType="number"
+                                android:padding="10dp"
+                                android:singleLine="true" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/space_tinny4"
+                            android:layout_weight="1">
+
+                            <EditText
+                                android:id="@+id/pay_by_dea_3"
+                                style="@style/under_line_et"
+                                android:background="@color/background_floating_material_light"
+
+                                android:hint="Return by Dealer"
+                                android:inputType="number"
+                                android:padding="10dp"
+                                android:singleLine="true" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/space_tinny4"
+                            android:layout_weight="1">
+
+                            <EditText
+                                android:id="@+id/pay_by_com_3"
+                                style="@style/under_line_et"
+                                android:background="@color/background_floating_material_light"
+
+                                android:hint="Return by Company"
+                                android:inputType="number"
+                                android:padding="10dp"
+                                android:singleLine="true" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal">
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal">
+
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+
+                                android:layout_marginLeft="@dimen/space_tinny4"
+                                android:layout_weight="1">
+
+                                <EditText
+                                    android:id="@+id/pay_to_freelancer_3"
+                                    style="@style/under_line_et"
+                                    android:background="@color/background_floating_material_light"
+                                    android:hint="Pay to Freelancer"
+                                    android:inputType="number"
+                                    android:padding="10dp"
+                                    android:singleLine="true" />
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal">
+
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:orientation="horizontal">
+
+
+                            <TextView
+                                android:id="@+id/cmp_closer_txt_3"
+                                style="@style/under_line_et"
+                                android:background="@color/background_floating_material_light"
+                                android:focusable="false"
+                                android:hint="Closer Reason"
+                                android:padding="10dp"
+                                android:singleLine="true"
+                                android:text="" />
+
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <Spinner
+
+                                android:id="@+id/cmp_close_reason_3"
+                                android:layout_width="match_parent"
+
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="15dp"
+                                android:drawableLeft="@drawable/ic_mendotry"
+                                android:spinnerMode="dialog" />
+
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+
+                        <!--</LinearLayout>-->
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:orientation="horizontal">
+
+
+                            <TextView
+                                android:id="@+id/cmp_defect_txt_3"
+                                style="@style/under_line_et"
+                                android:background="@color/background_floating_material_light"
+                                android:focusable="false"
+                                android:hint="Defect Type  "
+                                android:padding="10dp"
+                                android:singleLine="true"
+                                android:text="" />
+
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <Spinner
+                                android:id="@+id/cmp_defect_type_3"
+                                android:layout_width="match_parent"
+
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="15dp"
+                                android:drawableLeft="@drawable/ic_mendotry"
+                                android:spinnerMode="dialog" />
+
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:orientation="horizontal">
+
+
+                            <TextView
+                                android:id="@+id/cmp_relt_to_txt_3"
+                                style="@style/under_line_et"
+                                android:background="@color/background_floating_material_light"
+                                android:focusable="false"
+                                android:hint="Complain \nRelated to  "
+                                android:padding="10dp"
+                                android:singleLine="true"
+                                android:text="" />
+
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <Spinner
+                                android:id="@+id/cmp_relt_to_3"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="15dp"
+                                android:drawableStart="@drawable/ic_mendotry"
+                                android:spinnerMode="dialog" />
+
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:visibility="gone">
+
+
+                            <TextView
+                                android:id="@+id/capture_image_3"
+                                android:layout_width="0dp"
+                                android:layout_height="fill_parent"
+                                android:layout_weight="1"
+                                android:drawableTop="@drawable/complaint_image"
+                                android:drawablePadding="@dimen/space_tinny4"
+                                android:gravity="center_horizontal"
+                                android:padding="@dimen/space_tinny4"
+                                android:text="Capture \nPhoto"
+                                android:textColor="@color/dark_header_color"
+                                android:textSize="@dimen/size_tinny9"
+                                android:textStyle="bold" />
+
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:orientation="horizontal">
+
+
+                            <TextView
+                                android:id="@+id/serail_history_3"
+                                android:layout_width="0dp"
+                                android:layout_height="fill_parent"
+                                android:layout_gravity="right"
+                                android:layout_weight="1"
+
+                                android:drawableTop="@drawable/serial_no_history"
+                                android:drawablePadding="@dimen/space_tinny4"
+                                android:gravity="center_horizontal"
+                                android:padding="@dimen/space_tinny4"
+                                android:text="Serial No \nHistory"
+                                android:textColor="@color/dark_header_color"
+                                android:textSize="@dimen/size_tinny9"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/input_layout_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+
+                    <EditText
+                        android:id="@+id/text_complaint_action"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Closer Comment:"
+                        android:maxLength="300" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+            </LinearLayout>
+
+        </ScrollView>
+
+        <LinearLayout
+            android:id="@+id/bottom_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@color/dark_header_color"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:id="@+id/pending_complaint"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/pending"
+                android:drawablePadding="@dimen/space_tinny4"
+                android:gravity="center_horizontal"
+                android:padding="@dimen/space_tinny4"
+                android:text="Pending \n Complaint"
+                android:textColor="@color/white"
+                android:textSize="@dimen/size_tinny9"
+
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/audio_recording"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/start_recording"
+                android:drawablePadding="@dimen/space_tinny4"
+                android:gravity="center_horizontal"
+                android:padding="@dimen/space_tinny4"
+                android:text="Start \nRecording"
+                android:textColor="@color/white"
+                android:textSize="@dimen/size_tinny9"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/appr_complaint"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:drawableTop="@mipmap/cmp_forward"
+                android:drawablePadding="@dimen/space_tinny4"
+                android:gravity="center_horizontal"
+                android:padding="@dimen/space_tinny4"
+                android:text="Froward for \nApproval"
+                android:textColor="@color/white"
+                android:textSize="@dimen/size_tinny9"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:id="@+id/cmp_forward"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:drawableTop="@mipmap/cmp_forward"
+                android:drawablePadding="@dimen/space_tinny4"
+                android:gravity="center_horizontal"
+                android:padding="@dimen/space_tinny4"
+                android:text="Forward \nTo"
+                android:textColor="@color/white"
+                android:textSize="@dimen/size_tinny9"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:id="@+id/close_complaint"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/close_complaint"
+                android:drawablePadding="@dimen/space_tinny4"
+                android:gravity="center_horizontal"
+                android:padding="@dimen/space_tinny4"
+                android:text="Close \nComplaint"
+                android:textColor="@color/white"
+                android:textSize="@dimen/size_tinny9"
+                android:textStyle="bold" />
+
+            <!--<TextView-->
+            <!--android:id="@+id/transfer_complaint"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="fill_parent"-->
+            <!--android:layout_weight="1"-->
+            <!--android:textStyle="bold"-->
+            <!--android:textColor="@color/white"-->
+            <!--android:drawablePadding="@dimen/space_tinny4"-->
+            <!--android:drawableTop="@drawable/transfer"-->
+            <!--android:gravity="center_horizontal"-->
+            <!--android:padding="@dimen/space_tinny4"-->
+            <!--android:text="Transfer"-->
+
+            <!--android:textSize="@dimen/size_tinny9" />-->
+
+            <!--<TextView-->
+            <!--android:id="@+id/fir_complaint"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="fill_parent"-->
+            <!--android:layout_weight="1"-->
+            <!--android:drawablePadding="@dimen/space_tinny4"-->
+            <!--android:drawableTop="@drawable/icn_fir"-->
+            <!--android:gravity="center_horizontal"-->
+            <!--android:padding="@dimen/space_tinny4"-->
+            <!--android:text="FIR"-->
+
+            <!--android:textSize="@dimen/size_tinny9" />-->
+        </LinearLayout>
+
+
+    </RelativeLayout>
+</LinearLayout>
+
+

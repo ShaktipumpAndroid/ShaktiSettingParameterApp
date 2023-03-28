@@ -1,0 +1,58 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+
+    tools:context="activity.MainActivity">
+
+    <!--    <item
+            android:id="@+id/action_search"
+            android:title="@string/action_search"
+            android:orderInCategory="100"
+            android:icon="@drawable/ic_action_search"
+
+            app:showAsAction="ifRoom"/>-->
+    <!-- app:showAsAction="ifRoom"-->
+
+
+    <!--<item
+     android:id="@+id/action_logo"
+        android:title="shakti"
+     android:orderInCategory="100"
+
+     android:icon="@drawable/shakti_white"
+     app:showAsAction="ifRoom"/>-->
+
+
+
+
+
+
+    <item
+        android:id="@+id/action_download_complaint"
+        android:orderInCategory="100"
+        android:title="@string/action_download_complaint"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_download_service_center"
+        android:orderInCategory="100"
+        android:title="@string/action_download_service_center"
+        app:showAsAction="never" />
+
+
+    <item
+        android:id="@+id/action_sync_offline"
+        android:orderInCategory="100"
+        android:title="@string/action_sync_offline"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_signout"
+        android:orderInCategory="100"
+        android:title="@string/action_signout"
+        app:showAsAction="never" />
+
+
+</menu>

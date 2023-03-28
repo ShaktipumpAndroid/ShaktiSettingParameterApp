@@ -1,0 +1,23 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    tools:context="activity.VideoSearchActivity">
+
+
+    <item
+        android:id="@+id/action_complaint_attachment_pdf"
+        android:icon="@mipmap/attachment"
+        android:orderInCategory="1"
+        android:title="@string/action_complaint_attachment"
+        android:visible="false"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_complaint_attachment"
+        android:icon="@mipmap/attachment"
+        android:orderInCategory="1"
+        android:title="@string/action_complaint_attachment"
+        app:showAsAction="ifRoom" />
+
+</menu>

@@ -1,0 +1,223 @@
+<resources>
+    <string name="app_name">Shakti Service Center App</string>
+
+
+    <string name="hint_activity">Activity</string>
+    <string name="hint_dsr">DSR Comment</string>
+    <string name="hint_password">Password</string>
+    <string name="btn_save_dsr"> Save</string>
+    <string name="title_adhoc_order">Adhoc Order</string>
+    <string name="action_cart">View Cart </string>
+    <string name="err_msg_name">Enter User Name</string>
+    <string name="err_msg_email">Enter valid email address</string>
+    <string name="err_msg_password">Enter the password</string>
+    <string name="please_select_date">Please Select Date</string>
+    <string name="trvlmod">Travel Mode <font color='#FF0000'>*</font></string>
+    <string name="trans_det">Transport Details Update</string>
+    <string name="stock_det">  Stock Details Report  </string>
+    <string name="location_updated">Location Updated: %1$s</string>
+    <string name="request_location_updates">Request location updates</string>
+    <string name="remove_location_updates">Remove location updates</string>
+    <string name="launch_activity">Shakti Sales Employee</string>
+    <string name="permission_rationale">Location permission is needed for core functionality</string>
+    <string name="ok">OK</string>
+    <string name="permission_denied_explanation">Permission was denied, but is needed for core
+        functionality.</string>
+
+    <string name="settings">Settings</string>
+    <string name="Get_text">Get</string>
+    <string name="Set_text">Set</string>
+    <string name="Set_edt_scan">Scan or Enter material number</string>
+    <string name="Scan_Device">Scan Device</string>
+
+    <string name="file_thumbnail" translatable="false">File thumbnail</string>
+    <string name="path" translatable="false">Path : %1$s</string>
+    <string name="size" translatable="false">Size :  %1$d</string>
+    <string name="mime" translatable="false">Mime: %1$s</string>
+    <string name="type" translatable="false">Type : %1$d</string>
+    <string name="name" translatable="false">Name : %1$s</string>
+    <string name="bucketname" translatable="false">BucketName : %1$s</string>
+
+    <string name="confirm"><![CDATA[Pressing <b>Confirm</b> will start your Journey.]]></string>
+
+
+    <!-- material design-->
+
+    <string name="rationale_doc_picker" translatable="false">We need this pemission to read documents from device.</string>
+    <string name="action_search">Search</string>
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
+
+    <string name="nav_item_home">Home</string>
+    <string name="nav_item_attendance">Attendance Report</string>
+    <string name="nav_device_status">Device Status</string>
+    <string name="nav_item_route_plan">Route Plan </string>
+    <string name="nav_item_material_analysis">Material Analysis </string>
+    <string name="nav_item_files"> Files  </string>
+    <string name="nav_item_video"> Video Gallery  </string>
+    <string name="nav_cable_selection"> Cable Selection  </string>
+    <string name="nav_pipe_selection">  Pipe Selection  </string>
+    <string name="nav_solar_cable_selection">  Solar Cable Selection </string>
+    <string name="nav_item_pump_selector"> Shakti Pump Selector </string>
+    <string name="nav_item_shakti_employee"> Shakti Employee (HR) </string>
+    <string name="nav_item_shakti_canteen"> Shakti Canteen </string>
+
+
+    <string name="nav_item_faq"> FAQ </string>
+    <string name="nav_item_logout"> Logout </string>
+
+
+    <!-- navigation drawer item labels  -->
+    <!-- <string-array name="nav_drawer_labels">
+        <item>@string/nav_item_home</item>
+        <item>@string/nav_item_attendance</item>
+        <item>@string/nav_device_status</item>
+        <item>@string/nav_item_route_plan</item>
+        <item>@string/nav_item_material_analysis</item>
+        <item>@string/nav_item_files</item>
+        <item>@string/nav_item_video</item>
+        <item>@string/nav_cable_selection</item>
+        <item>@string/nav_pipe_selection</item>
+
+        <item>@string/nav_solar_cable_selection</item>
+        <item>@string/nav_item_pump_selector</item>
+        <item>@string/nav_item_shakti_employee</item>
+        <item>@string/nav_item_shakti_canteen</item>
+
+
+        <item>@string/nav_item_faq</item>
+
+
+    </string-array>-->
+
+    <string-array name="nav_drawer_labels">
+        <item>@string/nav_item_home</item>
+        <item>@string/nav_item_faq</item>
+        <item>@string/nav_item_logout</item>
+
+
+    </string-array>
+    <string name="action_signout">Sign Out</string>
+    <string name="action_download_all">Download Data</string>
+    <string name="action_sync_offline">Sync Offline Data</string>
+
+    <string name="crash_toast_text">Ooooops ! App crashed, but a report will be sent to developer to help fix the issue !</string>
+
+    <string name="action_video_download">Download Video List</string>
+    <string name="action_unsync_menu">Sync Offline Data</string>
+    <string name="action_target_menu">Download Data</string>
+    <string name="action_menu_material_analysis">Sync Data</string>
+    <string name="action_file_menu">Sync Data</string>
+    <string name="action_file_detail_menu">Sync Data</string>
+    <string name="action_route_map_menu">Show on Map</string>
+    <string name="action_complaint_attachment">Attach Image</string>
+
+    <string name="action_add_customer">Add New Customer in Route</string>
+
+    <string name="action_download_complaint">Download Complaint</string>
+    <string name="action_download_service_center">Download Service Center </string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <string-array name="shakti_file">
+        <item>Price List</item>
+        <item>Leaflet</item>
+        <item>Policy</item>
+        <item>Catalog</item>
+        <item>Check List</item>
+        <item>JDs</item>
+    </string-array>
+
+    <string name="title_activity_maps">Map</string>
+
+
+    <string name="customer_number_label">"customer number  : "</string>
+    <string name="customer_name_label">"customer name  : "</string>
+    <string name="customer_category_label">"customer category  : "</string>
+    <string name="customer_place_label">"customer place  : "</string>
+    <string name="customer_distance_label">"customer distance  : "</string>
+    <string name="enterPumpCode">Enter Pump Code</string>
+    <string name="loading">Loading...</string>
+    <string name="connectingServer">Connecting to server..please wait !</string>
+
+
+    <string-array name="array_paymnet_by">
+        <item>Pay By</item>
+        <item>Return By</item>
+    </string-array>
+
+
+    <string-array name="array_stand_reason">
+        <item>Select Reason</item>
+        <item>Wrong Selection</item>
+        <item>Pump / Motor details not available in complaint</item>
+        <item>Goodwill claim</item>
+        <item>Customer Fault</item>
+        <item>Field Issue</item>
+        <item>Manufacturing Issue</item>
+        <item>Wrong Defect type mentioned by service team</item>
+        <item>Wrong attachments</item>
+        <item>Incomplete Information</item>
+        <item>Complaint closed by service team</item>
+        <item>Pump set fall down in Bore well</item>
+        <item>Pumpset operate in wrong application</item>
+        <item>Service center bill not attached</item>
+        <item>Customer bill not attached</item>
+        <item>Approval not attached</item>
+        <item>Photo not attached</item>
+        <item>Serial number photo not attached</item>
+        <item>Damage parts photo not attached</item>
+        <item>Product photo not attached</item>
+        <item>Complain closed with wrong amount</item>
+        <item>Out of warranty claim</item>
+        <item>Product serial number differ from Complain</item>
+        <item>Excess amount passed</item>
+        <item>Controller Issue</item>
+        <item>Parameter issue</item>
+        <item>Solar Structure / Module  Damaged</item>
+        <item>ALL PART DAMAGE DUE TO FOREIGN PARTICLE INSERT / MUD / SAND</item>
+        <item>CORRUGATED SPRING DAMAGED/WORNOUT/DEFORMED</item>
+        <item>COUPLING NOT TIGHTENED</item>
+        <item>ELECTRIC CONNECTION LOOSE /IMPROPER</item>
+        <item>CONECTOR DAMAGE /LOOSE</item>
+        <item>IMBALANCE  COUPLING</item>
+        <item>IMPROPER HANDLING IN TRANSIT AT DEALER / CUSOMER END / SERVI</item>
+        <item>IMPROPER INSTALLTION</item>
+        <item>IMPROPER PACKING</item>
+        <item>LEAKAGE FROM GASKET/ FLANGE/SUCTION /DISCHARGE PIPE /NRV</item>
+        <item>LOOSE STUD / LOOSE BOLT /NUT LOOSE</item>
+        <item>MATERIAL DEFECT</item>
+        <item>MOTOR BEARING FAILURE DUE TO WATER INSERTION</item>
+        <item>MOTOR ROTATION AGAINST THE PRESCRIBED</item>
+        <item>MOTOR TRIPPING DUE TO LOW VOLTAGE</item>
+        <item>NEGATIVE SUCTION</item>
+        <item>NO FOOT VALVE RESULTING INTO FORIGN PARTCLE INSERTION</item>
+        <item>NON STANARD / NON PRESCRIBED PIPING</item>
+        <item>NOT MAINTAINED D10/D5</item>
+        <item>ON/ OFF SWITCH NOT WORKING</item>
+        <item>OUR PUMP SET WORKING FINE PROBLEM RELATED TO CUSTOMER /SITE</item>
+        <item>OUTER PIPE DAMAGE /LEAKAGE FROM OUTER SEAM LINE</item>
+        <item>PART MISSING</item>
+        <item>PIPE LINE CHOCK</item>
+        <item>PIPE SIZE IS LESS THAN SUCTION /DISCHARGE HOLE SIZE</item>
+        <item>PRESSURE SWITCH PROBLEM</item>
+        <item>PUMP INSTALLED WITHOUT VIBRATION PAD</item>
+        <item>PUMP JAM DUE TO FOREIGN PARTICLE INSERT / MUD / SAND</item>
+        <item>PUMP NOISE / NOISY DUE TO CAVITATION</item>
+        <item>PUMP RUN WITH DOWN FLOAT /FLOT NOT MAINTAINED</item>
+        <item>PUMP VIBRATION</item>
+        <item>PUMP WORN OUT /MOTOR WORN OUT/OUT OF WARRANTY</item>
+        <item>PUMPED FLUID BEYOND RECOMMENDED TEMPERATURE</item>
+        <item>RADIAL SLEEVE BROCKEN</item>
+        <item>REPAIRED AS GOODWILL WARANTY</item>
+        <item>START STOP MORE THEN PRESCRIBED</item>
+        <item>SUCTION LIFT TOO LARGE</item>
+        <item>UN RECOMMENDED FLUID BEING PUMPED</item>
+        <item>NOT COUNT CATERGORY /NOT READY TO SEND / PAY / OTHER</item>
+        <item>OK</item>
+        <item>Other</item>
+    </string-array>
+
+</resources>

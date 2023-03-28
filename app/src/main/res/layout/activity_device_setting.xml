@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_wtsp"
+    android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:id="@+id/rlvHeaderMainViewID"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_50sdp"
+        android:background="@drawable/blue_grediant_drawable">
+
+        <LinearLayout
+            android:id="@+id/lvlBackIconViewID"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageView
+
+                android:padding="@dimen/_7sdp"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="match_parent"
+                android:src="@drawable/back"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="Setting"
+                android:textColor="@color/colorWhite"
+                android:fontFamily="@font/open_sans_semibold"
+                android:textSize="@dimen/_16ssp"
+                />
+        </LinearLayout>
+
+       <ImageView
+           android:visibility="visible"
+           android:id="@+id/imgBluetoothiconID"
+           android:layout_marginEnd="@dimen/_5sdp"
+           android:layout_alignParentEnd="true"
+           android:layout_width="@dimen/_50sdp"
+           android:layout_height="@dimen/_50sdp"
+           android:src="@drawable/ic_bluetooth_gray"
+           android:padding="@dimen/_14sdp" />
+
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/_4sdp"
+        android:orientation="horizontal"
+        android:id="@+id/lvlget_set_allID"
+        android:layout_below="@+id/rlvHeaderMainViewID"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_35sdp"
+        android:weightSum="1">
+
+        <RelativeLayout
+            android:visibility="gone"
+            android:id="@+id/rlvGetAllViewID"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/right_round_corner">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/_18ssp"
+                android:text="Get All"
+                android:textColor="@color/colorDarkB"
+                android:gravity="center"
+                android:layout_centerInParent="true"
+                android:fontFamily="@font/open_sans_bold"
+                />
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/rlvSetAllViewID"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/white_bg_round_corner">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/_18ssp"
+                android:text="Set All"
+                android:textColor="@color/colorDarkB"
+                android:gravity="center"
+                android:layout_centerInParent="true"
+                android:fontFamily="@font/open_sans_bold"
+
+
+                />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+
+    <ScrollView
+
+        android:layout_below="@+id/lvlget_set_allID"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:id="@+id/lvlMainParentLayoutID"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:orientation="vertical">
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+    <TextView
+        android:id="@+id/noDataFound"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="No Data Found"
+       android:gravity="center"
+        android:textSize="@dimen/_14sdp"
+        android:textColor="@color/black"
+        android:visibility="gone"
+        android:fontFamily="sans-serif-condensed-medium"/>
+
+
+</RelativeLayout>

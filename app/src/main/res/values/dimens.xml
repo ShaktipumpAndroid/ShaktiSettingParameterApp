@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <!-- pading and margin space -->
+    <dimen name="space_separator">0.5dp</dimen>
+    <dimen name="space_tinny2">2dp</dimen>
+    <dimen name="space_tinny3">3dp</dimen>
+    <dimen name="space_tinny4">4dp</dimen>
+    <dimen name="space_mid6">6dp</dimen>
+    <dimen name="space_mid8">8dp</dimen>
+    <dimen name="space_mid10">10dp</dimen>
+    <dimen name="space_mid12">12dp</dimen>
+    <dimen name="space_large15">15dp</dimen>
+    <dimen name="space_large16">16dp</dimen>
+    <dimen name="space_large17">17dp</dimen>
+    <dimen name="space_large20">20dp</dimen>
+
+    <dimen name="space_large25">25dp</dimen>
+    <dimen name="space_xlarge22">22dp</dimen>
+    <dimen name="space_xlarge30">30dp</dimen>
+    <dimen name="space_xlarge35">35dp</dimen>
+    <dimen name="space_xxlarge40">40dp</dimen>
+    <dimen name="space_xxlarge45">45dp</dimen>
+    <dimen name="space_xxlarge50">56dp</dimen>
+    <dimen name="space_xxlarge70">60dp</dimen>
+    <dimen name="space_xxlarge80">80dp</dimen>
+
+    <!-- text size -->
+    <dimen name="size_tinny9">9sp</dimen>
+    <dimen name="size_tinny10">10sp</dimen>
+    <dimen name="size_tinny11">11sp</dimen>
+    <dimen name="size_tinny12">12sp</dimen>
+    <dimen name="size_tinny13">13sp</dimen>
+    <dimen name="size_small14">14sp</dimen>
+    <dimen name="size_small15">15sp</dimen>
+    <dimen name="size_mid16">16sp</dimen>
+    <dimen name="size_large17">16sp</dimen>
+    <dimen name="size_large18">18sp</dimen>
+    <dimen name="size_xlarge20">20sp</dimen>
+
+    <dimen name="size_xlarge21">21sp</dimen>
+    <dimen name="size_xarge22">22sp</dimen>
+    <dimen name="size_xxlarge24">24sp</dimen>
+    <dimen name="profile_image_w">72dp</dimen>
+    <dimen name="profile_image_h">72dp</dimen>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+
+    <!-- image size -->
+    <dimen name="event_detail_image_height200">200dp</dimen>
+    <dimen name="event_detail_image_height150">150dp</dimen>
+
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="nav_header_vertical_spacing">16dp</dimen>
+    <dimen name="nav_header_height">160dp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+
+
+    <dimen name="nav_drawer_width">260dp</dimen>
+</resources>

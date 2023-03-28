@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <TextView
+        android:id="@+id/customer_number_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/customer_number_label" />
+
+    <TextView
+        android:id="@+id/customer_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/customer_number_label" />
+
+    <TextView
+        android:id="@+id/customer_name_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/customer_number_label"
+        android:text="@string/customer_name_label" />
+
+    <TextView
+        android:id="@+id/customer_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/customer_number"
+        android:layout_toRightOf="@+id/customer_name_label" />
+
+    <TextView
+        android:id="@+id/customer_category_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/customer_name_label"
+        android:text="@string/customer_category_label" />
+
+    <TextView
+        android:id="@+id/customer_category"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/customer_name"
+        android:layout_toRightOf="@+id/customer_category_label" />
+
+    <TextView
+        android:id="@+id/customer_place_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/customer_category_label"
+        android:text="@string/customer_place_label" />
+
+    <TextView
+        android:id="@+id/customer_place"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/customer_category"
+        android:layout_toRightOf="@+id/customer_place_label" />
+
+
+    <TextView
+        android:id="@+id/customer_distance_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/customer_place_label"
+        android:text="@string/customer_distance_label" />
+
+    <TextView
+        android:id="@+id/customer_distance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/customer_place"
+        android:layout_toRightOf="@+id/customer_distance_label" />
+
+</RelativeLayout>

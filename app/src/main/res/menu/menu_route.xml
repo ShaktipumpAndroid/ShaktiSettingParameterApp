@@ -1,0 +1,20 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="activity.Route_customer_Activity">
+
+
+    <item
+        android:id="@+id/action_add_customer"
+        android:icon="@drawable/add_customer"
+        android:orderInCategory="1"
+        android:title="@string/action_add_customer"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_route_map_menu"
+        android:icon="@drawable/location"
+        android:orderInCategory="1"
+        android:title="@string/action_route_map_menu"
+        app:showAsAction="ifRoom" />
+</menu>

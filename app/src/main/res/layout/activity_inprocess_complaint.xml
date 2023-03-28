@@ -1,0 +1,111 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include layout="@layout/toolbar" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="20dp"
+        android:orientation="vertical">
+
+
+            <Spinner
+                android:id="@+id/pend_cmp_reason"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:drawableStart="@drawable/ic_mendotry"
+                android:spinnerMode="dialog" />
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/input_layout_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+
+            <EditText
+                android:id="@+id/text_complaint_action"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_mendotry"
+                android:hint="Action :"
+                android:maxLength="300" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/input_layout_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+
+            <EditText
+                android:id="@+id/editText_follow_up_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:editable="false"
+                android:drawableStart="@drawable/ic_mendotry"
+                android:hint="Follow up date :"
+
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <Button
+            android:id="@+id/btn_save"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="70dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="80dp"
+            android:background="@color/colorPrimary"
+            android:text="@string/btn_save_dsr"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+
+        <!--<Button android:id="@+id/btn_attach"-->
+        <!--android:layout_width="fill_parent"-->
+        <!--android:textAllCaps="false"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Attachment"-->
+        <!--android:background="@color/colorPrimary"-->
+        <!--android:layout_marginTop="40dp"-->
+        <!--android:textColor="@android:color/white"-->
+        <!--android:textSize="20dp"-->
+        <!--android:textStyle="bold"-->
+        <!--android:layout_marginLeft="70dp"-->
+        <!--android:layout_marginRight="80dp" />-->
+
+        <!--<TextView-->
+        <!--android:id="@+id/info"-->
+        <!--android:layout_width="fill_parent"-->
+        <!--android:layout_height="wrap_content" />-->
+
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/listview"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/search"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+
+        android:layout_marginBottom="10dp" />
+</LinearLayout>

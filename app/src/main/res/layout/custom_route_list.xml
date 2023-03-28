@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TableRow
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="15dp">
+
+        <TextView
+            android:id="@+id/route_name"
+
+
+            android:layout_width="wrap_content"
+            android:layout_height="70dp"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/route_status"
+
+
+            android:layout_width="wrap_content"
+            android:layout_height="70dp"
+            android:layout_gravity="center_horizontal"
+            android:textSize="14sp" />
+
+    </TableRow>
+</TableLayout>

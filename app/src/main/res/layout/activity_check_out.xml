@@ -1,0 +1,202 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+
+    android:orientation="vertical">
+
+    <include layout="@layout/toolbar" />
+
+    <ScrollView
+        android:id="@+id/layout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="5dip"
+        android:layout_marginRight="20dp"
+        android:fillViewport="true"
+        android:scrollbarStyle="outsideInset"
+        android:scrollbars="horizontal|vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/start_recording"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:background="@layout/rounded_corner_blue"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:text="Start"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/white"
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/end_recording"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/start_recording"
+                    android:layout_marginLeft="10dp"
+                    android:background="@layout/rounded_corner_blue"
+                    android:enabled="false"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:text="Stop"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/white"
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:spinnerMode="dialog" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/input_layout_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp">
+                <!--   android:theme="@style/form_text_field"-->
+
+                <EditText
+                    android:id="@+id/text_check_out_comment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:hint="Comment :"
+                    android:maxLength="300" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/input_layout_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp">
+
+                <EditText
+                    android:id="@+id/editText_follow_up_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:editable="false"
+                    android:hint="Select Follow up date :"
+
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Spinner
+                android:id="@+id/status"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:spinnerMode="dialog" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btn_check_out_save"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:background="@color/colorPrimary"
+                    android:gravity="center"
+                    android:paddingLeft="80dp"
+                    android:paddingRight="80dp"
+                    android:text="Save"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/white"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <!--<RelativeLayout-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:orientation="vertical"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_marginTop="20dp">-->
+
+            <!--<Button android:id="@+id/start_recording"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:textAllCaps="false"-->
+
+            <!--android:layout_marginLeft="10dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="Start Recording"-->
+            <!--android:background="@layout/rounded_corner_blue"-->
+            <!--android:layout_marginTop="40dp"-->
+            <!--android:textColor="@android:color/white"-->
+            <!--android:textSize="20dp"-->
+            <!--android:textStyle="bold"-->
+
+            <!--android:paddingLeft="20dp"-->
+            <!--android:paddingRight="20dp" />-->
+
+
+            <!--<Button android:id="@+id/end_recording"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:textAllCaps="false"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="Stop Recording"-->
+            <!--android:enabled="false"-->
+            <!--android:layout_marginLeft="10dp"-->
+            <!--android:layout_below="@+id/start_recording"-->
+            <!--android:background="@layout/rounded_corner_blue"-->
+            <!--android:layout_marginTop="20dp"-->
+            <!--android:textColor="@android:color/white"-->
+            <!--android:textSize="20dp"-->
+            <!--android:textStyle="bold"-->
+
+            <!--android:paddingLeft="20dp"-->
+            <!--android:paddingRight="20dp" />-->
+
+
+            <!--</RelativeLayout>-->
+
+
+            <!--<Button android:id="@+id/btn_check_out_save"-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:textAllCaps="false"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="Save"-->
+            <!--android:layout_below="@+id/start_recording"-->
+            <!--android:background="@color/colorPrimary"-->
+            <!--android:textColor="@android:color/white"-->
+            <!--android:textSize="20dp"-->
+            <!--android:textStyle="bold"-->
+            <!--android:layout_marginLeft="80dp"-->
+            <!--android:layout_marginRight="80dp" />-->
+        </LinearLayout>
+
+
+    </ScrollView>
+
+
+</LinearLayout>

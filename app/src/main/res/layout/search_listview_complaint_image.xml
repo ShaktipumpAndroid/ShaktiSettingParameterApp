@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        tools:ignore="UselessParent">
+
+
+        <TextView
+            android:id="@+id/image_name"
+            android:layout_width="wrap_content"
+
+
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginTop="8dp"
+            android:textSize="18sp" />
+
+
+        <TextView
+            android:id="@+id/complete_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+
+            android:layout_alignParentEnd="true"
+
+            android:layout_gravity="end"
+
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_toEndOf="@+id/image_name"
+            android:drawableEnd="@mipmap/notdone"
+            android:textSize="12sp" />
+
+        <!--<TextView-->
+        <!--android:id="@+id/comp_start"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_below="@+id/comp_dtl"-->
+
+        <!--android:text=" Start   Complaint  "-->
+        <!--android:textSize="9sp"-->
+        <!--android:textStyle="bold"-->
+        <!--android:background="@layout/rounded_corner_blue"-->
+        <!--android:textColor="@color/white"-->
+        <!--android:layout_gravity="right"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginTop="2dp"-->
+        <!--android:layout_marginBottom="2dp" />-->
+
+
+    </RelativeLayout>
+
+
+    <!--   </LinearLayout>-->
+
+</LinearLayout>

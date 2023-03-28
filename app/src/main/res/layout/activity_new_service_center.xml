@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include layout="@layout/toolbar" />
+
+    <ScrollView
+        android:id="@+id/layout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="5dip"
+        android:layout_marginRight="20dp"
+        android:fillViewport="true"
+        android:scrollbarStyle="outsideInset"
+        android:scrollbars="horizontal|vertical">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <Spinner
+                android:id="@+id/spinner_customer_type"
+                android:layout_width="match_parent"
+
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:drawableLeft="@drawable/ic_mendotry"
+                android:spinnerMode="dialog" />
+
+            <!--<Spinner-->
+            <!--android:id="@+id/spinner_customer_class"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:visibility="invisible"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginTop="5dp"-->
+            <!--android:spinnerMode="dialog"/>-->
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/input_customer_name"
+                android:layout_width="match_parent"
+
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp">
+                <!--   android:theme="@style/form_text_field"-->
+
+                <EditText
+                    android:id="@+id/et_customer_name"
+                    android:layout_width="match_parent"
+
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginTop="5dp"
+                    android:drawableLeft="@drawable/ic_mendotry"
+                    android:hint="Service Center Name :"
+                    android:maxLength="60"
+                    android:singleLine="true"
+                    android:textSize="15dp" />
+
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/input_contact_person_name"
+                android:layout_width="match_parent"
+
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp">
+
+                <EditText
+                    android:id="@+id/et_contact_person_name"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginTop="5dp"
+                    android:drawableLeft="@drawable/ic_mendotry"
+                    android:hint="Contact Person Name:"
+                    android:maxLength="50"
+                    android:singleLine="true"
+                    android:textSize="@dimen/space_large15" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/input_mobile_no"
+                android:layout_width="match_parent"
+
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp">
+
+                <EditText
+                    android:id="@+id/et_mobile_no"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:drawableLeft="@drawable/ic_mendotry"
+
+                    android:hint="Mobile No :"
+                    android:inputType="number"
+
+                    android:maxLength="10"
+                    android:singleLine="true"
+                    android:textSize="15dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/input_address"
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp">
+
+                <EditText
+                    android:id="@+id/et_address"
+                    android:layout_width="match_parent"
+
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:drawableLeft="@drawable/ic_mendotry"
+                    android:hint="Address:"
+
+                    android:maxLength="150"
+                    android:textSize="15dp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <Spinner
+                android:id="@+id/spinner_country"
+                android:layout_width="match_parent"
+
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:spinnerMode="dialog" />
+
+            <Spinner
+                android:id="@+id/spinner_state"
+                android:layout_width="match_parent"
+
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:spinnerMode="dialog" />
+
+            <Spinner
+                android:id="@+id/spinner_district"
+                android:layout_width="match_parent"
+
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:spinnerMode="dialog" />
+
+            <Spinner
+                android:id="@+id/spinner_taluka"
+                android:layout_width="match_parent"
+
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:spinnerMode="dialog" />
+
+            <!--<Spinner-->
+            <!--android:id="@+id/spinner_primary_partner"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:visibility="invisible"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginTop="15dp"-->
+            <!--android:spinnerMode="dialog"/>-->
+
+            <!--<Spinner-->
+            <!--android:id="@+id/spinner_interesting"-->
+            <!--android:layout_width="match_parent"-->
+
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginTop="15dp"-->
+            <!--android:spinnerMode="dialog"/>-->
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/input_landline"
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp">
+
+                <EditText
+                    android:id="@+id/et_landline"
+                    android:layout_width="match_parent"
+
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+
+                    android:hint="Landline No :"
+                    android:maxLength="15"
+                    android:singleLine="true"
+                    android:textSize="15dp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/input_email"
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp">
+
+                <EditText
+                    android:id="@+id/et_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+
+                    android:layout_marginTop="5dp"
+                    android:hint="Email id :"
+                    android:maxLength="50"
+                    android:singleLine="true"
+                    android:textSize="15dp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/input_contact_person_phone"
+                android:layout_width="match_parent"
+
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp">
+
+                <EditText
+                    android:id="@+id/et_contact_person_phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+
+
+                    android:hint="Contact Person Phone No."
+                    android:maxLength="20"
+                    android:singleLine="true"
+                    android:textSize="15dp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/input_aadharcard"
+                android:layout_width="match_parent"
+
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp">
+
+                <EditText
+                    android:id="@+id/et_aadharcard"
+                    android:layout_width="match_parent"
+
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginTop="5dp"
+                    android:hint="Aadhar Card No :"
+                    android:maxLength="15"
+                    android:singleLine="true"
+                    android:textSize="15dp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/input_pancard"
+                android:layout_width="match_parent"
+
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp">
+
+                <EditText
+                    android:id="@+id/et_pancard"
+                    android:layout_width="match_parent"
+
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+
+                    android:hint="PAN Card No :"
+                    android:maxLength="15"
+                    android:singleLine="true"
+                    android:textSize="15dp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/input_tin"
+                android:layout_width="match_parent"
+
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp">
+
+                <EditText
+                    android:id="@+id/et_tinno"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+
+                    android:hint="TIN / GST No :"
+                    android:maxLength="15"
+                    android:singleLine="true"
+                    android:textSize="15dp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/input_market"
+                android:layout_width="match_parent"
+
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp">
+
+                <EditText
+                    android:id="@+id/et_market"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+
+                    android:hint="Market Place:"
+                    android:maxLength="30"
+                    android:singleLine="true"
+                    android:textSize="15dp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/input_pincode"
+                android:layout_width="match_parent"
+
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp">
+
+                <EditText
+                    android:id="@+id/et_pincode"
+
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:hint="Pincode:"
+                    android:maxLength="150"
+                    android:singleLine="true"
+                    android:textSize="15dp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <!--     <com.google.android.material.textfield.TextInputLayout
+                     android:id="@+id/input_dob"
+                     android:layout_width="match_parent"
+                     android:enabled="false"
+                     android:layout_height="wrap_content"
+                     android:layout_marginTop="5dp">
+                     <EditText
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:id="@+id/et_dob"
+                         android:hint="DOB:"
+                         android:singleLine="true"
+                         android:enabled="false"
+                         android:textSize="15dp"
+                         android:layout_marginTop="5dp"
+
+                         android:maxLength="15"
+                         android:inputType="date" />
+                 </com.google.android.material.textfield.TextInputLayout>
+         -->
+
+
+            <Button
+                android:id="@+id/btn_customer_save"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@color/colorPrimary"
+                android:text="@string/btn_save_dsr"
+                android:textColor="@android:color/white"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+
+</LinearLayout>

@@ -1,0 +1,129 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">#137FD8</item>
+        <item name="colorPrimaryDark">#80000000</item>
+        <item name="colorAccent">#FFFFFF</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="SwitchTheme" parent="Theme.AppCompat.Light">
+        <item name="android:colorControlActivated">@color/orange_color</item>
+    </style>
+
+
+
+    <!--   materil design -->
+
+    <style name="MyMaterialTheme" parent="MyMaterialTheme.Base">
+
+    </style>
+
+    <style name="MyDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorPrimary">@color/gray</item>
+    </style>
+
+    <style name="spinner_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/gradient_spinner</item>
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:drawableStart">@drawable/ic_mendotry</item>
+        <item name="android:layout_margin">5dp</item>
+        <item name="android:paddingLeft">5dp</item>
+        <item name="android:paddingRight">20dp</item>
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:paddingBottom">5dp</item>
+        <item name="android:popupBackground">#DFFFFFFF</item>
+    </style>
+
+    <style name="MyMaterialTheme.Base" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="match_text_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:paddingTop">@dimen/space_mid10</item>
+        <item name="android:paddingBottom">@dimen/space_mid10</item>
+
+    </style>
+
+    <style name="under_line_et" parent="match_text_style">
+        <item name="android:textSize">@dimen/size_small15</item>
+        <item name="android:textColorHint">@color/signup_normal_text_color</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:background">@drawable/under_line</item>
+        <item name="android:paddingTop">@dimen/space_tinny4</item>
+        <item name="android:paddingBottom">@dimen/space_tinny4</item>
+
+
+        <item name="android:inputType">textCapSentences|textNoSuggestions</item>
+
+
+    </style>
+
+    <style name="myFullscreenAlertDialogStyle" parent="Theme.AppCompat.Light.NoActionBar">      //no actionbar, but status bar exists
+        <item name="android:windowFullscreen">true</item>                       //remove status bar
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>        //smooth animation
+        <item name="colorAccent">@color/colorAccent</item>                      //change button text color
+    </style>
+
+
+    <!--<style name="under_line_et1" parent="match_text_style">-->
+    <!--<item name="android:textSize">@dimen/size_small15</item>-->
+    <!--<item name="android:textColorHint">#0179b6</item>-->
+    <!--<item name="android:textColor">@color/black</item>-->
+    <!--<item name="android:background">@drawable/under_line</item>-->
+    <!--<item name="android:paddingTop">@dimen/space_tinny4</item>-->
+    <!--<item name="android:paddingBottom">@dimen/space_tinny4</item>-->
+
+
+    <!--<item name="android:inputType">textCapSentences|textNoSuggestions</item>-->
+
+
+    <!--</style>-->
+
+
+    <!--   <style name="TextLabel" parent="TextAppearance.AppCompat">
+           &lt;!&ndash; Hint color and label color in FALSE state &ndash;&gt;
+           <item name="android:textColorHint">@color/Color Name</item>
+           <item name="android:textSize">20sp</item>
+           &lt;!&ndash; Label color in TRUE state and bar color FALSE and TRUE State &ndash;&gt;
+           <item name="colorAccent">@color/Color Name</item>
+           <item name="colorControlNormal">@color/Color Name</item>
+           <item name="colorControlActivated">@color/Color Name</item>
+       </style>-->
+
+    <!--  <style name="form_text_field" parent="TextAppearance.AppCompat">
+          &lt;!&ndash; Hint color and label color in FALSE state &ndash;&gt;
+          <item name="android:textColorHint">#7E7E7E</item>
+          <item name="android:textSize">20dp</item>
+          &lt;!&ndash; Label color in TRUE state and bar color FALSE and TRUE State &ndash;&gt;
+          <item name="colorAccent">#7E7E7E</item>
+          <item name="colorControlNormal">#7E7E7E</item>
+          <item name="colorControlActivated">#7E7E7E</item>
+      </style>
+  -->
+
+
+    <style name="form_text_field" parent="TextAppearance.AppCompat">
+
+        <item name="android:textSize">20dp</item>
+        <!-- Label color in TRUE state and bar color FALSE and TRUE State -->
+        <item name="colorAccent">#5e5e5e</item>
+
+    </style>
+
+
+</resources>

@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp"
+    android:layout_marginTop="55dp"
+   >
+
+    <LinearLayout
+        android:id="@+id/lin1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="2"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        >
+        <RadioGroup
+            android:id="@+id/groupradio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+        <RadioButton
+        android:id="@+id/radiocust"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.9"
+        android:text="With Complaint No."
+        android:checked="true"
+        android:textSize="13sp"
+         />
+
+    <RadioButton
+        android:id="@+id/radiowithcust"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.1"
+        android:text="Without Complaint No."
+        android:checked="false"
+        android:textSize="13sp"
+       />
+        </RadioGroup>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/lin0"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lin1"
+        >
+        <Spinner
+            android:id="@+id/tiet_per_typ"
+            style="@style/spinner_style"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:spinnerMode="dialog" />
+
+       <!-- <TextView
+            android:id="@+id/ok1"
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="5dp"
+            android:background="@layout/rounded_corner_blue"
+            android:gravity="center"
+            android:padding="@dimen/space_mid10"
+            android:text="OK"
+            android:textColor="@color/white"
+            android:textSize="15sp" />-->
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/lin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="2"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lin0"
+        >
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_cmp_no"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_weight="1.5"
+        android:layout_height="wrap_content"
+        android:hint="Enter Complaint No."
+       >
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tiet_cmp_no"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:inputType="textCapCharacters"
+            android:textSize="15sp"
+            android:singleLine="true" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/ok"
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="5dp"
+            android:background="@layout/rounded_corner_blue"
+            android:gravity="center"
+            android:padding="@dimen/space_mid10"
+            android:text="OK"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
+
+    </LinearLayout>
+
+    <CheckBox
+        android:id="@+id/exp_bom"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.9"
+        android:text="Explore Complaint BOM"
+        android:checked="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lin"
+        android:textSize="13sp"
+        />
+
+    <TextView
+        android:id="@+id/txt2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:textSize="16sp"
+        android:visibility="gone"
+        android:text="Transportation Details"
+        android:textAlignment="viewStart"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/exp_bom"
+         />
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_stk_rec"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Stock Receiver"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt2"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tiet_stk_rec"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:singleLine="true" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Spinner
+        android:id="@+id/tiet_stk_rec1"
+        style="@style/spinner_style"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1.5"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:spinnerMode="dialog"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/til_stk_rec"/>
+
+    <TextView
+        android:id="@+id/strg_loc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:text="Storage Location"
+        android:visibility="gone"
+        android:textSize="15sp"
+        android:layout_marginTop="15dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tiet_stk_rec1" />
+
+    <RadioGroup
+        android:id="@+id/groupradio1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/size_tinny10"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/strg_loc">
+
+        <RadioButton
+            android:id="@+id/radiofreshstk"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.9"
+            android:text="Fresh Stock"
+            android:checked="true"
+            android:textSize="13sp"
+            />
+
+        <RadioButton
+            android:id="@+id/radioreturnstk"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.1"
+            android:text="Return Stock"
+            android:checked="false"
+            android:textSize="13sp"
+            />
+    </RadioGroup>
+
+
+
+
+    <TextView
+        android:id="@+id/submit"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:background="@layout/rounded_corner_blue"
+        android:gravity="center"
+        android:padding="@dimen/space_mid10"
+        android:text="Submit"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/groupradio1" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

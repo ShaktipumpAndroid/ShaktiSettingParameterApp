@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:id="@+id/rlvHeaderViewID"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_50sdp"
+        android:background="@color/colorHeader">
+
+
+        <!-- <ImageView
+             android:id="@+id/imgHeaderID"
+             android:layout_width="@dimen/_50sdp"
+             android:layout_height="@dimen/_50sdp"
+             android:paddingStart="@dimen/_5sdp"
+             android:paddingTop="@dimen/_15sdp"
+             android:paddingEnd="@dimen/_20sdp"
+             android:paddingBottom="@dimen/_15sdp"
+             android:src="@drawable/icn_back" />-->
+
+        <RelativeLayout
+            android:id="@+id/rlvBackViewID"
+            android:layout_width="@dimen/_70sdp"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/imgHeaderID"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_50sdp"
+                android:paddingStart="@dimen/_5sdp"
+                android:paddingTop="@dimen/_15sdp"
+                android:paddingEnd="@dimen/_1sdp"
+                android:paddingBottom="@dimen/_15sdp"
+                android:src="@drawable/back" />
+
+            <ImageView
+                android:id="@+id/imgDeviceImageID"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_toEndOf="@+id/imgHeaderID"
+                android:paddingStart="@dimen/_1sdp"
+                android:paddingTop="@dimen/_2sdp"
+                android:paddingEnd="@dimen/_2sdp"
+                android:paddingBottom="@dimen/_2sdp"
+                android:layout_centerVertical="true"
+                android:visibility="gone"
+                android:src="@drawable/icn_back" />
+        </RelativeLayout>
+
+        <TextView
+
+            android:id="@+id/txtHeaderID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+
+            android:text="Select Device"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/_12ssp"
+            android:textStyle="bold" />
+
+
+        <RelativeLayout
+            android:visibility="gone"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true">
+
+<!--
+            <ImageView
+                android:id="@+id/imgBTAndInternetToggleID"
+                android:layout_width="@dimen/_100sdp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:paddingTop="@dimen/_12sdp"
+                android:paddingBottom="@dimen/_12sdp"
+                android:padding="@dimen/_2sdp"
+
+                android:src="@drawable/int_to_bt" />-->
+
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+    <!--/////////////////////////////vikas-->
+
+    <androidx.recyclerview.widget.RecyclerView
+      android:layout_below="@+id/rlvHeaderViewID"
+        android:id="@+id/rclSettingListViewID"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:background="@android:color/transparent"
+        android:scrollbars="none"/>
+
+    <TextView
+        android:id="@+id/txtPairedDeviceListID"
+        android:layout_marginStart="@dimen/_40sdp"
+        android:layout_marginEnd="@dimen/_40sdp"
+        android:layout_marginBottom="@dimen/_20sdp"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        android:background="@drawable/rounded_shape"
+        android:layout_alignParentBottom="true"
+        android:textColor="@color/colorWhite"
+        android:text="Paired Devices"
+        android:gravity="center"
+        android:textSize="@dimen/_18ssp"
+        android:textStyle="bold"
+        />
+
+
+</RelativeLayout>

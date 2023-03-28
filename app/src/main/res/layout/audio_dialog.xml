@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center">
+
+
+    <Button
+        android:id="@+id/play_audio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="@color/colorPrimary"
+
+        android:gravity="center"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="Play"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white" />
+
+    <Button
+        android:id="@+id/stop_audio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_toEndOf="@+id/play_audio"
+        android:layout_toRightOf="@+id/play_audio"
+        android:background="@color/colorPrimary"
+        android:enabled="false"
+        android:gravity="center"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="Stop"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white" />
+
+
+    <Button
+        android:id="@+id/cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_toEndOf="@+id/stop_audio"
+        android:layout_toRightOf="@+id/stop_audio"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
+        android:paddingLeft="2dp"
+        android:text="Cancel"
+
+        android:textAllCaps="false"
+        android:textColor="@android:color/white" />
+
+
+</RelativeLayout>

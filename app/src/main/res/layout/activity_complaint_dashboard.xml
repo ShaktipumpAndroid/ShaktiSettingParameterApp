@@ -1,0 +1,692 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:background="@color/white"
+    android:orientation="vertical"
+
+    android:weightSum="1"
+    tools:context="activity.HomeFragment">
+
+    <include layout="@layout/toolbar" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:fillViewport="false"
+        android:focusable="false"
+        android:longClickable="false"
+        android:measureAllChildren="false"
+        android:nestedScrollingEnabled="false"
+        android:saveEnabled="false">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="35dp"
+                android:layout_marginTop="60dp"
+                android:layout_marginRight="35dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="4dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <!--<Button-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:paddingTop="15dp"-->
+                    <!--android:paddingBottom="15dp"-->
+                    <!--android:drawableTop="@mipmap/open_complaint"-->
+                    <!--android:textAppearance="?android:attr/textAppearanceLarge"-->
+                    <!--android:text="New \nComplaint"-->
+                    <!--android:textColor="@color/dark_header_color"-->
+                    <!--android:background="@layout/rounded_corner"-->
+
+                    <!--android:id="@+id/open_complaint"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:textAlignment="center"-->
+                    <!--android:textSize="13dp"-->
+                    <!--android:textStyle="bold" />-->
+
+
+                    <RelativeLayout
+                        android:id="@+id/new_complaint"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+
+                        android:layout_marginLeft="3dp">
+
+                        <TextView
+                            android:id="@+id/open_complaint"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_gravity="right|center"
+                            android:layout_weight="1"
+                            android:background="@layout/rounded_corner"
+
+                            android:drawableTop="@mipmap/close_complaint"
+                            android:paddingTop="15dp"
+                            android:paddingBottom="15dp"
+                            android:text="New Complaint"
+                            android:textAlignment="center"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:textColor="@color/dark_header_color"
+                            android:textSize="13dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/new_complaint_notification"
+                            android:layout_width="wrap_content"
+
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="30dp"
+                            android:text="20"
+                            android:textColor="#FFDC0707"
+                            android:textSize="13dp"
+                            android:textStyle="bold" />
+
+                    </RelativeLayout>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+
+                    android:layout_height="match_parent"
+                    android:layout_weight=".002"
+                    android:orientation="vertical" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+
+                    <RelativeLayout
+                        android:id="@+id/deal_pend_cmp"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+
+                        android:layout_marginLeft="3dp">
+
+
+                        <TextView
+                            android:id="@+id/delar_pend_cmp"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_gravity="right|center"
+                            android:layout_weight="1"
+                            android:background="@layout/rounded_corner"
+
+                            android:drawableTop="@mipmap/new_call_center"
+                            android:paddingTop="15dp"
+                            android:paddingBottom="15dp"
+                            android:text="Dealer Side \n Pending "
+                            android:textAlignment="center"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:textColor="@color/dark_header_color"
+                            android:textSize="13dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/delar_pend_notification"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="30dp"
+                            android:text="20"
+                            android:textColor="#FFDC0707"
+                            android:textSize="13dp"
+                            android:textStyle="bold" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+
+                <!--<LinearLayout-->
+                <!--android:orientation="vertical"-->
+
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_weight=".002"-->
+                <!--android:layout_height="match_parent"-->
+                <!--&gt;-->
+
+                <!--</LinearLayout>-->
+
+
+                <!--<LinearLayout-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:orientation="horizontal"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_weight="1"-->
+                <!--&gt;-->
+
+
+                <!--<RelativeLayout-->
+                <!--android:id="@+id/unsync"-->
+
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+
+                <!--android:layout_marginLeft="3dp">-->
+
+
+                <!--<TextView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:drawableTop="@mipmap/close_complaint"-->
+                <!--android:paddingTop="15dp"-->
+                <!--android:paddingBottom="15dp"-->
+                <!--android:textAppearance="?android:attr/textAppearanceLarge"-->
+                <!--android:text="Closed \nComplaint"-->
+                <!--android:textColor="@color/dark_header_color"-->
+                <!--android:textSize="13dp"-->
+                <!--android:background="@layout/rounded_corner"-->
+
+                <!--android:id="@+id/close_complaint"-->
+                <!--android:layout_gravity="right|center"-->
+                <!--android:layout_weight="1"-->
+                <!--android:textAlignment="center"-->
+                <!--android:textStyle="bold"-->
+                <!--android:layout_alignParentLeft="true"-->
+                <!--android:layout_alignParentStart="true"-->
+                <!--android:layout_alignParentRight="true"-->
+                <!--android:layout_alignParentEnd="true" />-->
+
+                <!--<TextView-->
+                <!--android:textSize="13dp"-->
+                <!--android:id="@+id/close_complaint_notification"-->
+
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="20"-->
+                <!--android:layout_alignParentRight="true"-->
+                <!--android:textColor="#FFDC0707"-->
+                <!--android:textStyle="bold"-->
+                <!--android:layout_marginRight="30dp"-->
+                <!--android:layout_marginTop="10dp" />-->
+
+                <!--</RelativeLayout>-->
+
+                <!--</LinearLayout>-->
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="35dp"
+                android:layout_marginTop="14dp"
+                android:layout_marginRight="35dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="4dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+
+                    <RelativeLayout
+                        android:id="@+id/pending_complaint_layout"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+
+                        android:layout_marginLeft="3dp">
+
+                        <TextView
+                            android:id="@+id/pending_complaint"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_gravity="right|center"
+                            android:layout_weight="1"
+                            android:background="@layout/rounded_corner"
+
+                            android:drawableTop="@mipmap/new_call_center"
+                            android:paddingTop="15dp"
+                            android:paddingBottom="15dp"
+                            android:text="Pending \nComplaint"
+                            android:textAlignment="center"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:textColor="@color/dark_header_color"
+                            android:textSize="13dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/pending_complaint_notification"
+                            android:layout_width="wrap_content"
+
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="30dp"
+                            android:text="20"
+                            android:textColor="#FFDC0707"
+                            android:textSize="13dp"
+                            android:textStyle="bold" />
+
+                    </RelativeLayout>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+
+                    android:layout_height="match_parent"
+                    android:layout_weight=".002"
+                    android:orientation="vertical" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+
+                    <RelativeLayout
+                        android:id="@+id/unsync2"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+
+                        android:layout_marginLeft="3dp">
+
+
+                        <TextView
+                            android:id="@+id/closer_request"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_gravity="right|center"
+                            android:layout_weight="1"
+                            android:background="@layout/rounded_corner"
+
+                            android:drawableTop="@mipmap/call_center"
+                            android:paddingTop="15dp"
+                            android:paddingBottom="15dp"
+                            android:text="Closure \n Request "
+                            android:textAlignment="center"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:textColor="@color/dark_header_color"
+                            android:textSize="13dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/closure_notification"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="30dp"
+                            android:text="20"
+                            android:textColor="#FFDC0707"
+                            android:textSize="13dp"
+                            android:textStyle="bold" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="35dp"
+                android:layout_marginTop="14dp"
+                android:layout_marginRight="35dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="4dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+
+                    <RelativeLayout
+                        android:id="@+id/pending_for_Approval"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="3dp">
+
+                        <TextView
+                            android:id="@+id/pending_for_app"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_gravity="right|center"
+                            android:layout_weight="1"
+                            android:background="@layout/rounded_corner"
+
+                            android:drawableTop="@mipmap/new_call_center"
+                            android:paddingTop="15dp"
+                            android:paddingBottom="15dp"
+                            android:text="Pending \nfor Approval"
+                            android:textAlignment="center"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:textColor="@color/dark_header_color"
+                            android:textSize="13dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/pending_for_app_notification"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="30dp"
+                            android:text="20"
+                            android:textColor="#FFDC0707"
+                            android:textSize="13dp"
+                            android:textStyle="bold" />
+
+                    </RelativeLayout>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+
+                    android:layout_height="match_parent"
+                    android:layout_weight=".002"
+                    android:orientation="vertical" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+
+                    <RelativeLayout
+                        android:id="@+id/await_for_Approval"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="3dp">
+
+                        <TextView
+                            android:id="@+id/await_for_app"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_gravity="right|center"
+                            android:layout_weight="1"
+                            android:background="@layout/rounded_corner"
+
+                            android:drawableTop="@mipmap/new_call_center"
+                            android:paddingTop="15dp"
+                            android:paddingBottom="15dp"
+                            android:text="Awaiting \nfor Approval"
+                            android:textAlignment="center"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:textColor="@color/dark_header_color"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/await_for_app_notification"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="30dp"
+                            android:text="20"
+                            android:textColor="#FFDC0707"
+                            android:textSize="13dp"
+                            android:textStyle="bold" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="35dp"
+                android:layout_marginTop="14dp"
+                android:layout_marginRight="35dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="4dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+
+                    <RelativeLayout
+                        android:id="@+id/cmpln_approved"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="3dp">
+
+                        <TextView
+                            android:id="@+id/cmpln_approved1"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_gravity="right|center"
+                            android:layout_weight="1"
+                            android:background="@layout/rounded_corner"
+                            android:drawableTop="@mipmap/new_call_center"
+                            android:paddingTop="15dp"
+                            android:paddingBottom="15dp"
+                            android:text="Complaint \nApproved"
+                            android:textAlignment="center"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:textColor="@color/dark_header_color"
+                            android:textSize="13dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/cmpln_approved_notification"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="30dp"
+                            android:text="20"
+                            android:textColor="#FFDC0707"
+                            android:textSize="13dp"
+                            android:textStyle="bold" />
+
+                    </RelativeLayout>
+
+
+                </LinearLayout>
+
+
+     <!--           <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="4dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/new_service_center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@layout/rounded_corner"
+                        android:drawableTop="@mipmap/new_call_center"
+                        android:paddingTop="15dp"
+                        android:paddingBottom="15dp"
+                        android:text="New \nService Center"
+
+                        android:textAlignment="center"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/dark_header_color"
+                        android:textSize="13dp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>-->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:id="@+id/unsync1"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+
+                        android:layout_marginLeft="3dp">
+
+
+                        <TextView
+                            android:id="@+id/old_service_center"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_gravity="right|center"
+                            android:layout_weight="1"
+                            android:background="@layout/rounded_corner"
+
+                            android:drawableTop="@mipmap/call_center"
+                            android:paddingTop="15dp"
+                            android:paddingBottom="15dp"
+                            android:text="Existing \n Service Center"
+                            android:textAlignment="center"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:textColor="@color/dark_header_color"
+                            android:textSize="13dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tv_notification1"
+                            android:layout_width="wrap_content"
+
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="30dp"
+                            android:textColor="#FFDC0707"
+                            android:textSize="13dp"
+                            android:textStyle="bold" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="35dp"
+                android:layout_marginTop="14dp"
+                android:layout_marginRight="35dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:id="@+id/complaint_review"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/review_complaint"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_gravity="right|center"
+                        android:layout_weight="1"
+                        android:background="@layout/rounded_corner"
+
+                        android:drawableTop="@mipmap/close_complaint"
+                        android:paddingTop="15dp"
+                        android:paddingBottom="15dp"
+                        android:text="Review Complaint"
+                        android:textAlignment="center"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/dark_header_color"
+                        android:textSize="13dp"
+                        android:textStyle="bold" />
+
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+</LinearLayout>

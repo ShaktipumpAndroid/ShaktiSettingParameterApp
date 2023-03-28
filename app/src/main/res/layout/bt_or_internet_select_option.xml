@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorWhite">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_220sdp"
+        android:background="@color/colorWhite">
+
+        <TextView
+            android:id="@+id/txtBTHeadingTopID"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_35sdp"
+            android:background="@color/colorWhite"
+            android:text="@string/app_name"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textSize="@dimen/_18ssp"
+            android:textColor="@color/colorOrange"/>
+
+        <TextView
+            android:layout_below="@+id/lvlOptionViewID"
+            android:id="@+id/txtBTInfoMSGID"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:text="If your internet connecttion is working fine then go with internet option other wise use Bluetooth but remebre Bluetooth is only working on if you have a near by device."
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:gravity="center"
+            android:textStyle="normal"
+            android:textSize="@dimen/_12ssp"
+            android:textColor="@color/colorBlack"
+            android:layout_above="@+id/txtOkayPopUpID"/>
+
+
+        <TextView
+            android:id="@+id/txtOkayPopUpID"
+
+            android:layout_width="@dimen/_70sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:background="@drawable/rounded_shape"
+            android:text="Ok"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textSize="@dimen/_18ssp"
+            android:textColor="@color/colorWhite"
+            android:layout_marginEnd="@dimen/_1sdp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/_5sdp"/>
+
+
+
+
+        <LinearLayout
+            android:id="@+id/lvlOptionViewID"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_35sdp"
+            android:background="@color/colorWhite"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_5sdp"
+            android:layout_marginEnd="@dimen/_20sdp"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_below="@+id/txtBTHeadingTopID"
+            android:weightSum="2"
+
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:id="@+id/txtBluetoothPopUpID"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/left_round_corner_white"
+                android:text="Bluetooth"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textSize="@dimen/_18ssp"
+                android:textColor="@color/colorWhite"
+                android:layout_marginEnd="@dimen/_1sdp"/>
+
+            <TextView
+                android:id="@+id/txtInternetPopUpID"
+                android:layout_marginStart="@dimen/_1sdp"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/right_round_corner"
+                android:text="Internet"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textSize="@dimen/_18ssp"
+                android:textColor="@color/colorWhite"/>
+
+        </LinearLayout>
+
+
+
+
+
+
+
+    </RelativeLayout>
+
+
+
+
+
+</RelativeLayout>

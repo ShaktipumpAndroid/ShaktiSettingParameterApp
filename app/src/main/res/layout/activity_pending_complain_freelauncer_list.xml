@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        android:background="@color/blue_fb"
+        >
+
+        <ImageView
+            android:id="@+id/imgBackID"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="match_parent"
+            android:src="@drawable/icn_back"
+            android:padding="@dimen/_12sdp"
+        />
+
+
+        <TextView
+            android:layout_centerInParent="true"
+            android:id="@+id/txtHeaderID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pending Complain"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_14ssp"
+            android:textStyle="bold"
+            android:visibility="visible" />
+
+
+    </RelativeLayout>
+
+
+
+    <LinearLayout
+        android:background="@color/whitesade"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <EditText
+            android:visibility="gone"
+            android:id="@+id/search"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_marginLeft="10dp"
+
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="10dp"
+            android:hint="Search By : Cmpln No, Customer Name , Address"
+            android:textSize="15sp"
+            android:textStyle="bold">
+
+            <requestFocus />
+        </EditText>
+
+        <Spinner
+            android:visibility="gone"
+            android:id="@+id/filter_txt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:spinnerMode="dialog" />
+
+      <!--  <ListView
+            android:id="@+id/listview"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_below="@+id/filter_txt"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp" />-->
+
+        <RelativeLayout
+            android:layout_below="@+id/lvlHeaderViewID"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:layout_margin="@dimen/_1sdp">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:background="@color/grayC"
+                android:id="@+id/rclyPendingComplainList"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+</LinearLayout>

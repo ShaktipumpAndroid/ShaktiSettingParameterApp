@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="activity.RouteActivity">
+
+    <include layout="@layout/toolbar" />
+
+
+    <ScrollView
+        android:id="@+id/layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="90"
+        android:fillViewport="true"
+        android:scrollbarStyle="outsideInset"
+        android:scrollbars="horizontal|vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ListView
+                android:id="@+id/listView"
+                android:layout_width="match_parent"
+
+                android:layout_height="wrap_content"
+                android:divider="@color/dark_header_color"
+                android:dividerHeight="1sp"
+                android:entries="@array/shakti_file" />
+
+
+            <!-- Image view to show image after downloading -->
+            <!--   <ImageView android:id="@+id/my_image"
+                   android:layout_width="fill_parent"
+                   android:layout_height="wrap_content"/>-->
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

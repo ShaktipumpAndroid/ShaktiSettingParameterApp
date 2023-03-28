@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/light_grey_color"
+    android:orientation="vertical"
+    android:padding="@dimen/space_mid10">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+        <TextView
+            android:id="@+id/textView_model"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Model No."
+            android:textColor="@color/black"
+            android:textSize="@dimen/space_large16" />
+
+
+        <TextView
+            android:id="@+id/textView_product"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:text="MATNR"
+            android:textColor="@color/black"
+            android:textSize="@dimen/size_small14" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_mid10"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textView_discription"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:text="MAKTX"
+            android:textColor="@color/black"
+            android:textSize="@dimen/size_small14" />
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_mid10"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textView_price"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.75"
+            android:ems="10"
+            android:gravity="left|center"
+            android:paddingRight="@dimen/space_large15"
+            android:text="KBETR"
+            android:textColor="@color/black"
+            android:textSize="@dimen/size_small14" />
+
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.25"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:text="Qty : "
+                android:textColor="@color/black" />
+
+            <ImageButton
+                android:id="@+id/imageButton_minus"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="5dp"
+                android:background="@color/light_grey_color"
+                android:src="@drawable/ic_minus" />
+
+            <TextView
+                android:id="@+id/EditText_quantity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/space_mid10"
+                android:layout_marginRight="@dimen/space_mid10"
+                android:background="@drawable/black_border_text"
+                android:gravity="center"
+                android:minEms="3"
+                android:padding="8dp"
+                android:text="1"
+                android:textColor="@color/black" />
+
+            <ImageButton
+                android:id="@+id/imageButton_plus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/light_grey_color"
+                android:src="@drawable/ic_plus" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_mid10">
+
+        <TextView
+            android:id="@+id/edittext_total_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="15"
+            android:gravity="left|center"
+            android:text="Total"
+            android:textColor="@color/black"
+            android:textSize="@dimen/size_small14" />
+
+
+        <ImageButton
+            android:id="@+id/imageButton_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="right"
+            android:layout_margin="@dimen/space_mid8"
+            android:layout_marginRight="15dp"
+            android:background="@color/light_grey_color"
+            android:src="@drawable/ic_delete" />
+    </RelativeLayout>
+
+</LinearLayout>
+
+

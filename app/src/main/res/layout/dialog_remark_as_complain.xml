@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/_290sdp"
+    android:layout_height="match_parent"
+
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/_16sdp">
+        <TextView
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Remark"
+            android:textAlignment="textStart"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="rutrum."
+            android:textAlignment="center"
+            android:visibility="gone"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+        <EditText
+            android:id="@+id/edtRemarkViewIDD"
+            android:textAlignment="gravity"
+            android:gravity="top"
+            android:paddingStart="@dimen/_5sdp"
+            android:hint="Enter Remark here..."
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_80sdp"
+            android:background="@drawable/bg_shape_item"/>
+        <TextView
+            android:id="@+id/txtBTNRemarkID"
+            android:layout_width="@dimen/_120sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:background="@drawable/btn_shape_rounded_corner"
+            android:text="Ok"
+            android:gravity="center"
+            android:fontFamily="@font/open_sans_bold"
+            android:textSize="@dimen/_14ssp"
+            android:textColor="#FFF" />
+    </LinearLayout>
+</LinearLayout>

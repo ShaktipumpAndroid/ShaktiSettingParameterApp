@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include layout="@layout/toolbar" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:orientation="vertical">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="45dp">
+
+
+            <TextView
+
+                android:id="@+id/date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right|center"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:id="@+id/mou_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/date"
+                android:layout_marginTop="50dp"
+                android:gravity="right|center"
+                android:text="Mou               :"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:id="@+id/mou"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/date"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="50dp"
+
+
+                android:layout_toRightOf="@+id/mou_txt"
+                android:gravity="right"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:id="@+id/billing_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/mou_txt"
+                android:layout_gravity="left"
+                android:layout_marginTop="17dp"
+                android:text="Billing            :"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:id="@+id/billing"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_below="@+id/mou_txt"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="17dp"
+
+                android:layout_toRightOf="@+id/billing_txt"
+                android:gravity="right"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:id="@+id/backlog_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/billing_txt"
+                android:layout_gravity="left"
+                android:layout_marginTop="17dp"
+                android:text="Backlog         :"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:id="@+id/backlog"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/billing_txt"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="17dp"
+
+                android:layout_toRightOf="@+id/backlog_txt"
+                android:gravity="right"
+
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:id="@+id/outstanding_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/backlog_txt"
+                android:layout_gravity="left"
+                android:layout_marginTop="17dp"
+                android:text="Outstanding :"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:id="@+id/outstanding"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/backlog_txt"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="17dp"
+                android:layout_toRightOf="@+id/outstanding_txt"
+
+                android:gravity="right"
+
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+</LinearLayout>

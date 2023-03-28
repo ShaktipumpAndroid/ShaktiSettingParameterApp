@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:orientation="vertical"
+    >
+    <include layout="@layout/toolbar" />
+
+    <LinearLayout
+        android:id="@+id/lin1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:layout_below="@+id/toolbar"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/emp_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/edit_text_border_bg"
+            android:divider="@color/cardview_light_background" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lin2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_margin="8dp"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Data not Available"
+            android:textAlignment="center"
+            android:textColor="@color/black" />
+
+    </LinearLayout>
+</RelativeLayout>

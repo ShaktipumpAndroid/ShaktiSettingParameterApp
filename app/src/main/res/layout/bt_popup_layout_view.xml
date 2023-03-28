@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorBlack">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_110sdp"
+        android:background="@color/colorWhite">
+
+        <TextView
+            android:layout_marginStart="@dimen/_8sdp"
+            android:id="@+id/txtBTHeadingTopID"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_35sdp"
+            android:background="@color/colorWhite"
+            android:text="Exit alert!"
+            android:gravity="center"
+
+            android:textSize="@dimen/_12ssp"
+            android:textColor="@color/colorBlack"/>
+
+        <TextView
+            android:layout_below="@+id/txtBTHeadingTopID"
+            android:id="@+id/txtBTInfoMSGID"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:text="Do you want to exit from Real Monitoring ?"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:gravity="start"
+
+            android:textSize="@dimen/_11ssp"
+            android:textColor="@color/colorBlack"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:background="@color/colorBlack"
+            android:layout_alignParentBottom="true"
+            android:weightSum="2"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/txtBTDisableBTNID"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorWhite"
+                android:text="No"
+                android:gravity="center"
+
+                android:textSize="@dimen/_12ssp"
+                android:textColor="@color/colorBlack"
+                />
+
+            <TextView
+                android:id="@+id/txtBTEnableBTNID"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorWhite"
+                android:text="Yes"
+                android:gravity="center"
+
+                android:textSize="@dimen/_12ssp"
+                android:textColor="@color/colorBlack"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>
