@@ -3,7 +3,6 @@ package activity;
 import static java.lang.Thread.sleep;
 
 import static webservice.WebURL.MOTOR_PERSMETER_LIST;
-import static webservice.WebURL.RetrievePumpCOde;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -18,7 +17,6 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.StrictMode;
 import android.text.InputFilter;
 import android.text.InputType;
 import android.text.method.DigitsKeyListener;
@@ -47,12 +45,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
-import com.vihaan.shaktinewconcept.R;
-
-import org.apache.http.NameValuePair;
-import org.apache.http.message.BasicNameValuePair;
-import org.json.JSONArray;
-import org.json.JSONObject;
+import com.shakti.shaktinewconcept.R;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -63,11 +56,8 @@ import java.util.Timer;
 import java.util.UUID;
 
 import activity.BeanVk.MotorParamListModel;
-import activity.BeanVk.PumpCodeModel;
-import activity.BeanVk.SettingParameterResponse;
 import rmslocaldb.DatabaseHelperTeacher;
 import webservice.AllPopupUtil;
-import webservice.CustomHttpClient;
 import webservice.WebURL;
 
 
@@ -352,7 +342,7 @@ public class DeviceSettingActivity extends AppCompatActivity {
         progressDialog.show();
         RequestQueue mRequestQueue = Volley.newRequestQueue(this);
         // String Request initialized
-        StringRequest mStringRequest = new StringRequest(Request.Method.GET, MOTOR_PERSMETER_LIST +mMaterialCode, new Response.Listener<String>() {
+        StringRequest mStringRequest = new StringRequest(Request.Method.GET, MOTOR_PERSMETER_LIST + mMaterialCode, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 
@@ -907,7 +897,7 @@ public class DeviceSettingActivity extends AppCompatActivity {
 
             edtValueID.setTextColor(getResources().getColor(R.color.black));
             edtValueID.setBackgroundColor(getResources().getColor(R.color.black));
-            edtValueID.setTextSize((int) getResources().getDimension(R.dimen._6ssp));
+            edtValueID.setTextSize((int) getResources().getDimension(R.dimen._4ssp));
             edtValueID.setId(i + 4);
             edtValueID.setMaxLines(1);
             edtValueID.setInputType(InputType.TYPE_CLASS_NUMBER);
@@ -915,6 +905,7 @@ public class DeviceSettingActivity extends AppCompatActivity {
             edtValueID.setFilters(new InputFilter[]{new InputFilter.LengthFilter(6)});
             edtValueID.setTypeface(null, Typeface.NORMAL);
             edtValueID.setTextColor(getResources().getColor(R.color.white));
+            edtValueID.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
             edtValueID.setLayoutParams(edtValueIDParam);
 
             rlvEDITLayout.addView(edtValueID);

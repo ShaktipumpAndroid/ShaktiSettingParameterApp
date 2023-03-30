@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.vihaan.shaktinewconcept.R;
+import com.shakti.shaktinewconcept.R;
 
 public class SettingAdapter extends RecyclerView.Adapter<SettingAdapter.ProductViewHolder> {
 

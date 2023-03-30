@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-import com.vihaan.shaktinewconcept.R;
+import com.shakti.shaktinewconcept.R;
 
 public class BluetoothActivity extends AppCompatActivity {
 

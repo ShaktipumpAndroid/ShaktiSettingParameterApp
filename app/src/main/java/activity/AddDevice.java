@@ -39,13 +39,11 @@ import androidx.core.content.ContextCompat;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
-import com.vihaan.shaktinewconcept.R;
+import com.shakti.shaktinewconcept.R;
 
 
 import java.util.ArrayList;
 import java.util.List;
-
-import activity.utility.CustomUtility;
 
 import rmslocaldb.DatabaseHelperTeacher;
 import webservice.AllPopupUtil;

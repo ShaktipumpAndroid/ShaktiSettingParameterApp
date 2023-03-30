@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-import com.vihaan.shaktinewconcept.R;
+import com.shakti.shaktinewconcept.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,8 +47,6 @@ public class PairedDeviceActivity extends AppCompatActivity {
 
     @SuppressLint("MissingPermission")
     private void initView() {
-
-
 
         rlvBackViewID = (RelativeLayout) findViewById(R.id.rlvBackViewID);
 

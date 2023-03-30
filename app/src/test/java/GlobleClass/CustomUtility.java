@@ -24,7 +24,7 @@ import android.util.Base64;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.vihaan.shaktinewconcept.R;
+import com.shakti.shaktinewconcept.R;
 
 import java.io.ByteArrayOutputStream;
 import java.text.SimpleDateFormat;

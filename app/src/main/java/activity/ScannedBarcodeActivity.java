@@ -3,7 +3,6 @@ package activity;
 import static webservice.WebURL.RetrievePumpCOde;
 
 import android.Manifest;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -31,7 +30,7 @@ import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
 import com.google.gson.Gson;
-import com.vihaan.shaktinewconcept.R;
+import com.shakti.shaktinewconcept.R;
 
 import java.io.IOException;
 
@@ -170,7 +169,10 @@ public class ScannedBarcodeActivity extends AppCompatActivity {
                            Log.e("Response=====>", pumpcodemodel.getResponse().getMaterialNumber());
                            pumpCodeExt.setText(pumpcodemodel.getResponse().getMaterialNumber());
                        }
-
+                       else
+                       {
+                           Toast.makeText(ScannedBarcodeActivity.this, "Data not found", Toast.LENGTH_SHORT).show();
+                       }
                    }
 
             }
