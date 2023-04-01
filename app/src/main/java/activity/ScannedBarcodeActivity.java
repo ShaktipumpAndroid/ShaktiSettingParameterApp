@@ -3,7 +3,6 @@ package activity;
 import static webservice.WebURL.RetrievePumpCOde;
 
 import android.Manifest;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -13,6 +12,7 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,6 +36,7 @@ import com.vihaan.shaktinewconcept.R;
 import java.io.IOException;
 
 import activity.BeanVk.PumpCodeModel;
+import activity.utility.CustomUtility;
 
 public class ScannedBarcodeActivity extends AppCompatActivity {
     private static final String TAG = "ScannedBarcodeActivity";
@@ -47,6 +48,7 @@ public class ScannedBarcodeActivity extends AppCompatActivity {
     private static final int REQUEST_CAMERA_PERMISSION = 201;
     //Button btnAction;
     String intentData = "";
+    RelativeLayout search;
 
     TextView pumpCodeExt;
 
@@ -62,6 +64,24 @@ public class ScannedBarcodeActivity extends AppCompatActivity {
         rlvSubmitBarcodeDataID = findViewById(R.id.rlvSubmitBarcodeDataID);
         surfaceView = findViewById(R.id.surfaceView);
         pumpCodeExt = findViewById(R.id.pumpCodeExt);
+        search = findViewById(R.id.search);
+
+
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if( !edtBarcodeValueID.getText().toString().isEmpty()){
+                    getPumpCode();
+                }
+                else {
+                    Toast.makeText(ScannedBarcodeActivity.this, "Please scan or enter Serial No!", Toast.LENGTH_SHORT).show();
+
+                }
+
+
+            }
+        });
 
         rlvSubmitBarcodeDataID.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,7 +92,7 @@ public class ScannedBarcodeActivity extends AppCompatActivity {
                     intent.putExtra("MCode", pumpCodeExt.getText().toString().trim());
                     startActivity(intent);
                 } else {
-                    Toast.makeText(ScannedBarcodeActivity.this, "Please scan or enter bar code!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ScannedBarcodeActivity.this, "Please scan or enter Serial No!", Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -163,14 +183,16 @@ public class ScannedBarcodeActivity extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
 
-
                    if(!response.isEmpty()) {
                        PumpCodeModel pumpcodemodel = new Gson().fromJson(response.toString(), PumpCodeModel.class);
                        if(pumpcodemodel.getStatus().equals("true")){
                            Log.e("Response=====>", pumpcodemodel.getResponse().getMaterialNumber());
                            pumpCodeExt.setText(pumpcodemodel.getResponse().getMaterialNumber());
                        }
-
+                       else
+                       {
+                           Toast.makeText(ScannedBarcodeActivity.this, "Data not found", Toast.LENGTH_SHORT).show();
+                       }
                    }
 
             }

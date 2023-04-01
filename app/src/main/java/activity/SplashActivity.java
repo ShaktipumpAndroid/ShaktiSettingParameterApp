@@ -2,15 +2,9 @@ package activity;
 
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.StrictMode;
 
-import android.util.Log;
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
 import android.view.animation.AnimationUtils;
@@ -18,21 +12,9 @@ import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Toast;
-
-import androidx.annotation.NonNull;
-
 
 
 import com.vihaan.shaktinewconcept.R;
-
-
-import org.apache.http.NameValuePair;
-
-import java.io.File;
-import java.util.ArrayList;
-
-
 
 
 public class SplashActivity extends Activity implements AnimationListener {

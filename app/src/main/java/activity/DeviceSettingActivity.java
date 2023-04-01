@@ -3,7 +3,6 @@ package activity;
 import static java.lang.Thread.sleep;
 
 import static webservice.WebURL.MOTOR_PERSMETER_LIST;
-import static webservice.WebURL.RetrievePumpCOde;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -18,7 +17,6 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.StrictMode;
 import android.text.InputFilter;
 import android.text.InputType;
 import android.text.method.DigitsKeyListener;
@@ -49,11 +47,6 @@ import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 import com.vihaan.shaktinewconcept.R;
 
-import org.apache.http.NameValuePair;
-import org.apache.http.message.BasicNameValuePair;
-import org.json.JSONArray;
-import org.json.JSONObject;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
@@ -63,11 +56,9 @@ import java.util.Timer;
 import java.util.UUID;
 
 import activity.BeanVk.MotorParamListModel;
-import activity.BeanVk.PumpCodeModel;
-import activity.BeanVk.SettingParameterResponse;
+import activity.utility.CustomUtility;
 import rmslocaldb.DatabaseHelperTeacher;
 import webservice.AllPopupUtil;
-import webservice.CustomHttpClient;
 import webservice.WebURL;
 
 
@@ -268,74 +259,71 @@ public class DeviceSettingActivity extends AppCompatActivity {
         rlvSetAllViewID.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
-                //   for (int j = 0; j < mSettingParameterResponse.size(); j++) {
-
-
                 mGlobalPositionSet = 0;
-                System.out.println("mWriteAllCounterValue==>>" + mWriteAllCounterValue);
-                if (mSettingParameterResponse.size() >= mWriteAllCounterValue) {
-                    try {
+                if(mSettingParameterResponse.size()>0) {
+                    if (mSettingParameterResponse.size() >= mWriteAllCounterValue) {
+                        try {
 
 
-                        String mStringCeck = mEditTextList.get(mWriteAllCounterValue).getText().toString().trim();
+                            String mStringCeck = mEditTextList.get(mWriteAllCounterValue).getText().toString().trim();
 
-                        System.out.println("Vikas!@#==>>" + mStringCeck);
+                            System.out.println("Vikas!@#==>>" + mStringCeck);
 
-                        if (!mStringCeck.equalsIgnoreCase("") && !mStringCeck.equalsIgnoreCase("0.0")) {
-                            edtValueFloat = Float.parseFloat(mEditTextList.get(mWriteAllCounterValue).getText().toString().trim());
-                        } else {
-                            edtValueFloat = Float.parseFloat(mSettingParameterResponse.get(mWriteAllCounterValue).getOffset() + "");
-                        }
-                        {
-                            counterValue = 0;
-                            char[] datar = new char[4];
-                            int a = Float.floatToIntBits((float) edtValueFloat);
-                            datar[0] = (char) (a & 0x000000FF);
-                            datar[1] = (char) ((a & 0x0000FF00) >> 8);
-                            datar[2] = (char) ((a & 0x00FF0000) >> 16);
-                            datar[3] = (char) ((a & 0xFF000000) >> 24);
-                            int crc = CRC16_MODBUS(datar, 4);
-                            char reciverbyte1 = (char) ((crc >> 8) & 0x00FF);
-                            char reciverbyte2 = (char) (crc & 0x00FF);
-                            mCRCFinalValue = (char) (reciverbyte1 + reciverbyte2);
-                            String v1 = String.format("%02x", (0xff & datar[0]));
-                            String v2 = String.format("%02x", (0xff & datar[1])); //String v2 =Integer.toHexString(datar[1]);
-                            String v3 = String.format("%02x", (0xff & datar[2]));
-                            String v4 = String.format("%02x", (0xff & datar[3]));
-                            String v5 = Integer.toHexString(mCRCFinalValue);
-                            String mMOBADDRESS = "";
-                            //  String mMobADR = mSettingParameterResponse.get(pp).getModbusaddress();
-                            String mMobADR = mSettingParameterResponse.get(mWriteAllCounterValue).getMobBTAddress();
-                            if (!mMobADR.equalsIgnoreCase("")) {
-                                int mLenth = mMobADR.length();
-                                if (mLenth == 1) {
-                                    mMOBADDRESS = "000" + mMobADR;
-                                } else if (mLenth == 2) {
-                                    mMOBADDRESS = "00" + mMobADR;
-                                }
-                                if (mLenth == 3) {
-                                    mMOBADDRESS = "0" + mMobADR;
-                                } else {
-                                    mMOBADDRESS = mMobADR;
-                                }
-                                String modeBusCommand = "0106" + mMOBADDRESS + v1 + v2 + v3 + v4 + v5;//write
-                                System.out.println("mTotalTime==>>vvv==>> " + modeBusCommand);
-                                //  String modeBusCommand1 = "0103"+mSettingModelResponse.get(position).getMobBTAddress()+""+"crc";
-
-                                new BluetoothCommunicationForDynamicParameterWriteAll().execute(modeBusCommand, modeBusCommand, "OK");
-
+                            if (!mStringCeck.equalsIgnoreCase("") && !mStringCeck.equalsIgnoreCase("0.0")) {
+                                edtValueFloat = Float.parseFloat(mEditTextList.get(mWriteAllCounterValue).getText().toString().trim());
                             } else {
-                                Toast.makeText(mContext, "MOB address not found!", Toast.LENGTH_SHORT).show();
+                                edtValueFloat = Float.parseFloat(mSettingParameterResponse.get(mWriteAllCounterValue).getOffset() + "");
                             }
+                            {
+                                counterValue = 0;
+                                char[] datar = new char[4];
+                                int a = Float.floatToIntBits((float) edtValueFloat);
+                                datar[0] = (char) (a & 0x000000FF);
+                                datar[1] = (char) ((a & 0x0000FF00) >> 8);
+                                datar[2] = (char) ((a & 0x00FF0000) >> 16);
+                                datar[3] = (char) ((a & 0xFF000000) >> 24);
+                                int crc = CRC16_MODBUS(datar, 4);
+                                char reciverbyte1 = (char) ((crc >> 8) & 0x00FF);
+                                char reciverbyte2 = (char) (crc & 0x00FF);
+                                mCRCFinalValue = (char) (reciverbyte1 + reciverbyte2);
+                                String v1 = String.format("%02x", (0xff & datar[0]));
+                                String v2 = String.format("%02x", (0xff & datar[1])); //String v2 =Integer.toHexString(datar[1]);
+                                String v3 = String.format("%02x", (0xff & datar[2]));
+                                String v4 = String.format("%02x", (0xff & datar[3]));
+                                String v5 = Integer.toHexString(mCRCFinalValue);
+                                String mMOBADDRESS = "";
+                                //  String mMobADR = mSettingParameterResponse.get(pp).getModbusaddress();
+                                String mMobADR = mSettingParameterResponse.get(mWriteAllCounterValue).getMobBTAddress();
+                                if (!mMobADR.equalsIgnoreCase("")) {
+                                    int mLenth = mMobADR.length();
+                                    if (mLenth == 1) {
+                                        mMOBADDRESS = "000" + mMobADR;
+                                    } else if (mLenth == 2) {
+                                        mMOBADDRESS = "00" + mMobADR;
+                                    }
+                                    if (mLenth == 3) {
+                                        mMOBADDRESS = "0" + mMobADR;
+                                    } else {
+                                        mMOBADDRESS = mMobADR;
+                                    }
+                                    String modeBusCommand = "0106" + mMOBADDRESS + v1 + v2 + v3 + v4 + v5;//write
+                                    System.out.println("mTotalTime==>>vvv==>> " + modeBusCommand);
+                                    //  String modeBusCommand1 = "0103"+mSettingModelResponse.get(position).getMobBTAddress()+""+"crc";
+
+                                    new BluetoothCommunicationForDynamicParameterWriteAll().execute(modeBusCommand, modeBusCommand, "OK");
+
+                                } else {
+                                    Toast.makeText(mContext, "MOB address not found!", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        } catch (NumberFormatException e) {
+                            e.printStackTrace();
                         }
-                    } catch (NumberFormatException e) {
-                        e.printStackTrace();
+
                     }
-
+                }else {
+                    CustomUtility.ShowToast(getResources().getString(R.string.somethingWentWrong),DeviceSettingActivity.this);
                 }
-
             }
         });
 
@@ -352,7 +340,7 @@ public class DeviceSettingActivity extends AppCompatActivity {
         progressDialog.show();
         RequestQueue mRequestQueue = Volley.newRequestQueue(this);
         // String Request initialized
-        StringRequest mStringRequest = new StringRequest(Request.Method.GET, MOTOR_PERSMETER_LIST +mMaterialCode, new Response.Listener<String>() {
+        StringRequest mStringRequest = new StringRequest(Request.Method.GET, MOTOR_PERSMETER_LIST + mMaterialCode, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 
@@ -365,6 +353,9 @@ public class DeviceSettingActivity extends AppCompatActivity {
 
                         mSettingParameterResponse = motorParamListModel.getResponse();
                         addDynamicViewProNew(mSettingParameterResponse);
+                        noDataFound.setVisibility(View.GONE);
+                    }else {
+                        noDataFound.setVisibility(View.VISIBLE);
                     }
 
                 }
@@ -374,6 +365,7 @@ public class DeviceSettingActivity extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.i(TAG, "Error :" + error.toString());
+                noDataFound.setVisibility(View.VISIBLE);
                 if(progressDialog.isShowing()){
                     progressDialog.dismiss();
                 }
@@ -907,7 +899,7 @@ public class DeviceSettingActivity extends AppCompatActivity {
 
             edtValueID.setTextColor(getResources().getColor(R.color.black));
             edtValueID.setBackgroundColor(getResources().getColor(R.color.black));
-            edtValueID.setTextSize((int) getResources().getDimension(R.dimen._6ssp));
+            edtValueID.setTextSize((int) getResources().getDimension(R.dimen._4ssp));
             edtValueID.setId(i + 4);
             edtValueID.setMaxLines(1);
             edtValueID.setInputType(InputType.TYPE_CLASS_NUMBER);
@@ -915,6 +907,7 @@ public class DeviceSettingActivity extends AppCompatActivity {
             edtValueID.setFilters(new InputFilter[]{new InputFilter.LengthFilter(6)});
             edtValueID.setTypeface(null, Typeface.NORMAL);
             edtValueID.setTextColor(getResources().getColor(R.color.white));
+            edtValueID.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
             edtValueID.setLayoutParams(edtValueIDParam);
 
             rlvEDITLayout.addView(edtValueID);

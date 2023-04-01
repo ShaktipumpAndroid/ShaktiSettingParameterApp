@@ -141,6 +141,7 @@
     <string name="enterPumpCode">Enter Pump Code</string>
     <string name="loading">Loading...</string>
     <string name="connectingServer">Connecting to server..please wait !</string>
+    <string name="somethingWentWrong">Something Went Wrong</string>
 
 
     <string-array name="array_paymnet_by">

@@ -45,8 +45,6 @@ import com.vihaan.shaktinewconcept.R;
 import java.util.ArrayList;
 import java.util.List;
 
-import activity.utility.CustomUtility;
-
 import rmslocaldb.DatabaseHelperTeacher;
 import webservice.AllPopupUtil;
 import webservice.PermissionsIntent;

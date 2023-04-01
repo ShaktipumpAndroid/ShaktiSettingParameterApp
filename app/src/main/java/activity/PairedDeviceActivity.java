@@ -48,8 +48,6 @@ public class PairedDeviceActivity extends AppCompatActivity {
     @SuppressLint("MissingPermission")
     private void initView() {
 
-
-
         rlvBackViewID = (RelativeLayout) findViewById(R.id.rlvBackViewID);
 
         rclSettingListViewID = (RecyclerView) findViewById(R.id.rclSettingListViewID);
