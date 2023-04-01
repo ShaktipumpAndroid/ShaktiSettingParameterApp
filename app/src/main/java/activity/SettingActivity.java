@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-import com.shakti.shaktinewconcept.R;
+import com.vihaan.shaktinewconcept.R;
 
 import webservice.AllPopupUtil;
 import webservice.WebURL;

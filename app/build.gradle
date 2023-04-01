@@ -1,20 +1,17 @@
 apply plugin: 'com.android.application'
-// Apply the Crashlytics Gradle plugin
-//apply plugin: 'com.google.firebase.crashlytics'
+
 
 android {
 
     compileSdkVersion 33
-
     defaultConfig {
-        applicationId "com.shakti.shaktinewconcept"
+        applicationId "com.vihaan.shaktinewconceptt"
         minSdkVersion 21
         targetSdkVersion 33
         vectorDrawables.useSupportLibrary = true
         versionCode 1
         versionName "1.1"
         multiDexEnabled true
-        resConfigs "en"
         useLibrary 'org.apache.http.legacy'
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
     }
@@ -23,19 +20,13 @@ android {
         debug {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            jniDebuggable false
-            renderscriptDebuggable false
-            pseudoLocalesEnabled false
-            zipAlignEnabled true
+
 
         }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            jniDebuggable false
-            renderscriptDebuggable false
-            pseudoLocalesEnabled false
-            zipAlignEnabled true
+
         }
     }
 
@@ -58,17 +49,6 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-
-    signingConfigs {
-        config {
-            keyAlias 'settingparameter'
-            keyPassword 'shakti@123'
-            storePassword 'shakti@123'
-            //path 'D:\\Git projects\\AndroidSettingapp\\ShaktiSettingParameterApp\\app\\Keystore\\settingparameter.jks'
-        }
-    }
-
-    buildToolsVersion '33.0.2'
 
 }
 

@@ -11,7 +11,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-import com.shakti.shaktinewconcept.R;
+import com.vihaan.shaktinewconcept.R;
 
 import java.util.List;
 

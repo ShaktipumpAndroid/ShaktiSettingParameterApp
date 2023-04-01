@@ -14,7 +14,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 
-import com.shakti.shaktinewconcept.R;
+import com.vihaan.shaktinewconcept.R;
 
 
 public class SplashActivity extends Activity implements AnimationListener {

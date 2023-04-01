@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.shakti.shaktinewconcept.R;
+import com.vihaan.shaktinewconcept.R;
 
 
 public class dialog4 extends Dialog {
