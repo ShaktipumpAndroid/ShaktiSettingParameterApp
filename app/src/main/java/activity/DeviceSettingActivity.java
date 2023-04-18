@@ -331,10 +331,11 @@ public class DeviceSettingActivity extends AppCompatActivity {
             callgetCompalinAllListAPI();
         } else {
 
-
-            mSettingParameterResponse = databaseHelper.getRecordDetails();
+           CustomUtility.ShowToast(getResources().getString(R.string.netConnection), DeviceSettingActivity.this);
+            noDataFound.setVisibility(View.VISIBLE);
+           /* mSettingParameterResponse = databaseHelper.getRecordDetails();
             addDynamicViewProNew(mSettingParameterResponse);
-            noDataFound.setVisibility(View.GONE);
+            noDataFound.setVisibility(View.GONE);*/
         }
 
     }
@@ -356,7 +357,13 @@ public class DeviceSettingActivity extends AppCompatActivity {
         switch (id) {
             case R.id.action_sync_offline:
                 if (AllPopupUtil.isOnline(getApplicationContext())) {
-                    syncOfflineData();
+
+                    Log.e("DatabaseCount", String.valueOf(databaseHelper.getRecordCount()));
+                    if(databaseHelper.getRecordCount()>0) {
+                        syncOfflineData();
+                    }else {
+                        CustomUtility.ShowToast("Please Set Data First!",getApplicationContext());
+                    }
                 } else {
                     CustomUtility.ShowToast("Please check your internet connection!", getApplicationContext());
                 }
@@ -430,6 +437,7 @@ public class DeviceSettingActivity extends AppCompatActivity {
                         if (progressDialog != null && progressDialog.isShowing()) {
                             progressDialog.dismiss();
                         }
+                        databaseHelper.deleteDatabase();
                         Log.e("String Response : ", response.toString());
                     }
                 }, new Response.ErrorListener() {
@@ -476,8 +484,8 @@ public class DeviceSettingActivity extends AppCompatActivity {
                         addDynamicViewProNew(mSettingParameterResponse);
                         noDataFound.setVisibility(View.GONE);
 
-                        Log.e("DatabaseCount", String.valueOf(databaseHelper.getRecordCount()));
-                        if (String.valueOf(databaseHelper.getRecordCount()).equals("0")) {
+
+                        /*if (String.valueOf(databaseHelper.getRecordCount()).equals("0")) {
                             for (int i = 0; i < motorParamListModel.getResponse().size(); i++) {
                                 databaseHelper.insertRecordAlternate(String.valueOf(motorParamListModel.getResponse().get(i).getPmId()),
                                         motorParamListModel.getResponse().get(i).getParametersName(),
@@ -489,7 +497,7 @@ public class DeviceSettingActivity extends AppCompatActivity {
                                         motorParamListModel.getResponse().get(i).getUnit(),
                                         String.valueOf(motorParamListModel.getResponse().get(i).getOffset()));
                             }
-                        }
+                        }*/
 
 
                     } else {
@@ -1081,9 +1089,12 @@ public class DeviceSettingActivity extends AppCompatActivity {
                                     mEditTextList.get(mReadAllCounterValue).setText("" + mTotalTimeFloatData);
                                     System.out.println("mGlobalPosition==>>" + mReadAllCounterValue + "\nmTotalTimeFloatData==>>" + mTotalTimeFloatData);
                                     changeButtonVisibility(true, 1.0f, mTextViewSetIDtList.get(mReadAllCounterValue));
-                                    databaseHelper.updateRecordAlternate(mSettingParameterResponse.get(mReadAllCounterValue).getPmId().toString(),
+                                    /*databaseHelper.updateRecordAlternate(mSettingParameterResponse.get(mReadAllCounterValue).getPmId().toString(),
                                             mSettingParameterResponse.get(mReadAllCounterValue).getParametersName(),
                                             mEditTextList.get(mReadAllCounterValue).getText().toString().trim());
+
+                                    */
+                                    DatabaseRecordInsert(mSettingParameterResponse.get(mReadAllCounterValue), mEditTextList.get(mReadAllCounterValue));
 
                                 }
                             });
@@ -1186,6 +1197,18 @@ public class DeviceSettingActivity extends AppCompatActivity {
         }
     }
 
+    private void DatabaseRecordInsert(MotorParamListModel.Response response, EditText pValue) {
+        databaseHelper.insertRecordAlternate(String.valueOf(response.getPmId()),
+                response.getParametersName(),
+                response.getModbusaddress(),
+                response.getMobBTAddress(),
+                String.valueOf(response.getFactor()),
+                pValue.getText().toString(),
+                response.getMaterialCode(),
+                response.getUnit(),
+                String.valueOf(response.getOffset()));
+    }
+
     /////////////////////////bt read write
     @SuppressLint("StaticFieldLeak")
     private class BluetoothCommunicationForDynamicParameterWrite extends AsyncTask<String, Void, Boolean>  // UI thread
@@ -1284,9 +1307,10 @@ public class DeviceSettingActivity extends AppCompatActivity {
 
                                     Log.e("mGlobalPosition", String.valueOf(mGlobalPosition));
                                     Log.e("mEditTextList", mEditTextList.get(mGlobalPosition).getText().toString());
-                                    databaseHelper.updateRecordAlternate(mSettingParameterResponse.get(mGlobalPosition).getPmId().toString(),
+                                  /*  databaseHelper.updateRecordAlternate(mSettingParameterResponse.get(mGlobalPosition).getPmId().toString(),
                                             mSettingParameterResponse.get(mGlobalPosition).getParametersName(),
-                                            mEditTextList.get(mGlobalPosition).getText().toString().trim());
+                                            mEditTextList.get(mGlobalPosition).getText().toString().trim());*/
+                                    DatabaseRecordInsert(mSettingParameterResponse.get(mGlobalPosition), mEditTextList.get(mGlobalPosition));
                                 }
                             });
 
@@ -1422,10 +1446,10 @@ public class DeviceSettingActivity extends AppCompatActivity {
                                     mSettingParameterResponse.get(mWriteAllCounterValue).setpValue((int) mTotalTimeFloatData);
 
                                     mEditTextList.get(mWriteAllCounterValue).setText("" + mTotalTimeFloatData);
-                                    databaseHelper.updateRecordAlternate(mSettingParameterResponse.get(mWriteAllCounterValue).getPmId().toString(),
+                                    /*databaseHelper.updateRecordAlternate(mSettingParameterResponse.get(mWriteAllCounterValue).getPmId().toString(),
                                             mSettingParameterResponse.get(mWriteAllCounterValue).getParametersName(),
-                                            mEditTextList.get(mWriteAllCounterValue).getText().toString().trim());
-
+                                            mEditTextList.get(mWriteAllCounterValue).getText().toString().trim());*/
+                                    DatabaseRecordInsert(mSettingParameterResponse.get(mWriteAllCounterValue), mEditTextList.get(mWriteAllCounterValue));
 
                                 }
                             });
@@ -1471,9 +1495,11 @@ public class DeviceSettingActivity extends AppCompatActivity {
                     String mStringCeck = mEditTextList.get(mWriteAllCounterValue).getText().toString().trim();
                     System.out.println("Vikas!@#==>>" + mStringCeck);
                     System.out.println("Sumit====>" + mSettingParameterResponse.get(mWriteAllCounterValue).getParametersName());
-                    databaseHelper.updateRecordAlternate(mSettingParameterResponse.get(mWriteAllCounterValue).getPmId().toString(),
+                    /*databaseHelper.updateRecordAlternate(mSettingParameterResponse.get(mWriteAllCounterValue).getPmId().toString(),
                             mSettingParameterResponse.get(mWriteAllCounterValue).getParametersName(),
-                            mEditTextList.get(mWriteAllCounterValue).getText().toString().trim());
+                            mEditTextList.get(mWriteAllCounterValue).getText().toString().trim());*/
+
+                    DatabaseRecordInsert(mSettingParameterResponse.get(mWriteAllCounterValue), mEditTextList.get(mWriteAllCounterValue));
                     if (!mStringCeck.equalsIgnoreCase("") && !mStringCeck.equalsIgnoreCase("0.0")) {
                         edtValueFloat = Float.parseFloat(mEditTextList.get(mWriteAllCounterValue).getText().toString().trim());
                     } else {
@@ -1630,9 +1656,10 @@ public class DeviceSettingActivity extends AppCompatActivity {
                                         mEditTextList.get(mGlobalPosition).setText("" + fgfg);
                                         System.out.println("mGlobalPosition==>>" + mGlobalPosition + "\nmTotalTimeFloatData==>>" + mTotalTimeFloatData);
                                         changeButtonVisibility(true, 1.0f, mTextViewSetIDtList.get(mGlobalPosition));
-                                        databaseHelper.updateRecordAlternate(mSettingParameterResponse.get(mGlobalPosition).getPmId().toString(),
+                                      /*  databaseHelper.updateRecordAlternate(mSettingParameterResponse.get(mGlobalPosition).getPmId().toString(),
                                                 mSettingParameterResponse.get(mGlobalPosition).getParametersName(),
-                                                mEditTextList.get(mGlobalPosition).getText().toString().trim());
+                                                mEditTextList.get(mGlobalPosition).getText().toString().trim());*/
+                                        DatabaseRecordInsert(mSettingParameterResponse.get(mGlobalPosition), mEditTextList.get(mGlobalPosition));
                                     } catch (Exception e) {
                                         e.printStackTrace();
                                     }
