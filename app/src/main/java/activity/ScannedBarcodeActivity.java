@@ -6,13 +6,13 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.util.JsonReader;
 import android.util.Log;
 import android.util.SparseArray;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,6 +20,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -34,9 +35,12 @@ import com.google.gson.Gson;
 import com.vihaan.shaktinewconcept.R;
 
 import java.io.IOException;
+import java.io.StringReader;
 
 import activity.BeanVk.PumpCodeModel;
 import activity.utility.CustomUtility;
+import webservice.AllPopupUtil;
+import webservice.Constants;
 
 public class ScannedBarcodeActivity extends AppCompatActivity {
     private static final String TAG = "ScannedBarcodeActivity";
@@ -71,10 +75,13 @@ public class ScannedBarcodeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if( !edtBarcodeValueID.getText().toString().isEmpty()){
-                    getPumpCode();
-                }
-                else {
+                if (!edtBarcodeValueID.getText().toString().isEmpty()) {
+                    if (AllPopupUtil.isOnline(getApplicationContext())) {
+                        getPumpCode();
+                    } else {
+                        CustomUtility.ShowToast("Please check your internet connection!", getApplicationContext());
+                    }
+                } else {
                     Toast.makeText(ScannedBarcodeActivity.this, "Please scan or enter Serial No!", Toast.LENGTH_SHORT).show();
 
                 }
@@ -88,6 +95,8 @@ public class ScannedBarcodeActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 if (!pumpCodeExt.getText().toString().trim().isEmpty()) {
+                    CustomUtility.setSharedPreference(getApplicationContext(), Constants.SerialNumber, edtBarcodeValueID.getText().toString());
+                    CustomUtility.setSharedPreference(getApplicationContext(), Constants.MaterialPumpCode, pumpCodeExt.getText().toString());
                     Intent intent = new Intent(getApplicationContext(), DeviceSettingActivity.class);
                     intent.putExtra("MCode", pumpCodeExt.getText().toString().trim());
                     startActivity(intent);
@@ -155,15 +164,19 @@ public class ScannedBarcodeActivity extends AppCompatActivity {
                             if (barcodes.valueAt(0).email != null) {
                                 edtBarcodeValueID.removeCallbacks(null);
                                 intentData = barcodes.valueAt(0).email.address;
-                                edtBarcodeValueID.setText(intentData);
+                                edtBarcodeValueID.setText(intentData.trim());
 
                             } else {
                                 intentData = barcodes.valueAt(0).displayValue;
-                                edtBarcodeValueID.setText(intentData);
+                                edtBarcodeValueID.setText(intentData.trim());
 
                             }
 
+                            if (AllPopupUtil.isOnline(getApplicationContext())) {
                                 getPumpCode();
+                            } else {
+                                CustomUtility.ShowToast("Please check your internet connection!", getApplicationContext());
+                            }
 
 
                         }
@@ -183,17 +196,19 @@ public class ScannedBarcodeActivity extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
 
-                   if(!response.isEmpty()) {
-                       PumpCodeModel pumpcodemodel = new Gson().fromJson(response.toString(), PumpCodeModel.class);
-                       if(pumpcodemodel.getStatus().equals("true")){
-                           Log.e("Response=====>", pumpcodemodel.getResponse().getMaterialNumber());
-                           pumpCodeExt.setText(pumpcodemodel.getResponse().getMaterialNumber());
-                       }
-                       else
-                       {
-                           Toast.makeText(ScannedBarcodeActivity.this, "Data not found", Toast.LENGTH_SHORT).show();
-                       }
-                   }
+                if (!response.isEmpty()) {
+
+                    Gson gson = new Gson();
+                    JsonReader reader = new JsonReader(new StringReader(response));
+                    reader.setLenient(true);
+                    PumpCodeModel pumpcodemodel = gson.fromJson(response.toString(), PumpCodeModel.class);
+                    if (pumpcodemodel.getStatus().equals("true")) {
+                        CustomUtility.setSharedPreference(getApplicationContext(), Constants.MaterialPumpCode, pumpcodemodel.getResponse().getMaterialNumber().trim());
+                        pumpCodeExt.setText(pumpcodemodel.getResponse().getMaterialNumber().trim());
+                    } else {
+                        Toast.makeText(ScannedBarcodeActivity.this, "Data not found", Toast.LENGTH_SHORT).show();
+                    }
+                }
 
             }
         }, new Response.ErrorListener() {
@@ -203,7 +218,10 @@ public class ScannedBarcodeActivity extends AppCompatActivity {
 
             }
         });
-
+        mStringRequest.setRetryPolicy(new DefaultRetryPolicy(
+                DefaultRetryPolicy.DEFAULT_TIMEOUT_MS,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,  // maxNumRetries = 0 means no retry
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         mRequestQueue.add(mStringRequest);
     }
 

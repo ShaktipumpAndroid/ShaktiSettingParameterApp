@@ -149,21 +149,8 @@ public class AllPopupUtil {
 
             Log.v("network",   String.valueOf(  connected ) );
 
-//                Process p1 = Runtime.getRuntime().exec("ping -c 1 www.google.com");
-//                int returnVal = p1.waitFor();
-//
-//                Log.v("ping",   String.valueOf(  returnVal ) );
-//
-//                connected = (returnVal == 0);
-//
-//                return connected;
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
-
 
         } catch (Exception e) {
-//            System.out.println("CheckConnectivity Exception: " + e.getMessage());
             Log.v("connectivity", e.toString());
         }
         return connected;

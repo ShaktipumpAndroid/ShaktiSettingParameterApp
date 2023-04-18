@@ -142,7 +142,10 @@
     <string name="loading">Loading...</string>
     <string name="connectingServer">Connecting to server..please wait !</string>
     <string name="somethingWentWrong">Something Went Wrong</string>
-
+    <string name="sign_out">Sign Out Alert !</string>
+    <string name="sign_out_application">Do you want to Sign Out this application ?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 
     <string-array name="array_paymnet_by">
         <item>Pay By</item>
