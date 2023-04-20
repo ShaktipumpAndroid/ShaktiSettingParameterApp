@@ -45,7 +45,6 @@ import com.vihaan.shaktinewconcept.R;
 import java.util.ArrayList;
 import java.util.List;
 
-import rmslocaldb.DatabaseHelperTeacher;
 import webservice.AllPopupUtil;
 import webservice.PermissionsIntent;
 
@@ -96,7 +95,7 @@ public class AddDevice extends AppCompatActivity implements LocationListener {
     private int mDeviceTypeScan = 0;
 
 
-    private DatabaseHelperTeacher databaseHelperTeacher;
+
     private boolean mCheckFirstDB;
     String mUsernamePrefSTR1;
     private RelativeLayout rlvCheckboxlayoutID;
@@ -120,7 +119,6 @@ public class AddDevice extends AppCompatActivity implements LocationListener {
 
 
 
-        databaseHelperTeacher = new DatabaseHelperTeacher(mContext);///////////
 
         pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
         editor = pref.edit();

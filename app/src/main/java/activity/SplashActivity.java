@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
+import android.os.Handler;
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
 import android.view.animation.AnimationUtils;
@@ -14,10 +15,15 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.vihaan.shaktinewconcept.R;
 
+import activity.utility.CustomUtility;
+import webservice.Constants;
 
-public class SplashActivity extends Activity implements AnimationListener {
+
+public class SplashActivity extends AppCompatActivity {
 
     // Splash screen timer
     //private static int SPLASH_TIME_OUT = 10000;
@@ -45,36 +51,22 @@ public class SplashActivity extends Activity implements AnimationListener {
         rotate.setInterpolator(new LinearInterpolator());
         mLogo.startAnimation(rotate);
 
-        Thread myThread = new Thread(){
+        new Handler().postDelayed(new Runnable() {
             @Override
-            public void run(){
-                try {
-                    sleep(4000);
-                    Intent intent = new Intent(getApplicationContext(),ScannedBarcodeActivity.class);
-                    // Intent intent = new Intent(getApplicationContext(),DeviceSettingActivity.class);
-                    startActivity(intent);
-                    finish();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+            public void run() {
+              if(CustomUtility.getSharedPreferences(getApplicationContext(), Constants.MaterialPumpCode)!=null && !CustomUtility.getSharedPreferences(getApplicationContext(), Constants.MaterialPumpCode).isEmpty()){
+                  Intent i = new Intent(SplashActivity.this, DeviceSettingActivity.class);
+                  startActivity(i); // invoke the SecondActivity.
+                  finish();
+              }else {
+                  Intent i = new Intent(SplashActivity.this, ScannedBarcodeActivity.class);
+                  startActivity(i); // invoke the SecondActivity.
+                  finish();
+              }
             }
-        };
-        myThread.start();
+        }, 3000);
     }
 
-    @Override
-    public void onAnimationStart(Animation animation) {
 
-    }
-
-    @Override
-    public void onAnimationEnd(Animation animation) {
-
-    }
-
-    @Override
-    public void onAnimationRepeat(Animation animation) {
-
-    }
 }
 
