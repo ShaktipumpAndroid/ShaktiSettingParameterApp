@@ -95,6 +95,7 @@
                 android:layout_centerVertical="true"
                 android:background="@android:color/transparent"
                 android:hint="@string/Set_edt_scan"
+
                 android:inputType="phone"
                 android:padding="@dimen/_10sdp"
                 android:textColor="@color/colorWhite"
@@ -138,10 +139,10 @@
                 android:layout_height="@dimen/_40sdp"
                 android:layout_centerVertical="true"
                 android:background="@android:color/transparent"
-                android:digits="0123456789"
                 android:hint="@string/enterPumpCode"
-                android:inputType="number"
+                android:inputType="phone"
                 android:padding="@dimen/_10sdp"
+
                 android:textColor="@color/colorWhite"
                 android:textColorHint="@color/colorGray"
                 android:textSize="@dimen/_12sdp"

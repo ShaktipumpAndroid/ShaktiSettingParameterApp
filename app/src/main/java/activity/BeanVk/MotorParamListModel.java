@@ -40,7 +40,7 @@ public class MotorParamListModel {
         this.response = response;
     }
 
-    public class Response {
+    public static class Response {
 
         @SerializedName("pmId")
         @Expose
