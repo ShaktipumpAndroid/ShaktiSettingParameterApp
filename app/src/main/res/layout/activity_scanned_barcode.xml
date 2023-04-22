@@ -182,8 +182,6 @@
                       android:layout_centerVertical="true"
                       android:background="@android:color/transparent"
                       android:hint="@string/Set_edt_scan"
-
-                      android:inputType="phone"
                       android:padding="@dimen/_10sdp"
                       android:textColor="@color/colorWhite"
                       android:textColorHint="@color/colorGray"

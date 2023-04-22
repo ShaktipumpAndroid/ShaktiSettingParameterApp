@@ -114,7 +114,7 @@ public class SplashActivity extends AppCompatActivity {
                     && AccessCoarseLocation == PackageManager.PERMISSION_GRANTED  && ReadMediaImage == PackageManager.PERMISSION_GRANTED
                     && Bluetooth == PackageManager.PERMISSION_GRANTED && BluetoothConnect == PackageManager.PERMISSION_GRANTED
                     && BluetoothScan == PackageManager.PERMISSION_GRANTED;
-        }else  if (SDK_INT >= Build.VERSION_CODES.R) {
+        }else  if (SDK_INT >= Build.VERSION_CODES.S) {
             return cameraPermission == PackageManager.PERMISSION_GRANTED && writeExternalStorage == PackageManager.PERMISSION_GRANTED && AccessCoarseLocation == PackageManager.PERMISSION_GRANTED
                     && Bluetooth == PackageManager.PERMISSION_GRANTED   && BluetoothScan == PackageManager.PERMISSION_GRANTED ;
         } else {
@@ -132,7 +132,7 @@ public class SplashActivity extends AppCompatActivity {
                             Manifest.permission.READ_MEDIA_IMAGES, Manifest.permission.BLUETOOTH , Manifest.permission.BLUETOOTH_CONNECT
                             , Manifest.permission.BLUETOOTH_SCAN},
                     REQUEST_CODE_PERMISSION);
-        } if (SDK_INT >= Build.VERSION_CODES.R) {
+        } if (SDK_INT >= Build.VERSION_CODES.S) {
             ActivityCompat.requestPermissions(this,
                     new String[]{Manifest.permission.CAMERA,
                             Manifest.permission.WRITE_EXTERNAL_STORAGE,
@@ -180,16 +180,7 @@ public class SplashActivity extends AppCompatActivity {
 
 
                     if (ACCESSCAMERA && writeExternalStorage && AccessCoarseLocation && Bluetooth &&  BluetoothConnect && BluetoothScan) {
-                        try {
-                            Intent intent = new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
-                            intent.addCategory("android.intent.category.DEFAULT");
-                            intent.setData(Uri.parse(String.format("package:%s",getApplicationContext().getPackageName())));
-                            startActivityForResult(intent, 2296);
-                        } catch (Exception e) {
-                            Intent intent = new Intent();
-                            intent.setAction(Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION);
-                            startActivityForResult(intent, 2296);
-                        }
+                        checkLogin();
                     } else {
                         Toast.makeText(SplashActivity.this, R.string.all_permission, Toast.LENGTH_LONG).show();
                     }
