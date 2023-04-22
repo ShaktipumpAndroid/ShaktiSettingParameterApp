@@ -9,8 +9,8 @@ android {
         minSdkVersion 21
         targetSdkVersion 33
         vectorDrawables.useSupportLibrary = true
-        versionCode 1
-        versionName "1.1"
+        versionCode 5
+        versionName "1.4"
         multiDexEnabled true
         useLibrary 'org.apache.http.legacy'
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
@@ -21,12 +21,10 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
 
-
         }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-
         }
     }
 
@@ -64,16 +62,6 @@ dependencies {
     implementation files('libs/httpcore-4.3.3.jar')
     implementation files('libs/library-1.2.1-sources.jar')
     implementation files('libs/universal-image-loader-1.9.0.jar')
-    implementation 'androidx.multidex:multidex:2.0.0'
-
-    implementation "androidx.cardview:cardview:1.0.0"
-    //noinspection GradleCompatible
-    implementation 'androidx.appcompat:appcompat:1.0.0'
-    //noinspection GradleCompatible
-    implementation 'com.google.android.material:material:1.0.0'
-    //noinspection GradleCompatible
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    //noinspection GradleCompatible
 
     implementation 'com.google.android.gms:play-services-maps:17.0.1'
     implementation 'com.google.android.gms:play-services-location:18.0.0'

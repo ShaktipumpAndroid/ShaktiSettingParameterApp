@@ -11,20 +11,18 @@ import android.util.Log;
 import android.util.SparseArray;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import android.view.View;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.gms.vision.CameraSource;
@@ -36,6 +34,8 @@ import com.vihaan.shaktinewconcept.R;
 
 import java.io.IOException;
 import java.io.StringReader;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import activity.BeanVk.PumpCodeModel;
 import activity.utility.CustomUtility;
@@ -45,11 +45,10 @@ import webservice.Constants;
 public class ScannedBarcodeActivity extends AppCompatActivity {
     private static final String TAG = "ScannedBarcodeActivity";
     SurfaceView surfaceView;
-    private RelativeLayout rlvSubmitBarcodeDataID;
-    private EditText edtBarcodeValueID;
-    private BarcodeDetector barcodeDetector;
+    private EditText edtBarcodeValueID, mobileNotxt,userNametxt,sapCodetxt;
     private CameraSource cameraSource;
     private static final int REQUEST_CAMERA_PERMISSION = 201;
+
     //Button btnAction;
     String intentData = "";
     RelativeLayout search;
@@ -65,55 +64,81 @@ public class ScannedBarcodeActivity extends AppCompatActivity {
 
     private void initViews() {
         edtBarcodeValueID = findViewById(R.id.edtBarcodeValueID);
-        rlvSubmitBarcodeDataID = findViewById(R.id.rlvSubmitBarcodeDataID);
+        mobileNotxt = findViewById(R.id.mobileNotxt);
+        sapCodetxt = findViewById(R.id.sapCodetxt);
+        userNametxt =findViewById(R.id.userNametxt);
+        RelativeLayout rlvSubmitBarcodeDataID = findViewById(R.id.rlvSubmitBarcodeDataID);
         surfaceView = findViewById(R.id.surfaceView);
         pumpCodeExt = findViewById(R.id.pumpCodeExt);
         search = findViewById(R.id.search);
 
 
-        search.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        search.setOnClickListener(v -> {
 
-                if (!edtBarcodeValueID.getText().toString().isEmpty()) {
-                    if (AllPopupUtil.isOnline(getApplicationContext())) {
-                        getPumpCode();
-                    } else {
-                        CustomUtility.ShowToast("Please check your internet connection!", getApplicationContext());
-                    }
+            if (!edtBarcodeValueID.getText().toString().isEmpty()) {
+                if (AllPopupUtil.isOnline(getApplicationContext())) {
+                    getPumpCode();
                 } else {
-                    Toast.makeText(ScannedBarcodeActivity.this, "Please scan or enter Serial No!", Toast.LENGTH_SHORT).show();
-
+                    CustomUtility.ShowToast("Please check your internet connection!", getApplicationContext());
                 }
-
+            } else {
+                Toast.makeText(ScannedBarcodeActivity.this, "Please scan or enter Serial No!", Toast.LENGTH_SHORT).show();
 
             }
+
+
         });
 
-        rlvSubmitBarcodeDataID.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        rlvSubmitBarcodeDataID.setOnClickListener(v -> {
 
-                if (!pumpCodeExt.getText().toString().trim().isEmpty()) {
-                    CustomUtility.setSharedPreference(getApplicationContext(), Constants.SerialNumber, edtBarcodeValueID.getText().toString());
-                    CustomUtility.setSharedPreference(getApplicationContext(), Constants.MaterialPumpCode, pumpCodeExt.getText().toString());
-                    Intent intent = new Intent(getApplicationContext(), DeviceSettingActivity.class);
-                    intent.putExtra("MCode", pumpCodeExt.getText().toString().trim());
-                    startActivity(intent);
-                } else {
-                    Toast.makeText(ScannedBarcodeActivity.this, "Please scan or enter Serial No!", Toast.LENGTH_SHORT).show();
+            if(!userNametxt.getText().toString().trim().isEmpty() && !mobileNotxt.getText().toString().trim().isEmpty() && !sapCodetxt.getText().toString().trim().isEmpty())
+            {
+                String phone = mobileNotxt.getText().toString().trim();
+
+                if (isValidPhone(phone))
+                {
+                    if (!pumpCodeExt.getText().toString().trim().isEmpty()) {
+
+                        CustomUtility.setSharedPreference(getApplicationContext(), Constants.SerialNumber, edtBarcodeValueID.getText().toString());
+                        CustomUtility.setSharedPreference(getApplicationContext(), Constants.MaterialPumpCode, pumpCodeExt.getText().toString());
+                        CustomUtility.setSharedPreference(getApplicationContext(), Constants.UserName , userNametxt.getText().toString());
+                        CustomUtility.setSharedPreference(getApplicationContext(), Constants.MobileNo, mobileNotxt.getText().toString());
+                        CustomUtility.setSharedPreference(getApplicationContext(), Constants.SapCode , sapCodetxt.getText().toString());
+
+                        Intent intent = new Intent(getApplicationContext(), DeviceSettingActivity.class);
+                        intent.putExtra("MCode", pumpCodeExt.getText().toString().trim());
+                        startActivity(intent);
+                    } else {
+                        Toast.makeText(ScannedBarcodeActivity.this, "Please scan or enter Serial No!", Toast.LENGTH_SHORT).show();
+                    }
                 }
+                else {
+                    Toast.makeText(ScannedBarcodeActivity.this, "Please enter valid Mobile No!", Toast.LENGTH_SHORT).show();
 
+                }
             }
+            else {
+                Toast.makeText(ScannedBarcodeActivity.this, "Please enter Personal Details!", Toast.LENGTH_SHORT).show();
+            }
+
+
         });
 
 
     }
 
+    public static boolean isValidPhone(String phone)
+    {
+        String expression = "^([\\d+]|\\(\\d{1,3}\\))[\\d\\-. ]{3,15}$";
+        Pattern pattern = Pattern.compile(expression);
+        Matcher matcher = pattern.matcher(phone);
+        return matcher.matches();
+    }
+
     private void initialiseDetectorsAndSources() {
 
 
-        barcodeDetector = new BarcodeDetector.Builder(this)
+        BarcodeDetector barcodeDetector = new BarcodeDetector.Builder(this)
                 .setBarcodeFormats(Barcode.ALL_FORMATS)
                 .build();
 
@@ -124,7 +149,7 @@ public class ScannedBarcodeActivity extends AppCompatActivity {
 
         surfaceView.getHolder().addCallback(new SurfaceHolder.Callback() {
             @Override
-            public void surfaceCreated(SurfaceHolder holder) {
+            public void surfaceCreated(@NonNull SurfaceHolder holder) {
                 try {
                     if (ActivityCompat.checkSelfPermission(ScannedBarcodeActivity.this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
                         cameraSource.start(surfaceView.getHolder());
@@ -139,11 +164,11 @@ public class ScannedBarcodeActivity extends AppCompatActivity {
             }
 
             @Override
-            public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
+            public void surfaceChanged(@NonNull SurfaceHolder holder, int format, int width, int height) {
             }
 
             @Override
-            public void surfaceDestroyed(SurfaceHolder holder) {
+            public void surfaceDestroyed(@NonNull SurfaceHolder holder) {
                 cameraSource.stop();
             }
         });
@@ -158,28 +183,25 @@ public class ScannedBarcodeActivity extends AppCompatActivity {
             public void receiveDetections(Detector.Detections<Barcode> detections) {
                 final SparseArray<Barcode> barcodes = detections.getDetectedItems();
                 if (barcodes.size() != 0) {
-                    edtBarcodeValueID.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            if (barcodes.valueAt(0).email != null) {
-                                edtBarcodeValueID.removeCallbacks(null);
-                                intentData = barcodes.valueAt(0).email.address;
-                                edtBarcodeValueID.setText(intentData.trim());
+                    edtBarcodeValueID.post(() -> {
+                        if (barcodes.valueAt(0).email != null) {
+                            edtBarcodeValueID.removeCallbacks(null);
+                            intentData = barcodes.valueAt(0).email.address;
+                            edtBarcodeValueID.setText(intentData.trim());
 
-                            } else {
-                                intentData = barcodes.valueAt(0).displayValue;
-                                edtBarcodeValueID.setText(intentData.trim());
-
-                            }
-
-                            if (AllPopupUtil.isOnline(getApplicationContext())) {
-                                getPumpCode();
-                            } else {
-                                CustomUtility.ShowToast("Please check your internet connection!", getApplicationContext());
-                            }
-
+                        } else {
+                            intentData = barcodes.valueAt(0).displayValue;
+                            edtBarcodeValueID.setText(intentData.trim());
 
                         }
+
+                        if (AllPopupUtil.isOnline(getApplicationContext())) {
+                            getPumpCode();
+                        } else {
+                            CustomUtility.ShowToast("Please check your internet connection!", getApplicationContext());
+                        }
+
+
                     });
                 }
             }
@@ -192,32 +214,23 @@ public class ScannedBarcodeActivity extends AppCompatActivity {
         RequestQueue mRequestQueue = Volley.newRequestQueue(this);
 
         // String Request initialized
-        StringRequest mStringRequest = new StringRequest(Request.Method.GET, RetrievePumpCOde + edtBarcodeValueID.getText().toString(), new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
+        StringRequest mStringRequest = new StringRequest(Request.Method.GET, RetrievePumpCOde + edtBarcodeValueID.getText().toString(), response -> {
 
-                if (!response.isEmpty()) {
+            if (!response.isEmpty()) {
 
-                    Gson gson = new Gson();
-                    JsonReader reader = new JsonReader(new StringReader(response));
-                    reader.setLenient(true);
-                    PumpCodeModel pumpcodemodel = gson.fromJson(response.toString(), PumpCodeModel.class);
-                    if (pumpcodemodel.getStatus().equals("true")) {
-                        CustomUtility.setSharedPreference(getApplicationContext(), Constants.MaterialPumpCode, pumpcodemodel.getResponse().getMaterialNumber().trim());
-                        pumpCodeExt.setText(pumpcodemodel.getResponse().getMaterialNumber().trim());
-                    } else {
-                        Toast.makeText(ScannedBarcodeActivity.this, "Data not found", Toast.LENGTH_SHORT).show();
-                    }
+                Gson gson = new Gson();
+                JsonReader reader = new JsonReader(new StringReader(response));
+                reader.setLenient(true);
+                PumpCodeModel pumpcodemodel = gson.fromJson(response, PumpCodeModel.class);
+                if (pumpcodemodel.getStatus().equals("true")) {
+                    CustomUtility.setSharedPreference(getApplicationContext(), Constants.MaterialPumpCode, pumpcodemodel.getResponse().getMaterialNumber().trim());
+                    pumpCodeExt.setText(pumpcodemodel.getResponse().getMaterialNumber().trim());
+                } else {
+                    Toast.makeText(ScannedBarcodeActivity.this, "Data not found", Toast.LENGTH_SHORT).show();
                 }
-
             }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.i(TAG, "Error :" + error.toString());
 
-            }
-        });
+        }, error -> Log.i(TAG, "Error :" + error.toString()));
         mStringRequest.setRetryPolicy(new DefaultRetryPolicy(
                 DefaultRetryPolicy.DEFAULT_TIMEOUT_MS,
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,  // maxNumRetries = 0 means no retry
