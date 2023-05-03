@@ -11,7 +11,7 @@ public class WebURL {
     public  static String BT_DEVICE_MAC_ADDRESS = "";
     public static final String MOTOR_PERSMETER_LIST = "https://solar10.shaktisolarrms.com/RMSAppTest/MoterParamList?id=";
     public static final String syncOfflineData = "https://solar10.shaktisolarrms.com/RMSAppTest/DeviceParamBLog";
-    public static final String RetrievePumpCOde = "https://spquasrvr1.shaktipumps.com:8423/sap/bc/bsp/sap/zemp_hr_portal/setting_parameter_app.htm?lv_sernr=";
+    public static final String RetrievePumpCOde = "https://spprdsrvr1.shaktipumps.com:8423/sap/bc/bsp/sap/zemp_hr_portal/setting_parameter_app.htm?lv_sernr=";
 
     //Quality
 //https://spquasrvr1.shaktipumps.com:8423/sap/bc/bsp/sap/zemp_hr_portal/setting_parameter_app.htm?lv_sernr=
