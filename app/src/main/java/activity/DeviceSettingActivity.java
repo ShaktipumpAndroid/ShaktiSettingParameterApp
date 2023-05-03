@@ -51,6 +51,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
+import com.vihaan.shaktinewconcept.BuildConfig;
 import com.vihaan.shaktinewconcept.R;
 
 import org.json.JSONArray;
@@ -107,7 +108,7 @@ public class DeviceSettingActivity extends AppCompatActivity {
     char mCRCFinalValueWrite;
     int i = 0;
     Intent myIntent;
-    String myVersionName;
+    String myVersionName, mobilemodel, androidVersion;
     int mGlobalPosition = 0;
     int mGlobalPositionSet = 0;
 
@@ -146,7 +147,12 @@ public class DeviceSettingActivity extends AppCompatActivity {
         mActivity = this;
         try {
             myVersionName = getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
+            mobilemodel = Build.MODEL;
+            androidVersion =  Build.VERSION.RELEASE;
+
+            Log.e("VERSION_App",androidVersion);
             Log.e("VERSION_NAME", myVersionName);
+            Log.e("MOBILE_MODEL", mobilemodel);
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
@@ -423,6 +429,10 @@ public class DeviceSettingActivity extends AppCompatActivity {
                     Settings.Secure.ANDROID_ID).toString().trim());
             jsonObject.put("DeviceSerialNumber", CustomUtility.getSharedPreferences(getApplicationContext(), Constants.SerialNumber));
             jsonObject.put("AppVersion", myVersionName);
+            jsonObject.put("AndroidVersion", androidVersion);
+            jsonObject.put("MobileModel", mobilemodel);
+            jsonObject.put("Username",CustomUtility.getSharedPreferences(getApplicationContext(),Constants.UserName));
+            jsonObject.put("MobileNo",CustomUtility.getSharedPreferences(getApplicationContext(),Constants.MobileNo));
             jsonObject.put("response", jsonArray);
         } catch (JSONException e) {
             e.printStackTrace();
