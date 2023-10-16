@@ -8,12 +8,10 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
-    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES"/>
-    <uses-permission android:name="android.permission.BLUETOOTH_SCAN"/>
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE"/>
-
 
     <uses-feature
         android:name="android.hardware.camera"
@@ -21,22 +19,25 @@
     <uses-feature android:name="android.hardware.camera.autofocus" />
 
     <application
-        android:name="other.Application"
-        android:label="@string/app_name"
+        android:name="activity.utility.AppController"
         android:allowBackup="true"
         android:configChanges="orientation"
         android:fullBackupContent="@xml/backup_descriptor"
         android:hardwareAccelerated="true"
         android:icon="@drawable/sales_employee"
+        android:label="@string/app_name"
         android:largeHeap="true"
         android:requestLegacyExternalStorage="true"
         android:supportsRtl="true"
         android:theme="@style/MyMaterialTheme"
         android:usesCleartextTraffic="true"
         tools:targetApi="q">
-
+        <activity
+            android:name="activity.DeviceOnOffActivity"
+            android:exported="false" />
         <!-- android:theme="@style/AppTheme" -->
-        <activity android:name="activity.SplashActivity"
+        <activity
+            android:name="activity.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -54,12 +55,10 @@
             android:label=""
             android:screenOrientation="sensorPortrait"
             tools:ignore="MissingClass" />
-
         <activity
             android:name="activity.BluetoothActivity"
             android:label=""
             android:screenOrientation="sensorPortrait" />
-
         <activity
             android:name="activity.PairedDeviceActivity"
             android:label=""
@@ -68,7 +67,6 @@
             android:name="activity.DeviceSettingActivity"
             android:label=""
             android:screenOrientation="sensorPortrait" />
-
         <activity
             android:name="activity.ScannedBarcodeActivity"
             android:label=""
@@ -78,15 +76,13 @@
             android:name="activity.Notification"
             android:screenOrientation="portrait" />
         -->
-
-
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="com.vihaan.shaktinewconcept.provider"
+            android:authorities="${applicationId}.provider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
