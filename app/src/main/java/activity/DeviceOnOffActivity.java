@@ -3,35 +3,31 @@ package activity;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.ContextCompat;
 
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
-import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
+import com.google.gson.Gson;
 import com.vihaan.shaktinewconcept.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import activity.BeanVk.MotorOnOffModel;
 import activity.utility.AppController;
 import activity.utility.CustomUtility;
 import webservice.WebURL;
@@ -148,13 +144,22 @@ public class DeviceOnOffActivity extends AppCompatActivity {
                         CustomUtility.hideProgressDialogue();
                     JSONObject   jsonObject = new JSONObject(response);
                     if(jsonObject.getString("status").equals("true")) {
-                        startStopLinear.setVisibility(View.VISIBLE);
+                        if(jsonObject.getString("onlineStatus").equals("Online")) {
+                            startStopLinear.setVisibility(View.VISIBLE);
+                        }else {
+                            CustomUtility.ShowToast(getResources().getString(R.string.motorOffline),getApplicationContext());
+                            startStopLinear.setVisibility(View.GONE);
+                        }
                     }else {
+                        CustomUtility.ShowToast(getResources().getString(R.string.something_went_wrong),getApplicationContext());
                         startStopLinear.setVisibility(View.GONE);
                     }
                     }
                 } catch (JSONException e) {
-                    throw new RuntimeException(e);
+                  e.printStackTrace();
+                    CustomUtility.hideProgressDialogue();
+                    CustomUtility.ShowToast(getResources().getString(R.string.something_went_wrong),getApplicationContext());
+                    startStopLinear.setVisibility(View.GONE);
                 }
 
 
@@ -165,6 +170,7 @@ public class DeviceOnOffActivity extends AppCompatActivity {
                 Log.i(TAG, "Error :" + error.toString());
                 CustomUtility.hideProgressDialogue();
                 startStopLinear.setVisibility(View.GONE);
+                CustomUtility.ShowToast(getResources().getString(R.string.something_went_wrong),getApplicationContext());
             }
         });
 
@@ -207,26 +213,27 @@ public class DeviceOnOffActivity extends AppCompatActivity {
                    public void onResponse(JSONObject response) {
                        Log.d(TAG, "Get Acknow list response=" + response.toString());
                        CustomUtility.hideProgressDialogue();
-                       try {
-                           String code = response.getString("status");
-                           if (code.equals("true")) {
-                               if(isMotorStart) {
-                                   showProgressDialogue(getResources().getString(R.string.motorStartedSuccessFully));
-                               }else {
-                                   showProgressDialogue(getResources().getString(R.string.motorStopSuccessFully));
-                               }
-                           } else {
-                               if(isMotorStart) {
-                                   showProgressDialogue(getResources().getString(R.string.MotorNotStarted));
-                               }else {
-                                   showProgressDialogue(getResources().getString(R.string.MotorNotStop));
-                               }
 
+                       MotorOnOffModel motorOnOffModel = new Gson().fromJson(response.toString(),MotorOnOffModel.class);
+                           if (motorOnOffModel.getStatus().equals("true")) {
+                              if(motorOnOffModel.getResponse()!=null && !motorOnOffModel.getResponse().isEmpty()){
+                                  if(!motorOnOffModel.getResponse().get(0).getResult().equals("Failed")){
+                                      if(isMotorStart) {
+                                          showProgressDialogue(getResources().getString(R.string.motorStartedSuccessFully));
+                                      }else {
+                                          showProgressDialogue(getResources().getString(R.string.motorStopSuccessFully));
+                                      }
+                                  }else {
+                                      motorNotRespond(isMotorStart);
+                                  }
+                              }else {
+                                  motorNotRespond(isMotorStart);
+                              }
+                           } else {
+                              motorNotRespond(isMotorStart);
 
                            }
-                       } catch (JSONException e) {
-                           e.printStackTrace();
-                       }
+
                    }
                }, new Response.ErrorListener() {
 
@@ -235,7 +242,7 @@ public class DeviceOnOffActivity extends AppCompatActivity {
                VolleyLog.d(TAG, "Error: " + error.getMessage());
                CustomUtility.hideProgressDialogue();
 
-                       CustomUtility.ShowToast(getResources().getString(R.string.something_went_wrong),getApplicationContext());
+               CustomUtility.ShowToast(getResources().getString(R.string.something_went_wrong),getApplicationContext());
                VolleyLog.d(TAG, "Error: " + error.getMessage());
 
            }
@@ -246,7 +253,17 @@ public class DeviceOnOffActivity extends AppCompatActivity {
        jsonObjReq.setRetryPolicy(new DefaultRetryPolicy(
                10000, 2, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
    }
-   public void showProgressDialogue(String msg){
+
+    private void motorNotRespond(boolean isMotorStart) {
+        if(isMotorStart) {
+            showProgressDialogue(getResources().getString(R.string.MotorNotStarted));
+        }else {
+            showProgressDialogue(getResources().getString(R.string.MotorNotStop));
+        }
+
+    }
+
+    public void showProgressDialogue(String msg){
        LayoutInflater inflater = (LayoutInflater) DeviceOnOffActivity.this
                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
        View layout = inflater.inflate(R.layout.send_successfully_layout,

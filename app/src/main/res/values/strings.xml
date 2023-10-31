@@ -154,11 +154,12 @@
     <string name="deviceOnOff">Device On Off</string>
     <string name="startMotor">Start Motor</string>
     <string name="stopMotor">Stop Motor</string>
-    <string name="something_went_wrong">Something Went Wrong</string>
+    <string name="something_went_wrong">Something Went Wrong, Please try again!</string>
     <string name="motorStartedSuccessFully">Motor Start Successfully!</string>
     <string name="motorStopSuccessFully">Motor Stop Successfully!</string>
     <string name="MotorNotStarted">Motor Not Started Something Went Wrong!</string>
     <string name="MotorNotStop">Motor Not Stopped Something Went Wrong!</string>
+    <string name="motorOffline">Motor Currently offline please try after some time!</string>
 
     <string-array name="array_paymnet_by">
         <item>Pay By</item>

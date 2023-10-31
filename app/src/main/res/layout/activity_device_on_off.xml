@@ -29,6 +29,7 @@
                 android:layout_weight=".7"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_12sdp"
+                android:hint="Please Enter Controller ID here"
                 android:fontFamily="sans-serif-condensed-medium"
                 android:background="@drawable/popup_relative"/>
 
