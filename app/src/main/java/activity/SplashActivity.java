@@ -206,19 +206,6 @@ public class SplashActivity extends AppCompatActivity {
 
         }
     }
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 2296) {
-            if (SDK_INT >= Build.VERSION_CODES.R) {
-                if (Environment.isExternalStorageManager()) {
-                    // perform action when allow permission success
-                    checkLogin();
-                } else {
-                    Toast.makeText(this, "Allow permission for storage access!", Toast.LENGTH_SHORT).show();
-                }
-            }
-        }
-    }
+
 }
 

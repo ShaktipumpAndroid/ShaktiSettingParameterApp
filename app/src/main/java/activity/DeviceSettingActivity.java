@@ -376,6 +376,10 @@ public class DeviceSettingActivity extends AppCompatActivity {
                 return true;
             case android.R.id.home:
                 return true;
+            case R.id.action_deviceOnOff:
+                      Intent intent = new Intent(getApplicationContext(),DeviceOnOffActivity.class);
+                      startActivity(intent);
+                break;
             case R.id.action_signout:
                 new AlertDialog.Builder(this)
                         .setTitle(R.string.sign_out)
@@ -384,8 +388,8 @@ public class DeviceSettingActivity extends AppCompatActivity {
                             CustomUtility.clearSharedPreferences(getApplicationContext());
                             databaseHelper.deleteDatabase();
                             dialog.dismiss();
-                            Intent intent = new Intent(getApplicationContext(), ScannedBarcodeActivity.class);
-                            startActivity(intent);
+                            Intent intent1 = new Intent(getApplicationContext(), ScannedBarcodeActivity.class);
+                            startActivity(intent1);
                             finish();
 
                         })
@@ -401,11 +405,7 @@ public class DeviceSettingActivity extends AppCompatActivity {
     }
 
     private void syncOfflineData() {
-        progressDialog = new ProgressDialog(this);
-        progressDialog.setCanceledOnTouchOutside(false);
-        progressDialog.setCancelable(false);
-        progressDialog.setMessage("Sync Data Offline....");
-        progressDialog.show();
+        showProgressDialogue();
         ArrayList<MotorParamListModel.Response> motorPumpList = new ArrayList<MotorParamListModel.Response>();
         motorPumpList = databaseHelper.getRecordDetails();
         if (motorPumpList.size() > 0) {
@@ -444,9 +444,7 @@ public class DeviceSettingActivity extends AppCompatActivity {
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        if (progressDialog != null && progressDialog.isShowing()) {
-                            progressDialog.dismiss();
-                        }
+                        hiddeProgressDialogue();
                         databaseHelper.deleteDatabase();
                         Log.e("String Response : ", response.toString());
                     }
@@ -470,12 +468,10 @@ public class DeviceSettingActivity extends AppCompatActivity {
 
     }
 
+
+
     public void callgetCompalinAllListAPI() {
-        progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage(getResources().getString(R.string.connectingServer));
-        progressDialog.setCancelable(false);
-        progressDialog.setCanceledOnTouchOutside(false);
-        progressDialog.show();
+        showProgressDialogue();
         RequestQueue mRequestQueue = Volley.newRequestQueue(this);
         // String Request initialized
 
@@ -483,10 +479,9 @@ public class DeviceSettingActivity extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
 
-                if (progressDialog != null && progressDialog.isShowing()) {
-                    progressDialog.dismiss();
-                }
+
                 if (!response.isEmpty()) {
+                    hiddeProgressDialogue();
                     MotorParamListModel motorParamListModel = new Gson().fromJson(response.toString(), MotorParamListModel.class);
                     if (motorParamListModel.getStatus().equals("true")) {
 
@@ -511,9 +506,13 @@ public class DeviceSettingActivity extends AppCompatActivity {
 
 
                     } else {
+                        hiddeProgressDialogue();
                         noDataFound.setVisibility(View.VISIBLE);
                     }
 
+                } else {
+                    hiddeProgressDialogue();
+                    noDataFound.setVisibility(View.VISIBLE);
                 }
 
             }
@@ -522,9 +521,7 @@ public class DeviceSettingActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 Log.i(TAG, "Error :" + error.toString());
                 noDataFound.setVisibility(View.VISIBLE);
-                if (progressDialog != null && progressDialog.isShowing()) {
-                    progressDialog.dismiss();
-                }
+                hiddeProgressDialogue();
             }
         });
         mStringRequest.setRetryPolicy(new DefaultRetryPolicy(
@@ -1013,7 +1010,7 @@ public class DeviceSettingActivity extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-
+                   showProgressDialogue();
             mMyUDID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
         }
 
@@ -1054,20 +1051,12 @@ public class DeviceSettingActivity extends AppCompatActivity {
                     }
 
                     int[] bytesReaded = new int[4];
-
-                    for (int i = 0; i < 6; i++) {
-                        int mCharOne11 = iStream.read();
-                    }
-
-                    //int[] mTotalTime;
                     int mTotalTime;
 
                     int jjj = 0;
-                    // mTotalTime = new int[1];
                     for (int i = 0; i < 1; i++) {
                         try {
-                            //bytesRead = iStream.read();
-                            int mCharOne = iStream.read();
+                             int mCharOne = iStream.read();
                             int mCharTwo = iStream.read();
                             bytesReaded[i] = Integer.parseInt("" + (char) mCharOne + (char) mCharTwo, 16);
                             mCharOne = iStream.read();
@@ -1093,17 +1082,11 @@ public class DeviceSettingActivity extends AppCompatActivity {
                             mActivity.runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    //changeButtonVisibility(true, 1.0f, mEditTextList.get(mGlobalPosition));
                                     mSettingParameterResponse.get(mReadAllCounterValue).setpValue((int) mTotalTimeFloatData);
-                                    // addDynamicViewPro(mSettingModelResponse);
-                                    mEditTextList.get(mReadAllCounterValue).setText("" + mTotalTimeFloatData);
+                                     mEditTextList.get(mReadAllCounterValue).setText("" + mTotalTimeFloatData);
                                     System.out.println("mGlobalPosition==>>" + mReadAllCounterValue + "\nmTotalTimeFloatData==>>" + mTotalTimeFloatData);
                                     changeButtonVisibility(true, 1.0f, mTextViewSetIDtList.get(mReadAllCounterValue));
-                                    /*databaseHelper.updateRecordAlternate(mSettingParameterResponse.get(mReadAllCounterValue).getPmId().toString(),
-                                            mSettingParameterResponse.get(mReadAllCounterValue).getParametersName(),
-                                            mEditTextList.get(mReadAllCounterValue).getText().toString().trim());
 
-                                    */
                                     DatabaseRecordInsert(mSettingParameterResponse.get(mReadAllCounterValue), mEditTextList.get(mReadAllCounterValue));
 
                                 }
@@ -1111,23 +1094,14 @@ public class DeviceSettingActivity extends AppCompatActivity {
 
                             jjj++;
 
-                            for (int ii = 0; ii < 4; ii++) {
-                                int mCharOne11 = iStream.read();
-                            }
-
-                            while (iStream.available() > 0) {
-                                int mCharOne11 = iStream.read();
-                            }
 
                         } catch (IOException e) {
-                            // baseRequest.hideLoader();
+                            hiddeProgressDialogue();
                             e.printStackTrace();
                         }
                     }
 
-                    while (iStream.available() > 0) {
-                        int mCharOne11 = iStream.read();
-                    }
+
                 }
             } catch (Exception e) {
                 //baseRequest.hideLoader();
@@ -1145,7 +1119,7 @@ public class DeviceSettingActivity extends AppCompatActivity {
         {
             // baseRequest.hideLoader();
             super.onPostExecute(result);
-
+               hiddeProgressDialogue();
             mReadAllCounterValue = mReadAllCounterValue + 1;
 
             if (mReadAllCounterValue < mSettingParameterResponse.size()) {
@@ -1229,7 +1203,7 @@ public class DeviceSettingActivity extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-
+        showProgressDialogue();
             mMyUDID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
 
         }
@@ -1270,10 +1244,6 @@ public class DeviceSettingActivity extends AppCompatActivity {
 
 
                     int[] bytesReaded = new int[4];
-
-                    for (int i = 0; i < 6; i++) {
-                        int mCharOne11 = iStream.read();
-                    }
 
 
                     int mTotalTime;
@@ -1317,25 +1287,16 @@ public class DeviceSettingActivity extends AppCompatActivity {
 
                                     Log.e("mGlobalPosition", String.valueOf(mGlobalPosition));
                                     Log.e("mEditTextList", mEditTextList.get(mGlobalPosition).getText().toString());
-                                  /*  databaseHelper.updateRecordAlternate(mSettingParameterResponse.get(mGlobalPosition).getPmId().toString(),
-                                            mSettingParameterResponse.get(mGlobalPosition).getParametersName(),
-                                            mEditTextList.get(mGlobalPosition).getText().toString().trim());*/
-                                    DatabaseRecordInsert(mSettingParameterResponse.get(mGlobalPosition), mEditTextList.get(mGlobalPosition));
+                                     DatabaseRecordInsert(mSettingParameterResponse.get(mGlobalPosition), mEditTextList.get(mGlobalPosition));
                                 }
                             });
 
                             jjj++;
 
-                            for (int ii = 0; ii < 4; ii++) {
-                                int mCharOne11 = iStream.read();
-                            }
 
-                            while (iStream.available() > 0) {
-                                int mCharOne11 = iStream.read();
-                            }
 
                         } catch (IOException e) {
-                            //baseRequest.hideLoader();
+                          hiddeProgressDialogue();
                             e.printStackTrace();
                         }
                     }
@@ -1356,7 +1317,7 @@ public class DeviceSettingActivity extends AppCompatActivity {
         protected void onPostExecute(Boolean result) //after the doInBackground, it checks if everything went fine
         {
             super.onPostExecute(result);
-
+             hiddeProgressDialogue();
         }
     }
 
@@ -1369,7 +1330,7 @@ public class DeviceSettingActivity extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-
+            showProgressDialogue();
             mMyUDID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
 
         }
@@ -1409,9 +1370,6 @@ public class DeviceSettingActivity extends AppCompatActivity {
 
                     int[] bytesReaded = new int[4];
 
-                    for (int i = 0; i < 6; i++) {
-                        int mCharOne11 = iStream.read();
-                    }
 
 
                     int mTotalTime;
@@ -1456,25 +1414,16 @@ public class DeviceSettingActivity extends AppCompatActivity {
                                     mSettingParameterResponse.get(mWriteAllCounterValue).setpValue((int) mTotalTimeFloatData);
 
                                     mEditTextList.get(mWriteAllCounterValue).setText("" + mTotalTimeFloatData);
-                                    /*databaseHelper.updateRecordAlternate(mSettingParameterResponse.get(mWriteAllCounterValue).getPmId().toString(),
-                                            mSettingParameterResponse.get(mWriteAllCounterValue).getParametersName(),
-                                            mEditTextList.get(mWriteAllCounterValue).getText().toString().trim());*/
-                                    DatabaseRecordInsert(mSettingParameterResponse.get(mWriteAllCounterValue), mEditTextList.get(mWriteAllCounterValue));
+                                     DatabaseRecordInsert(mSettingParameterResponse.get(mWriteAllCounterValue), mEditTextList.get(mWriteAllCounterValue));
 
                                 }
                             });
                             jjj++;
 
-                            for (int ii = 0; ii < 4; ii++) {
-                                int mCharOne11 = iStream.read();
-                            }
 
-                            while (iStream.available() > 0) {
-                                int mCharOne11 = iStream.read();
-                            }
 
                         } catch (IOException e) {
-                            //baseRequest.hideLoader();
+                            hiddeProgressDialogue();
                             e.printStackTrace();
                         }
                     }
@@ -1497,18 +1446,11 @@ public class DeviceSettingActivity extends AppCompatActivity {
 
             mWriteAllCounterValue = mWriteAllCounterValue + 1;
             try {
+                hiddeProgressDialogue();
                 if (mWriteAllCounterValue < mSettingParameterResponse.size()) {
-                   /* int iii = v.getId();
-                        int pp = iii - 3;
-                        mGlobalPosition = pp;*/
-                    //Toast.makeText(mContext, "jai hooo...==>>  "+pp, Toast.LENGTH_SHORT).show();
-                    String mStringCeck = mEditTextList.get(mWriteAllCounterValue).getText().toString().trim();
+                      String mStringCeck = mEditTextList.get(mWriteAllCounterValue).getText().toString().trim();
                     System.out.println("Vikas!@#==>>" + mStringCeck);
                     System.out.println("Sumit====>" + mSettingParameterResponse.get(mWriteAllCounterValue).getParametersName());
-                    /*databaseHelper.updateRecordAlternate(mSettingParameterResponse.get(mWriteAllCounterValue).getPmId().toString(),
-                            mSettingParameterResponse.get(mWriteAllCounterValue).getParametersName(),
-                            mEditTextList.get(mWriteAllCounterValue).getText().toString().trim());*/
-
                     DatabaseRecordInsert(mSettingParameterResponse.get(mWriteAllCounterValue), mEditTextList.get(mWriteAllCounterValue));
                     if (!mStringCeck.equalsIgnoreCase("") && !mStringCeck.equalsIgnoreCase("0.0")) {
                         edtValueFloat = Float.parseFloat(mEditTextList.get(mWriteAllCounterValue).getText().toString().trim());
@@ -1580,7 +1522,7 @@ public class DeviceSettingActivity extends AppCompatActivity {
         protected void onPreExecute() {
             super.onPreExecute();
             mMyUDID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
-
+          showProgressDialogue();
         }
 
         @SuppressLint("MissingPermission")
@@ -1617,9 +1559,6 @@ public class DeviceSettingActivity extends AppCompatActivity {
 
                     int[] bytesReaded = new int[4];
 
-                    for (int i = 0; i < 6; i++) {
-                        int mCharOne11 = iStream.read();
-                    }
 
                     int mTotalTime;
                     int jjj = 0;
@@ -1666,9 +1605,6 @@ public class DeviceSettingActivity extends AppCompatActivity {
                                         mEditTextList.get(mGlobalPosition).setText("" + fgfg);
                                         System.out.println("mGlobalPosition==>>" + mGlobalPosition + "\nmTotalTimeFloatData==>>" + mTotalTimeFloatData);
                                         changeButtonVisibility(true, 1.0f, mTextViewSetIDtList.get(mGlobalPosition));
-                                      /*  databaseHelper.updateRecordAlternate(mSettingParameterResponse.get(mGlobalPosition).getPmId().toString(),
-                                                mSettingParameterResponse.get(mGlobalPosition).getParametersName(),
-                                                mEditTextList.get(mGlobalPosition).getText().toString().trim());*/
                                         DatabaseRecordInsert(mSettingParameterResponse.get(mGlobalPosition), mEditTextList.get(mGlobalPosition));
                                     } catch (Exception e) {
                                         e.printStackTrace();
@@ -1686,14 +1622,10 @@ public class DeviceSettingActivity extends AppCompatActivity {
                         }
                     }
 
-                    while (iStream.available() > 0) {
-                        int mCharOne11 = iStream.read();
-                    }
-
                 }
             } catch (Exception e) {
-
                 e.printStackTrace();
+                hiddeProgressDialogue();
                 return false;
             }
 
@@ -1706,7 +1638,7 @@ public class DeviceSettingActivity extends AppCompatActivity {
         {
 
             super.onPostExecute(result);
-
+            hiddeProgressDialogue();
         }
     }
 
@@ -1733,6 +1665,28 @@ public class DeviceSettingActivity extends AppCompatActivity {
         text.setEnabled(state);
         text.setAlpha(alphaRate);
     }
+    private void hiddeProgressDialogue() {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if(progressDialog!=null && progressDialog.isShowing()){
+                    progressDialog.dismiss();
+                }
+            }
+        });
+    }
 
+    private void showProgressDialogue() {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                progressDialog = new ProgressDialog(DeviceSettingActivity.this);
+                progressDialog.setCanceledOnTouchOutside(false);
+                progressDialog.setCancelable(false);
+                progressDialog.setMessage("Sync Data Offline....");
+                progressDialog.show();
+            }
+        });
+    }
 
 }

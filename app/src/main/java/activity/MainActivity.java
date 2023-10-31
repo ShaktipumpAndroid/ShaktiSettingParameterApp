@@ -33,11 +33,6 @@ public class MainActivity extends AppCompatActivity {
         rclvListViewID.setHasFixedSize(true);
         rclvListViewID.setLayoutManager(new LinearLayoutManager(this));
 
-        //creating recyclerview adapter
-     //   ProductAdapter adapter = new ProductAdapter(mContext);
-
-        //setting adapter to recyclerview
-      //  rclvListViewID.setAdapter(adapter);
 
     }
 }

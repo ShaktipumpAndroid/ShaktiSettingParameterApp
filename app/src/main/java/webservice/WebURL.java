@@ -13,6 +13,11 @@ public class WebURL {
     public static final String syncOfflineData = "https://solar10.shaktisolarrms.com/RMSAppTest/DeviceParamBLog";
     public static final String RetrievePumpCOde = "https://spprdsrvr1.shaktipumps.com:8423/sap/bc/bsp/sap/zemp_hr_portal/setting_parameter_app.htm?lv_sernr=";
 
+    public static final String VerifyDeviceID = "https://solar10.shaktisolarrms.com/NewShakti/RMSApp/deviceExist?deviceNo=";
+
+    public static final String deviceOnOffAPI = "https://solar10.shaktisolarrms.com/Home/DeviceONOFFAdmin";
+
+
     //Quality
 //https://spquasrvr1.shaktipumps.com:8423/sap/bc/bsp/sap/zemp_hr_portal/setting_parameter_app.htm?lv_sernr=
 
