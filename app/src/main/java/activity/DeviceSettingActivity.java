@@ -1417,7 +1417,7 @@ public class DeviceSettingActivity extends AppCompatActivity {
 
                                     mSettingParameterResponse.get(mWriteAllCounterValue).setpValue((int) mTotalTimeFloatData);
 
-                                    mEditTextList.get(mWriteAllCounterValue).setText("" + mTotalTimeFloatData);
+                                 //   mEditTextList.get(mWriteAllCounterValue).setText("" + mTotalTimeFloatData);
                                      DatabaseRecordInsert(mSettingParameterResponse.get(mWriteAllCounterValue), mEditTextList.get(mWriteAllCounterValue));
 
                                 }
@@ -1668,13 +1668,7 @@ public class DeviceSettingActivity extends AppCompatActivity {
             hiddeProgressDialogue();
         }
     }
-    private byte[] intToByteArray ( final int i ) throws IOException {
-        ByteArrayOutputStream bos = new ByteArrayOutputStream();
-        DataOutputStream dos = new DataOutputStream(bos);
-        dos.writeInt(i);
-        dos.flush();
-        return bos.toByteArray();
-    }
+
 
     public static int CRC16_MODBUS(char[] buf, int len) {
 
