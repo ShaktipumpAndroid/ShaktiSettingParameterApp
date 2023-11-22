@@ -51,17 +51,19 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
-import com.vihaan.shaktinewconcept.BuildConfig;
 import com.vihaan.shaktinewconcept.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Timer;
 import java.util.UUID;
@@ -126,6 +128,9 @@ public class DeviceSettingActivity extends AppCompatActivity {
     DatabaseHelper databaseHelper;
 
     Toolbar toolbar;
+    StringBuilder sb = new StringBuilder();
+    String value="";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -1046,7 +1051,6 @@ public class DeviceSettingActivity extends AppCompatActivity {
                         sleep(1000);
                         iStream = btSocket.getInputStream();
                     } catch (InterruptedException e1) {
-
                         e1.printStackTrace();
                     }
 
@@ -1283,7 +1287,7 @@ public class DeviceSettingActivity extends AppCompatActivity {
                                 @Override
                                 public void run() {
                                     mSettingParameterResponse.get(mGlobalPosition).setpValue((int) mTotalTimeFloatData);
-                                    mEditTextList.get(mGlobalPosition).setText("" + mTotalTimeFloatData);
+                                   // mEditTextList.get(mGlobalPosition).setText("" + mTotalTimeFloatData);
 
                                     Log.e("mGlobalPosition", String.valueOf(mGlobalPosition));
                                     Log.e("mEditTextList", mEditTextList.get(mGlobalPosition).getText().toString());
@@ -1301,7 +1305,9 @@ public class DeviceSettingActivity extends AppCompatActivity {
                         }
                     }
 
-                    // baseRequest.hideLoader();
+                    while (iStream.available()>0){
+                        iStream.read();
+                    }
                 }
             } catch (Exception e) {
 
@@ -1317,7 +1323,7 @@ public class DeviceSettingActivity extends AppCompatActivity {
         protected void onPostExecute(Boolean result) //after the doInBackground, it checks if everything went fine
         {
             super.onPostExecute(result);
-             hiddeProgressDialogue();
+            hiddeProgressDialogue();
         }
     }
 
@@ -1362,6 +1368,7 @@ public class DeviceSettingActivity extends AppCompatActivity {
                     try {
                         btSocket.getOutputStream().write(STARTRequest);
                         sleep(1000);
+
                         iStream = btSocket.getInputStream();
                     } catch (InterruptedException e1) {
                         // baseRequest.hideLoader();
@@ -1369,9 +1376,6 @@ public class DeviceSettingActivity extends AppCompatActivity {
                     }
 
                     int[] bytesReaded = new int[4];
-
-
-
                     int mTotalTime;
 
                     int jjj = 0;
@@ -1428,7 +1432,9 @@ public class DeviceSettingActivity extends AppCompatActivity {
                         }
                     }
 
-                    // baseRequest.hideLoader();
+                    while (iStream.available()>0){
+                        iStream.read();
+                    }
                 }
             } catch (Exception e) {
 
@@ -1504,6 +1510,9 @@ public class DeviceSettingActivity extends AppCompatActivity {
                     //baseRequest.hideLoader();
                     System.out.println("222");
                 }
+
+
+
             } catch (NumberFormatException e) {
                 e.printStackTrace();
                 System.out.println("111");
@@ -1551,6 +1560,7 @@ public class DeviceSettingActivity extends AppCompatActivity {
                     try {
                         btSocket.getOutputStream().write(STARTRequest);
                         sleep(100);
+
                         iStream = btSocket.getInputStream();
                     } catch (InterruptedException e1) {
                         // baseRequest.hideLoader();
@@ -1563,22 +1573,37 @@ public class DeviceSettingActivity extends AppCompatActivity {
                     int mTotalTime;
                     int jjj = 0;
 
+                   // String value = getCharArrayFromStream(iStream);
+                     //Log.e("value====>",value);
+
                     for (int i = 0; i < 1; i++) {
                         try {
+                            for (int j=0; j<6; j++){
+
+                                int mCharOne1 = iStream.read();
+                               // int mCharTwo = iStream.read();
+
+                                Log.e("istream====>","" + (char) mCharOne1 );
+                            }
 
                             int mCharOne = iStream.read();
                             int mCharTwo = iStream.read();
-                            bytesReaded[i] = Integer.parseInt("" + (char) mCharOne + (char) mCharTwo, 16);
+                            bytesReaded[i] = Integer.parseInt("" + (char) mCharOne +""+ (char) mCharTwo, 16);
                             mCharOne = iStream.read();
                             mCharTwo = iStream.read();
-                            bytesReaded[i + 1] = Integer.parseInt("" + (char) mCharOne + (char) mCharTwo, 16);
+                            bytesReaded[i + 1] = Integer.parseInt("" + (char) mCharOne +""+ (char) mCharTwo, 16);
                             mCharOne = iStream.read();
                             mCharTwo = iStream.read();
-                            bytesReaded[i + 2] = Integer.parseInt("" + (char) mCharOne + (char) mCharTwo, 16);
+                            bytesReaded[i + 2] = Integer.parseInt("" + (char) mCharOne +""+ (char) mCharTwo, 16);
                             mCharOne = iStream.read();
                             mCharTwo = iStream.read();
-                            bytesReaded[i + 3] = Integer.parseInt("" + (char) mCharOne + (char) mCharTwo, 16);
+                            bytesReaded[i + 3] = Integer.parseInt("" + (char) mCharOne +""+ (char) mCharTwo, 16);
 
+
+                            Log.e("byteread0====>", String.valueOf(bytesReaded[i])
+                                    +"byteread1====>"+String.valueOf(bytesReaded[i+1])
+                                    +"byteread2====>"+String.valueOf(bytesReaded[i+2])
+                                    +"byteread3====>"+String.valueOf(bytesReaded[i+3]));
                             mTotalTime = bytesReaded[i];
                             System.out.println("mTotalTime==>>vvv1  " + jjj + " " + mTotalTime);
                             mTotalTime |= bytesReaded[i + 1] << 8;
@@ -1587,6 +1612,8 @@ public class DeviceSettingActivity extends AppCompatActivity {
                             System.out.println("mTotalTime==>>vvv3  " + jjj + " " + mTotalTime);
                             mTotalTime |= bytesReaded[i + 3] << 24;
                             System.out.println("mTotalTime==>>vvv4  " + jjj + " " + mTotalTime);
+
+
                             mTotalTimeFloatData = 0;
                             mTotalTimeFloatData = Float.intBitsToFloat(mTotalTime);
                             mActivity.runOnUiThread(new Runnable() {
@@ -1640,6 +1667,13 @@ public class DeviceSettingActivity extends AppCompatActivity {
             super.onPostExecute(result);
             hiddeProgressDialogue();
         }
+    }
+    private byte[] intToByteArray ( final int i ) throws IOException {
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        DataOutputStream dos = new DataOutputStream(bos);
+        dos.writeInt(i);
+        dos.flush();
+        return bos.toByteArray();
     }
 
     public static int CRC16_MODBUS(char[] buf, int len) {

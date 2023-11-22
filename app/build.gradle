@@ -27,25 +27,22 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-
-
     packagingOptions {
-        exclude 'META-INF/DEPENDENCIES'
-        exclude 'META-INF/NOTICE'
-        exclude 'META-INF/LICENSE'
-        exclude 'META-INF/NOTICE.txt'
-        exclude 'META-INF/LICENSE.txt'
+        resources {
+            excludes += ['META-INF/DEPENDENCIES', 'META-INF/NOTICE', 'META-INF/LICENSE', 'META-INF/NOTICE.txt', 'META-INF/LICENSE.txt']
+        }
     }
 
-    lintOptions {
-        checkReleaseBuilds false
-        abortOnError false
-        ignoreWarnings true
-    }
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+    namespace 'com.vihaan.shaktinewconcept'
+    lint {
+        abortOnError false
+        checkReleaseBuilds false
+        ignoreWarnings true
     }
 
 }
