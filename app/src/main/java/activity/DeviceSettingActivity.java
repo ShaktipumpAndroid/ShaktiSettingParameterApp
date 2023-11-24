@@ -445,7 +445,7 @@ public class DeviceSettingActivity extends AppCompatActivity {
         Log.e("jsonObject", jsonObject.toString());
 
         RequestQueue queue = Volley.newRequestQueue(DeviceSettingActivity.this);
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, WebURL.syncOfflineData, jsonObject,
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, CustomUtility.getSharedPreferences(this,WebURL.BaseUrl)+WebURL.syncOfflineData, jsonObject,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -480,7 +480,7 @@ public class DeviceSettingActivity extends AppCompatActivity {
         RequestQueue mRequestQueue = Volley.newRequestQueue(this);
         // String Request initialized
 
-        StringRequest mStringRequest = new StringRequest(Request.Method.GET, MOTOR_PERSMETER_LIST + CustomUtility.getSharedPreferences(getApplicationContext(), Constants.MaterialPumpCode), new Response.Listener<String>() {
+        StringRequest mStringRequest = new StringRequest(Request.Method.GET, CustomUtility.getSharedPreferences(this,WebURL.BaseUrl)+WebURL.MOTOR_PERSMETER_LIST + CustomUtility.getSharedPreferences(getApplicationContext(), Constants.MaterialPumpCode), new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 

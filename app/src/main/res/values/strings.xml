@@ -160,7 +160,8 @@
     <string name="MotorNotStarted">Motor Not Started Something Went Wrong!</string>
     <string name="MotorNotStop">Motor Not Stopped Something Went Wrong!</string>
     <string name="motorOffline">Motor Currently offline please try after some time!</string>
-
+    <string name="pairedDevice">Please make sure device is paired or connected via bluetooth!</string>
+    <string name="bluetooth_is_off">Your bluetooth is Turn Off please turn on first!</string>
     <string-array name="array_paymnet_by">
         <item>Pay By</item>
         <item>Return By</item>
