@@ -18,9 +18,9 @@ public class WebURL {
     public static final String RetrievePumpCOde = "https://spprdsrvr1.shaktipumps.com:8423/sap/bc/bsp/sap/zemp_hr_portal/setting_parameter_app.htm?lv_sernr=";
 
 
-    public static final String MOTOR_PERSMETER_LIST = "https://solar10.shaktisolarrms.com/RMSApp/MoterParamList?id=";
+    public static final String MOTOR_PERSMETER_LIST = "RMSApp/MoterParamList?id=";
     public static final String syncOfflineData = "RMSApp/DeviceParamBLog";
-    public static final String VerifyDeviceID = "RMSApp/deviceExist?deviceNo=";
+    public static final String VerifyDeviceID = "NewShakti/RMSApp/deviceExist?deviceNo=";
     public static final String deviceOnOffAPI = "Home/DeviceONOFFAdmin";
 
 
