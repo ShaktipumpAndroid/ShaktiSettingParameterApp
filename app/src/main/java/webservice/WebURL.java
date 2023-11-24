@@ -9,13 +9,20 @@ public class WebURL {
 
     public  static String BT_DEVICE_NAME = "";
     public  static String BT_DEVICE_MAC_ADDRESS = "";
-    public static final String MOTOR_PERSMETER_LIST = "https://solar10.shaktisolarrms.com/RMSAppTest/MoterParamList?id=";
-    public static final String syncOfflineData = "https://solar10.shaktisolarrms.com/RMSAppTest/DeviceParamBLog";
+
+
+    public static final String BaseUrl = "BaseUrl";
+
+    public static String sapBaseURL = "https://spprdsrvr1.shaktipumps.com:8423/sap/bc/bsp/sap/zmapp_solar_pro/rms_base_url_api.htm";
+    public static String rmsBaseURL ="https://shaktirms.com/";
     public static final String RetrievePumpCOde = "https://spprdsrvr1.shaktipumps.com:8423/sap/bc/bsp/sap/zemp_hr_portal/setting_parameter_app.htm?lv_sernr=";
 
-    public static final String VerifyDeviceID = "https://solar10.shaktisolarrms.com/NewShakti/RMSApp/deviceExist?deviceNo=";
 
-    public static final String deviceOnOffAPI = "https://solar10.shaktisolarrms.com/Home/DeviceONOFFAdmin";
+    public static final String MOTOR_PERSMETER_LIST = "https://solar10.shaktisolarrms.com/RMSApp/MoterParamList?id=";
+    public static final String syncOfflineData = "RMSApp/DeviceParamBLog";
+    public static final String VerifyDeviceID = "RMSApp/deviceExist?deviceNo=";
+    public static final String deviceOnOffAPI = "Home/DeviceONOFFAdmin";
+
 
 
     //Quality

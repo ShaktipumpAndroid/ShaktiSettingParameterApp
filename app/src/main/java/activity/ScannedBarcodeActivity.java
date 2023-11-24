@@ -1,8 +1,10 @@
 package activity;
 
+import static com.android.volley.Request.Method.GET;
 import static webservice.WebURL.RetrievePumpCOde;
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -23,6 +25,7 @@ import androidx.core.app.ActivityCompat;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.gms.vision.CameraSource;
@@ -31,6 +34,9 @@ import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
 import com.google.gson.Gson;
 import com.vihaan.shaktinewconcept.R;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.StringReader;
@@ -41,6 +47,7 @@ import activity.BeanVk.PumpCodeModel;
 import activity.utility.CustomUtility;
 import webservice.AllPopupUtil;
 import webservice.Constants;
+import webservice.WebURL;
 
 public class ScannedBarcodeActivity extends AppCompatActivity {
     private static final String TAG = "ScannedBarcodeActivity";
@@ -72,7 +79,11 @@ public class ScannedBarcodeActivity extends AppCompatActivity {
         pumpCodeExt = findViewById(R.id.pumpCodeExt);
         search = findViewById(R.id.search);
 
-
+        if (CustomUtility.isInternetOn(getApplicationContext())) {
+            baseURLAPICall();
+        } else {
+            CustomUtility.setSharedPreference(getApplicationContext(), WebURL.BaseUrl, WebURL.rmsBaseURL);
+        }
         search.setOnClickListener(v -> {
 
             if (!edtBarcodeValueID.getText().toString().isEmpty()) {
@@ -237,7 +248,41 @@ public class ScannedBarcodeActivity extends AppCompatActivity {
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         mRequestQueue.add(mStringRequest);
     }
+    /*---------------------------------------------------------------Base Url retrieve From Sap------------------------------------------------------------------------------*/
+    private void baseURLAPICall() {
 
+        RequestQueue mRequestQueue = Volley.newRequestQueue(this);
+
+        // String Request initialized
+        StringRequest mStringRequest = new StringRequest(GET, WebURL.sapBaseURL, new com.android.volley.Response.Listener<String>() {
+
+            @Override
+            public void onResponse(String response) {
+
+                if(response!=null && !response.isEmpty()) {
+                    try {
+                        JSONObject Jobject = new JSONObject(response);
+                        CustomUtility.setSharedPreference(getApplicationContext(), WebURL.BaseUrl, Jobject.getString("Base_url").toLowerCase().trim());
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }else {
+                    CustomUtility.ShowToast(getResources().getString(R.string.somethingWentWrong),ScannedBarcodeActivity.this);
+                }
+
+            }
+        }, new com.android.volley.Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                Log.i(TAG, "Error :" + error.toString());
+
+            }
+        });
+
+        mRequestQueue.add(mStringRequest);
+
+    }
 
     @Override
     protected void onPause() {
@@ -250,4 +295,6 @@ public class ScannedBarcodeActivity extends AppCompatActivity {
         super.onResume();
         initialiseDetectorsAndSources();
     }
+
+
 }

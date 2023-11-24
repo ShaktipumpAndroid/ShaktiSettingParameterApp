@@ -445,7 +445,7 @@ public class DeviceSettingActivity extends AppCompatActivity {
         Log.e("jsonObject", jsonObject.toString());
 
         RequestQueue queue = Volley.newRequestQueue(DeviceSettingActivity.this);
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, WebURL.syncOfflineData, jsonObject,
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, CustomUtility.getSharedPreferences(this,WebURL.BaseUrl)+WebURL.syncOfflineData, jsonObject,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
