@@ -135,7 +135,7 @@ public class DeviceOnOffActivity extends AppCompatActivity {
     public void verifyDevice(){
 
         CustomUtility.showProgressDialogue(DeviceOnOffActivity.this);
-       StringRequest mStringRequest = new StringRequest(Request.Method.GET, WebURL.VerifyDeviceID+ControllerIDExt.getText().toString().trim()+"-0", new Response.Listener<String>() {
+       StringRequest mStringRequest = new StringRequest(Request.Method.GET, CustomUtility.getSharedPreferences(this,WebURL.BaseUrl)+WebURL.VerifyDeviceID+ControllerIDExt.getText().toString().trim()+"-0", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 
@@ -207,7 +207,7 @@ public class DeviceOnOffActivity extends AppCompatActivity {
 
           CustomUtility.showProgressDialogue(DeviceOnOffActivity.this);
        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST,
-               WebURL.deviceOnOffAPI, mainObject,
+               CustomUtility.getSharedPreferences(this,WebURL.BaseUrl)+ WebURL.deviceOnOffAPI, mainObject,
                new Response.Listener<JSONObject>() {
                    @Override
                    public void onResponse(JSONObject response) {
