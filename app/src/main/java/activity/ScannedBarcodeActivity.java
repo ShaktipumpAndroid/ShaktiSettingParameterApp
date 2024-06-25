@@ -4,7 +4,6 @@ import static com.android.volley.Request.Method.GET;
 import static webservice.WebURL.RetrievePumpCOde;
 
 import android.Manifest;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;

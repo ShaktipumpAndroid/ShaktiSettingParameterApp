@@ -1,6 +1,5 @@
 package activity;
 
-
 import static android.Manifest.permission.ACCESS_COARSE_LOCATION;
 import static android.Manifest.permission.BLUETOOTH;
 import static android.Manifest.permission.BLUETOOTH_CONNECT;
@@ -76,7 +75,7 @@ public class SplashActivity extends AppCompatActivity {
     private void checkLogin() {
         new Handler().postDelayed(() -> {
             if(CustomUtility.getSharedPreferences(getApplicationContext(), Constants.MaterialPumpCode)!=null && !CustomUtility.getSharedPreferences(getApplicationContext(), Constants.MaterialPumpCode).isEmpty()){
-                Intent i = new Intent(SplashActivity.this, DeviceSettingActivity.class);
+                Intent i = new Intent(SplashActivity.this, DeviceComponentList.class);
                 startActivity(i); // invoke the SecondActivity.
                 finish();
             }else {

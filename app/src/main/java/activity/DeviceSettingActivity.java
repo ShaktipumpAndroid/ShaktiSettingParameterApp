@@ -1,7 +1,6 @@
 package activity;
 
 import static java.lang.Thread.sleep;
-import static webservice.WebURL.MOTOR_PERSMETER_LIST;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -57,13 +56,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.ByteArrayOutputStream;
-import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Timer;
 import java.util.UUID;
@@ -480,7 +476,10 @@ public class DeviceSettingActivity extends AppCompatActivity {
         RequestQueue mRequestQueue = Volley.newRequestQueue(this);
         // String Request initialized
 
-        StringRequest mStringRequest = new StringRequest(Request.Method.GET, CustomUtility.getSharedPreferences(this,WebURL.BaseUrl)+WebURL.MOTOR_PERSMETER_LIST + CustomUtility.getSharedPreferences(getApplicationContext(), Constants.MaterialPumpCode), new Response.Listener<String>() {
+        Log.e("MOTOR_Par_URL=====>",CustomUtility.getSharedPreferences(this,WebURL.BaseUrl)+WebURL.MOTOR_PERSMETER_LIST + "9000030132");
+
+        //StringRequest mStringRequest = new StringRequest(Request.Method.GET, CustomUtility.getSharedPreferences(this,WebURL.BaseUrl)+WebURL.MOTOR_PERSMETER_LIST + CustomUtility.getSharedPreferences(getApplicationContext(), Constants.MaterialPumpCode), new Response.Listener<String>() {
+        StringRequest mStringRequest = new StringRequest(Request.Method.GET, CustomUtility.getSharedPreferences(this,WebURL.BaseUrl)+WebURL.MOTOR_PERSMETER_LIST + "9000030132" , new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 
@@ -493,7 +492,6 @@ public class DeviceSettingActivity extends AppCompatActivity {
                         mSettingParameterResponse = motorParamListModel.getResponse();
                         addDynamicViewProNew(mSettingParameterResponse);
                         noDataFound.setVisibility(View.GONE);
-
 
                         /*if (String.valueOf(databaseHelper.getRecordCount()).equals("0")) {
                             for (int i = 0; i < motorParamListModel.getResponse().size(); i++) {
@@ -508,7 +506,6 @@ public class DeviceSettingActivity extends AppCompatActivity {
                                         String.valueOf(motorParamListModel.getResponse().get(i).getOffset()));
                             }
                         }*/
-
 
                     } else {
                         hiddeProgressDialogue();
@@ -1029,7 +1026,6 @@ public class DeviceSettingActivity extends AppCompatActivity {
                 if (btSocket != null) {
                     if (!btSocket.isConnected()) {
                         btSocket.connect();//start connection
-
                     }
                 } else {
                     myBluetooth = BluetoothAdapter.getDefaultAdapter();//get the mobile bluetooth device
@@ -1693,6 +1689,7 @@ public class DeviceSettingActivity extends AppCompatActivity {
         text.setEnabled(state);
         text.setAlpha(alphaRate);
     }
+
     private void hiddeProgressDialogue() {
         runOnUiThread(new Runnable() {
             @Override

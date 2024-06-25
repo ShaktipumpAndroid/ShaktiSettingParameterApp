@@ -135,6 +135,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             }
 
         }
+
         mcursor.close();
         database.close();
 
