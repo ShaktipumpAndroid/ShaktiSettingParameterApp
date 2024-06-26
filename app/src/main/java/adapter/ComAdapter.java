@@ -50,6 +50,8 @@ public class ComAdapter extends RecyclerView.Adapter<ComAdapter.ViewHolder> {
         final MotorParamListModel.Response response = cmponentList.get(position);
          holder.title.setText(response.getParametersName());
          holder.editTextValue.setText(String.valueOf(response.getpValue() * response.getFactor()));
+         holder.getBtn.setOnClickListener(v -> itemclickListner.getBtnMethod(response,position));
+         holder.setBtn.setOnClickListener(v -> itemclickListner.setBtnMethod(response,position));
     }
 
     @Override
@@ -86,7 +88,8 @@ public class ComAdapter extends RecyclerView.Adapter<ComAdapter.ViewHolder> {
         }
     }
     public interface ItemclickListner {
-        void itemClick(MotorParamListModel.Response response, String plantId);
+        void getBtnMethod(MotorParamListModel.Response response, int pos);
+        void setBtnMethod(MotorParamListModel.Response response,  int pos);
 
     }
 }

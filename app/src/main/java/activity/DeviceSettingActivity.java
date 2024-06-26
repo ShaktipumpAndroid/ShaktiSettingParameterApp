@@ -198,7 +198,6 @@ public class DeviceSettingActivity extends AppCompatActivity {
             }
         });
 
-
         imgBluetoothiconID.setVisibility(View.VISIBLE);
         rlvGetAllViewID.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -257,8 +256,6 @@ public class DeviceSettingActivity extends AppCompatActivity {
                 System.out.println("mTotalTime==>>vvv=>>Read_Input==>>" + modeBusCommand);
                 mTotalTimeFloatData = 0;
                 new BluetoothCommunicationForDynamicParameterReadAll().execute(modeBusCommand, modeBusCommand, "OK");
-
-
             }
         });
 

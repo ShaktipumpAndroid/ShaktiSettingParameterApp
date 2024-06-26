@@ -39,6 +39,7 @@
         <activity
             android:name="activity.DeviceOnOffActivity"
             android:exported="false" /> <!-- android:theme="@style/AppTheme" -->
+
         <activity
             android:name="activity.SplashActivity"
             android:exported="true">
