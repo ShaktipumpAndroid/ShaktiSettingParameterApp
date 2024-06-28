@@ -43,6 +43,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import activity.BeanVk.PumpCodeModel;
+import activity.pairedDeviceList.PairedDeviceList;
 import activity.utility.CustomUtility;
 import webservice.AllPopupUtil;
 import webservice.Constants;
@@ -115,7 +116,7 @@ public class ScannedBarcodeActivity extends AppCompatActivity {
                         CustomUtility.setSharedPreference(getApplicationContext(), Constants.MobileNo, mobileNotxt.getText().toString());
                         CustomUtility.setSharedPreference(getApplicationContext(), Constants.SapCode , sapCodetxt.getText().toString());
 
-                        Intent intent = new Intent(getApplicationContext(), DeviceSettingActivity.class);
+                        Intent intent = new Intent(getApplicationContext(), PairedDeviceList.class);
                         intent.putExtra("MCode", pumpCodeExt.getText().toString().trim());
                         startActivity(intent);
                     } else {
