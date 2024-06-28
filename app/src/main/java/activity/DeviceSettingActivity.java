@@ -215,7 +215,6 @@ public class DeviceSettingActivity extends AppCompatActivity {
 
                 char[] datar = new char[4];
                 int a = Float.floatToIntBits((float) edtValueFloat);
-                // int a= (int) edtValueFloat;
                 datar[0] = (char) (a & 0x000000FF);
                 datar[1] = (char) ((a & 0x0000FF00) >> 8);
                 datar[2] = (char) ((a & 0x00FF0000) >> 16);
@@ -251,7 +250,6 @@ public class DeviceSettingActivity extends AppCompatActivity {
                 }
                 String modeBusCommand = "0103" + mMOBADDRESS + v1 + v2 + v3 + v4 + v5;//write
 
-                //  String modeBusCommand = "0103"+mSettingModelResponse.get(pp).getMobBTAddress()+v1+v2+v3+v4+v5;//write
                 System.out.println("mTotalTime==>>vvv=>>offset==>>" + edtValueFloat);
                 System.out.println("mTotalTime==>>vvv=>>Read_Input==>>" + modeBusCommand);
                 mTotalTimeFloatData = 0;
@@ -267,7 +265,6 @@ public class DeviceSettingActivity extends AppCompatActivity {
                 if (mSettingParameterResponse.size() > 0) {
                     Log.e("mWriteAllCounterValue", String.valueOf(mWriteAllCounterValue));
                     try {
-
 
                         String mStringCeck = mEditTextList.get(mWriteAllCounterValue).getText().toString().trim();
 
@@ -296,7 +293,6 @@ public class DeviceSettingActivity extends AppCompatActivity {
                             String v4 = String.format("%02x", (0xff & datar[3]));
                             String v5 = Integer.toHexString(mCRCFinalValue);
                             String mMOBADDRESS = "";
-                            //  String mMobADR = mSettingParameterResponse.get(pp).getModbusaddress();
                             String mMobADR = mSettingParameterResponse.get(mWriteAllCounterValue).getMobBTAddress();
                             if (!mMobADR.isEmpty()) {
                                 int mLenth = mMobADR.length();
@@ -312,7 +308,6 @@ public class DeviceSettingActivity extends AppCompatActivity {
                                 }
                                 String modeBusCommand = "0106" + mMOBADDRESS + v1 + v2 + v3 + v4 + v5;//write
                                 System.out.println("mTotalTime==>>vvv==>> " + modeBusCommand);
-                                //  String modeBusCommand1 = "0103"+mSettingModelResponse.get(position).getMobBTAddress()+""+"crc";
 
                                 new BluetoothCommunicationForDynamicParameterWriteAll().execute(modeBusCommand, modeBusCommand, "OK");
 
@@ -323,7 +318,6 @@ public class DeviceSettingActivity extends AppCompatActivity {
                     } catch (NumberFormatException e) {
                         e.printStackTrace();
                     }
-
 
                 } else {
                     CustomUtility.ShowToast(getResources().getString(R.string.somethingWentWrong), DeviceSettingActivity.this);
@@ -337,9 +331,6 @@ public class DeviceSettingActivity extends AppCompatActivity {
 
            CustomUtility.ShowToast(getResources().getString(R.string.netConnection), DeviceSettingActivity.this);
             noDataFound.setVisibility(View.VISIBLE);
-           /* mSettingParameterResponse = databaseHelper.getRecordDetails();
-            addDynamicViewProNew(mSettingParameterResponse);
-            noDataFound.setVisibility(View.GONE);*/
         }
 
     }
@@ -366,38 +357,18 @@ public class DeviceSettingActivity extends AppCompatActivity {
                     if(databaseHelper.getRecordCount()>0) {
                         syncOfflineData();
                     }else {
-                        CustomUtility.ShowToast("Please Set Data First!",getApplicationContext());
+                        CustomUtility.ShowToast(getResources().getString(R.string.pleasesetdatafirst),getApplicationContext());
                     }
                 } else {
-                    CustomUtility.ShowToast("Please check your internet connection!", getApplicationContext());
+                    CustomUtility.ShowToast(getResources().getString(R.string.netConnection), getApplicationContext());
                 }
-                return true;
+               break;
             case android.R.id.home:
                 return true;
             case R.id.action_deviceOnOff:
                       Intent intent = new Intent(getApplicationContext(),DeviceOnOffActivity.class);
                       startActivity(intent);
                 break;
-            case R.id.action_signout:
-                new AlertDialog.Builder(this)
-                        .setTitle(R.string.sign_out)
-                        .setMessage(R.string.sign_out_application)
-                        .setPositiveButton(R.string.yes, (dialog, which) -> {
-                            CustomUtility.clearSharedPreferences(getApplicationContext());
-                            databaseHelper.deleteDatabase();
-                            dialog.dismiss();
-                            Intent intent1 = new Intent(getApplicationContext(), ScannedBarcodeActivity.class);
-                            startActivity(intent1);
-                            finish();
-
-                        })
-                        .setNegativeButton(R.string.no, (dialog, which) -> {
-                            // user doesn't want to logout
-
-                            dialog.dismiss();
-                        })
-                        .show();
-                return true;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -473,10 +444,10 @@ public class DeviceSettingActivity extends AppCompatActivity {
         RequestQueue mRequestQueue = Volley.newRequestQueue(this);
         // String Request initialized
 
-        Log.e("MOTOR_Par_URL=====>",CustomUtility.getSharedPreferences(this,WebURL.BaseUrl)+WebURL.MOTOR_PERSMETER_LIST + "9000030132");
+        Log.e("MOTOR_Par_URL=====>",CustomUtility.getSharedPreferences(this,WebURL.BaseUrl)+WebURL.MOTOR_PERSMETER_LIST + "9500001875");
 
         //StringRequest mStringRequest = new StringRequest(Request.Method.GET, CustomUtility.getSharedPreferences(this,WebURL.BaseUrl)+WebURL.MOTOR_PERSMETER_LIST + CustomUtility.getSharedPreferences(getApplicationContext(), Constants.MaterialPumpCode), new Response.Listener<String>() {
-        StringRequest mStringRequest = new StringRequest(Request.Method.GET, CustomUtility.getSharedPreferences(this,WebURL.BaseUrl)+WebURL.MOTOR_PERSMETER_LIST + "9000030132" , new Response.Listener<String>() {
+        StringRequest mStringRequest = new StringRequest(Request.Method.GET, CustomUtility.getSharedPreferences(this,WebURL.BaseUrl)+WebURL.MOTOR_PERSMETER_LIST + "9500001875" , new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 
@@ -705,7 +676,6 @@ public class DeviceSettingActivity extends AppCompatActivity {
                                 new Runnable() {
                                     public void run() {
                                         new BluetoothCommunicationForDynamicParameterRead().execute(modeBusCommand, modeBusCommand, "OK");
-                                        //Log.i("tag","A Kiss after 5 seconds");
                                     }
                                 }, 3000);
                     } else {
@@ -1097,8 +1067,9 @@ public class DeviceSettingActivity extends AppCompatActivity {
                             e.printStackTrace();
                         }
                     }
-
-
+                    while (iStream.available()>0){
+                        iStream.read();
+                    }
                 }
             } catch (Exception e) {
                 //baseRequest.hideLoader();
@@ -1622,9 +1593,12 @@ public class DeviceSettingActivity extends AppCompatActivity {
                                         } else {
                                             fgfg = mTotalTimeFloatData;
                                         }
+                                        Log.e("fgfg=====>", String.valueOf(fgfg));
+
                                         mEditTextList.get(mGlobalPosition).setText("" + fgfg);
                                         System.out.println("mGlobalPosition==>>" + mGlobalPosition + "\nmTotalTimeFloatData==>>" + mTotalTimeFloatData);
                                         changeButtonVisibility(true, 1.0f, mTextViewSetIDtList.get(mGlobalPosition));
+                                        Log.e("medit_txt=====>", String.valueOf( mEditTextList.get(mGlobalPosition)));
                                         DatabaseRecordInsert(mSettingParameterResponse.get(mGlobalPosition), mEditTextList.get(mGlobalPosition));
                                     } catch (Exception e) {
                                         e.printStackTrace();

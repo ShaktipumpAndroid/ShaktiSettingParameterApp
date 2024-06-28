@@ -2,6 +2,9 @@ package adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,10 +16,8 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.vihaan.shaktinewconcept.R;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import activity.BeanVk.MotorParamListModel;
 
 public class ComAdapter extends RecyclerView.Adapter<ComAdapter.ViewHolder> {
@@ -47,19 +48,38 @@ public class ComAdapter extends RecyclerView.Adapter<ComAdapter.ViewHolder> {
     @SuppressLint("DefaultLocale")
     @Override
     public void onBindViewHolder(ViewHolder holder, @SuppressLint("RecyclerView") int position) {
+        holder.setIsRecyclable(false);
         final MotorParamListModel.Response response = cmponentList.get(position);
          holder.title.setText(response.getParametersName());
          holder.editTextValue.setText(String.valueOf(response.getpValue() * response.getFactor()));
-         holder.getBtn.setOnClickListener(v -> itemclickListner.getBtnMethod(response,position));
-         holder.setBtn.setOnClickListener(v -> itemclickListner.setBtnMethod(response,position));
+
+         holder.getBtn.setOnClickListener(v -> itemclickListner.getBtnMethod(response,holder.editTextValue.getText().toString(),position));
+         holder.setBtn.setOnClickListener(v -> itemclickListner.setBtnMethod(response,holder.editTextValue.getText().toString(),position));
+
+        holder.editTextValue.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+                if(!s.toString().isEmpty()) {
+                    cmponentList.get(position).setpValue(Integer.valueOf(s.toString()));
+                }
+               // Log.e("getpValue===>", String.valueOf(cmponentList.get(position).getpValue()));
+                Log.e("Editable===>", s.toString());
+                Log.e("editTextValue===>", holder.editTextValue.getText().toString());
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
         return cmponentList.size();
     }
-
-
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         LinearLayout lvlMainItemViewID;
@@ -88,8 +108,8 @@ public class ComAdapter extends RecyclerView.Adapter<ComAdapter.ViewHolder> {
         }
     }
     public interface ItemclickListner {
-        void getBtnMethod(MotorParamListModel.Response response, int pos);
-        void setBtnMethod(MotorParamListModel.Response response,  int pos);
+        void getBtnMethod(MotorParamListModel.Response response,String editvalue ,int pos);
+        void setBtnMethod(MotorParamListModel.Response response,String editvalue ,int pos);
 
     }
 }

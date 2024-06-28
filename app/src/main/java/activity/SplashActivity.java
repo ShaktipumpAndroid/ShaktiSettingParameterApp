@@ -13,12 +13,9 @@ import static android.os.Build.VERSION.SDK_INT;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.Handler;
-import android.provider.Settings;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LinearInterpolator;
@@ -34,6 +31,8 @@ import androidx.core.content.ContextCompat;
 
 import com.vihaan.shaktinewconcept.R;
 
+import activity.devicecomponetelist.DeviceComponentList;
+import activity.pairedDeviceList.PairedDeviceList;
 import activity.utility.CustomUtility;
 import webservice.Constants;
 
@@ -75,7 +74,7 @@ public class SplashActivity extends AppCompatActivity {
     private void checkLogin() {
         new Handler().postDelayed(() -> {
             if(CustomUtility.getSharedPreferences(getApplicationContext(), Constants.MaterialPumpCode)!=null && !CustomUtility.getSharedPreferences(getApplicationContext(), Constants.MaterialPumpCode).isEmpty()){
-                Intent i = new Intent(SplashActivity.this, DeviceComponentList.class);
+                Intent i = new Intent(SplashActivity.this, PairedDeviceList.class);
                 startActivity(i); // invoke the SecondActivity.
                 finish();
             }else {

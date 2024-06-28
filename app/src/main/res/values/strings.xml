@@ -11,6 +11,7 @@
     <string name="err_msg_email">Enter valid email address</string>
     <string name="err_msg_password">Enter the password</string>
     <string name="please_select_date">Please Select Date</string>
+    <string name="datasaved">Data Saved Successfully</string>
     <string name="trvlmod">Travel Mode <font color='#FF0000'>*</font></string>
     <string name="trans_det">Transport Details Update</string>
     <string name="stock_det">  Stock Details Report  </string>
@@ -162,7 +163,11 @@
     <string name="motorOffline">Motor Currently offline please try after some time!</string>
     <string name="pairedDevice">Please make sure device is paired or connected via bluetooth!</string>
     <string name="bluetooth_is_off">Your bluetooth is Turn Off please turn on first!</string>
-    <string-array name="array_paymnet_by">
+    <string name="no_paired_device">No paired device found</string>
+    <string name="paired_device_list">Paired device list</string>
+    <string name="pleasesetdatafirst">Please Set Data First!</string>
+    <string name="addressnotfound">MOB address not found!</string>
+     <string-array name="array_paymnet_by">
         <item>Pay By</item>
         <item>Return By</item>
     </string-array>
@@ -238,7 +243,6 @@
         <item>OK</item>
         <item>Other</item>
     </string-array>
-
 
 
 </resources>

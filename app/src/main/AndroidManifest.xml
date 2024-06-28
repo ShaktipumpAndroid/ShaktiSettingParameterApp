@@ -33,13 +33,14 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="q">
         <activity
-            android:name="activity.DeviceComponentList"
+            android:name="activity.pairedDeviceList.PairedDeviceList"
             android:exported="false" />
-
+        <activity
+            android:name="activity.devicecomponetelist.DeviceComponentList"
+            android:exported="false" />
         <activity
             android:name="activity.DeviceOnOffActivity"
             android:exported="false" /> <!-- android:theme="@style/AppTheme" -->
-
         <activity
             android:name="activity.SplashActivity"
             android:exported="true">
