@@ -25,6 +25,7 @@ public class ComAdapter extends RecyclerView.Adapter<ComAdapter.ViewHolder> {
     Context mContext;
     private List<MotorParamListModel.Response> cmponentList;
     private final List<MotorParamListModel.Response> arSearch;
+
     TextView noDataFound;
 
     private ItemclickListner itemclickListner;
