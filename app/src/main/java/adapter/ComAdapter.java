@@ -2,6 +2,7 @@ package adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.os.Build;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -67,13 +68,23 @@ public class ComAdapter extends RecyclerView.Adapter<ComAdapter.ViewHolder> {
             @Override
             public void afterTextChanged(Editable s) {
                 if(!s.toString().isEmpty()) {
-                    cmponentList.get(position).setpValue(Integer.valueOf(s.toString()));
+                    cmponentList.get(position).setpValue(Float.valueOf(s.toString()));
                 }
                // Log.e("getpValue===>", String.valueOf(cmponentList.get(position).getpValue()));
                 Log.e("Editable===>", s.toString());
                 Log.e("editTextValue===>", holder.editTextValue.getText().toString());
             }
         });
+
+        if(cmponentList.get(position).getisSet()!=null && !cmponentList.get(position).getisSet()){
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                holder.editTextValue.setTextColor(mContext.getColor(R.color.red));
+            }else{
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    holder.editTextValue.setTextColor(mContext.getColor(R.color.black));
+                }
+            }
+        }
     }
 
     @Override

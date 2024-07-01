@@ -113,7 +113,6 @@ public class PairedDeviceList extends AppCompatActivity implements PairedDeviceA
                         })
                         .setNegativeButton(R.string.no, (dialog, which) -> {
                             // user doesn't want to logout
-
                             dialog.dismiss();
                         })
                         .show();
@@ -156,7 +155,6 @@ public class PairedDeviceList extends AppCompatActivity implements PairedDeviceA
         } else {
             bluetoothDeviceOff(getResources().getString(R.string.bluetooth_is_off));
         }
-
     }
 
     private void bluetoothDeviceOff(String message) {

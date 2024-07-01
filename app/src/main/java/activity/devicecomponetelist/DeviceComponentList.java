@@ -4,6 +4,7 @@ import static java.lang.Thread.sleep;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -17,6 +18,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.provider.Settings;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -34,8 +36,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
@@ -56,7 +56,6 @@ import java.util.UUID;
 import Database.DatabaseHelper;
 import activity.BeanVk.MotorParamListModel;
 import activity.DeviceOnOffActivity;
-
 import activity.utility.CustomUtility;
 import adapter.ComAdapter;
 import webservice.AllPopupUtil;
@@ -83,12 +82,12 @@ public class DeviceComponentList extends AppCompatActivity implements ComAdapter
     int selected_pos = 0;
     char mCRCFinalValue;
     ImageView imgBluetoothiconID;
-    private boolean mBLTCheckValue = false;
     private BluetoothAdapter myBluetooth;
     private ProgressDialog progressDialog;
     private BluetoothSocket btSocket;
     private List<MotorParamListModel.Response> mSettingParameterResponse;
     private InputStream iStream;
+    AlertDialog alertDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -142,8 +141,8 @@ public class DeviceComponentList extends AppCompatActivity implements ComAdapter
     private void syncOfflineData() {
         JSONArray jsonArray = null;
 
-        showProgressDialogue();
-        ArrayList<MotorParamListModel.Response> motorPumpList = new ArrayList<MotorParamListModel.Response>();
+        showProgressDialogue(getResources().getString(R.string.action_sync_offline));
+        ArrayList<MotorParamListModel.Response> motorPumpList;
         motorPumpList = databaseHelper.getRecordDetails();
         if (motorPumpList.size() > 0) {
             jsonArray = new JSONArray();
@@ -178,32 +177,26 @@ public class DeviceComponentList extends AppCompatActivity implements ComAdapter
 
         RequestQueue queue = Volley.newRequestQueue(DeviceComponentList.this);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, CustomUtility.getSharedPreferences(this,WebURL.BaseUrl)+WebURL.syncOfflineData, jsonObject,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
+                response -> {
 
-                        Log.e("String Response : ", response.toString());
-                        try {
-                            if(response.getString("status").equalsIgnoreCase("true")){
-                                CustomUtility.ShowToast(getResources().getString(R.string.datasaved), DeviceComponentList.this);
-                              //  databaseHelper.deleteDatabase();
-                            }else {
-                                CustomUtility.ShowToast(response.getString("message").toString(), DeviceComponentList.this);
-                            }
-                        } catch (JSONException e) {
-                            throw new RuntimeException(e);
+                    Log.e("String Response : ", response.toString());
+                    try {
+                        if(response.getString("status").equalsIgnoreCase("true")){
+                            CustomUtility.ShowToast(getResources().getString(R.string.datasaved), DeviceComponentList.this);
+                          //  databaseHelper.deleteDatabase();
+                        }else {
+                            CustomUtility.ShowToast(response.getString("message").toString(), DeviceComponentList.this);
                         }
-                        hiddeProgressDialogue();
+                    } catch (JSONException e) {
+                        throw new RuntimeException(e);
                     }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (progressDialog != null && progressDialog.isShowing()) {
-                    progressDialog.dismiss();
-                }
-                error.toString();
-            }
-        });
+                    hiddeProgressDialogue();
+                }, error -> {
+                    if (progressDialog != null && progressDialog.isShowing()) {
+                        progressDialog.dismiss();
+                    }
+                    error.toString();
+                });
 
         // below line is to make
         // a json object request.
@@ -266,17 +259,18 @@ public class DeviceComponentList extends AppCompatActivity implements ComAdapter
     }
 
     public void callgetCompalinAllListAPI() {
-        showProgressDialogue();
+        showProgressDialogue(getResources().getString(R.string.getComData));
         RequestQueue mRequestQueue = Volley.newRequestQueue(this);
         // String Request initialized
         Log.e("MOTOR_Par_URL=====>",CustomUtility.getSharedPreferences(this, WebURL.BaseUrl)+WebURL.MOTOR_PERSMETER_LIST + "9500001875");
 
         //StringRequest mStringRequest = new StringRequest(Request.Method.GET, CustomUtility.getSharedPreferences(this,WebURL.BaseUrl)+WebURL.MOTOR_PERSMETER_LIST + CustomUtility.getSharedPreferences(getApplicationContext(), Constants.MaterialPumpCode), new Response.Listener<String>() {
         StringRequest mStringRequest = new StringRequest(Request.Method.GET, CustomUtility.getSharedPreferences(this,WebURL.BaseUrl)+WebURL.MOTOR_PERSMETER_LIST + "9500001875" , response -> {
-
+            Log.e("response===>", String.valueOf(response.toString()));
             if (!response.isEmpty()) {
                 hiddeProgressDialogue();
                 MotorParamListModel motorParamListModel = new Gson().fromJson(response, MotorParamListModel.class);
+                Log.e("response===>", String.valueOf(motorParamListModel.getStatus().equals("true")));
                 if (motorParamListModel.getStatus().equals("true")) {
 
                     mSettingParameterResponse = motorParamListModel.getResponse();
@@ -327,7 +321,7 @@ public class DeviceComponentList extends AppCompatActivity implements ComAdapter
     }
 
     private void setAdapter() {
-
+        Log.e("Setting","List");
         if (mSettingParameterResponse != null && mSettingParameterResponse.size() > 0) {
             comAdapter = new ComAdapter(DeviceComponentList.this, mSettingParameterResponse, noDataFound);
             componentList.setHasFixedSize(true);
@@ -335,18 +329,19 @@ public class DeviceComponentList extends AppCompatActivity implements ComAdapter
             comAdapter.EditItemClick(this);
             noDataFound.setVisibility(View.GONE);
             componentList.setVisibility(View.VISIBLE);
+            Log.e("Set","List");
         } else {
             noDataFound.setVisibility(View.VISIBLE);
             componentList.setVisibility(View.GONE);
         }
     }
 
-    private void showProgressDialogue() {
+    private void showProgressDialogue(String message) {
         runOnUiThread(() -> {
             progressDialog = new ProgressDialog(DeviceComponentList.this);
             progressDialog.setCanceledOnTouchOutside(false);
             progressDialog.setCancelable(false);
-            progressDialog.setMessage("Loading List....");
+            progressDialog.setMessage(message);
             progressDialog.show();
         });
     }
@@ -366,7 +361,7 @@ public class DeviceComponentList extends AppCompatActivity implements ComAdapter
     public void getBtnMethod(MotorParamListModel.Response response,String editvalue, int position) {
 
         selected_pos = position;
-        showProgressDialogue();
+        showProgressDialogue(getResources().getString(R.string.fetchingData));
         int pos = position;
         mGlobalPosition = position;
 
@@ -415,7 +410,7 @@ public class DeviceComponentList extends AppCompatActivity implements ComAdapter
             Toast.makeText(mContext, getResources().getString(R.string.addressnotfound), Toast.LENGTH_SHORT).show();
         }
         final String modeBusCommand = "0103" + mMOBADDRESS + v1 + v2 + v3 + v4 + v5;//write
-        System.out.println("mTotalTime==>>vvv=modeBusCommand=>>" + modeBusCommand);
+        System.out.println("mTotalTime==>>get=modeBusCommand=>>" + modeBusCommand);
         mTotalTimeFloatData = 0;
 
         new Handler().postDelayed(
@@ -464,6 +459,8 @@ public class DeviceComponentList extends AppCompatActivity implements ComAdapter
                         sleep(100);
 
                         iStream = btSocket.getInputStream();
+                        System.out.println("iStream==>>iStream  " + iStream + " " );
+
                     } catch (InterruptedException e1) {
                         e1.printStackTrace();
                     }
@@ -498,6 +495,9 @@ public class DeviceComponentList extends AppCompatActivity implements ComAdapter
                                     +"byteread1====>"+String.valueOf(bytesReaded[i+1])
                                     +"byteread2====>"+String.valueOf(bytesReaded[i+2])
                                     +"byteread3====>"+String.valueOf(bytesReaded[i+3]));
+
+                            Log.e("bytesReaded", bytesReaded.toString());
+
                             mTotalTime = bytesReaded[i];
                             System.out.println("mTotalTime==>>vvv1  " + jjj + " " + mTotalTime);
                             mTotalTime |= bytesReaded[i + 1] << 8;
@@ -510,15 +510,19 @@ public class DeviceComponentList extends AppCompatActivity implements ComAdapter
 
                             mTotalTimeFloatData = 0;
                             mTotalTimeFloatData = Float.intBitsToFloat(mTotalTime);
+                            Log.e("READ=====>", String.valueOf(mTotalTimeFloatData));
                             mActivity.runOnUiThread(new Runnable() {
                                 @SuppressLint("SetTextI18n")
                                 @Override
                                 public void run() {
                                     try {
-                                        mSettingParameterResponse.get(mGlobalPosition).setpValue((int) mTotalTimeFloatData);
+                                         ShowAlertResponse("0");
+
+                                        mSettingParameterResponse.get(mGlobalPosition).setpValue((float) mTotalTimeFloatData);
                                         comAdapter.notifyDataSetChanged();
                                         System.out.println("mGlobalPosition==>>" + mGlobalPosition + "\nmTotalTimeFloatData==>>" + mTotalTimeFloatData);
                                         databaseHelper.updateRecordAlternate(mSettingParameterResponse.get(mGlobalPosition));
+
                                     } catch (Exception e) {
                                         e.printStackTrace();
                                     }
@@ -558,6 +562,8 @@ public class DeviceComponentList extends AppCompatActivity implements ComAdapter
             hiddeProgressDialogue();
         }
     }
+
+
 
     @Override
     public void setBtnMethod(MotorParamListModel.Response response,String editvalue, int position) {
@@ -619,7 +625,7 @@ public class DeviceComponentList extends AppCompatActivity implements ComAdapter
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            showProgressDialogue();
+            showProgressDialogue(getResources().getString(R.string.sendingData));
             mMyUDID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
 
         }
@@ -653,6 +659,8 @@ public class DeviceComponentList extends AppCompatActivity implements ComAdapter
                         btSocket.getOutputStream().write(STARTRequest);
                         sleep(1000);
                         iStream = btSocket.getInputStream();
+
+                       // Log.e("iStream===>set", String.valueOf(iStream.read()));
                     } catch (InterruptedException e1) {
 
                         e1.printStackTrace();
@@ -668,6 +676,11 @@ public class DeviceComponentList extends AppCompatActivity implements ComAdapter
 
                     for (int i = 0; i < 1; i++) {
                         try {
+                            for (int j=0; j<6; j++){
+                                int mCharOne1 = iStream.read();
+                                Log.e("istream====>","" + (char) mCharOne1 );
+                            }
+
 
                             int mCharOne = iStream.read();
                             int mCharTwo = iStream.read();
@@ -682,6 +695,12 @@ public class DeviceComponentList extends AppCompatActivity implements ComAdapter
                             mCharTwo = iStream.read();
                             bytesReaded[i + 3] = Integer.parseInt("" + (char) mCharOne + (char) mCharTwo, 16);
 
+                            System.out.println("byte0==>  " + jjj + " " +   bytesReaded[i]);
+                            System.out.println("byte1==>  " + jjj + " " +   bytesReaded[i + 1]);
+                            System.out.println("byte2==>  " + jjj + " " +   bytesReaded[i + 2]);
+                            System.out.println("byte3=>  " + jjj + " " +   bytesReaded[i + 3]);
+
+
                             mTotalTime = bytesReaded[i];
                             System.out.println("mTotalTime==>>vvv1  " + jjj + " " + mTotalTime);
                             mTotalTime |= bytesReaded[i + 1] << 8;
@@ -690,18 +709,25 @@ public class DeviceComponentList extends AppCompatActivity implements ComAdapter
                             System.out.println("mTotalTime==>>vvv3  " + jjj + " " + mTotalTime);
                             mTotalTime |= bytesReaded[i + 3] << 24;
 
-                            System.out.println("mTotalTime==>>vvv4  " + jjj + " " + Float.intBitsToFloat(mTotalTime));
                             mTotalTimeFloatData = 0;
                             mTotalTimeFloatData = Float.intBitsToFloat(mTotalTime);
+                            Log.e("Write=====>", String.valueOf(mTotalTimeFloatData));
 
-                            mActivity.runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    mSettingParameterResponse.get(mGlobalPosition).setpValue((int) edtValueFloat);
-                                    comAdapter.notifyDataSetChanged();
-                                    databaseHelper.updateRecordAlternate(mSettingParameterResponse.get(selected_pos));
+                            mActivity.runOnUiThread(() -> {
 
+                                if(mTotalTimeFloatData == edtValueFloat ){
+                                    ShowAlertResponse("1");
+                                    mSettingParameterResponse.get(mGlobalPosition).setisSet(true);
+                                } else{
+                                    ShowAlertResponse("-1");
+                                    mSettingParameterResponse.get(mGlobalPosition).setisSet(false);
                                 }
+
+                                mSettingParameterResponse.get(mGlobalPosition).setpValue((float) edtValueFloat);
+                                comAdapter.notifyDataSetChanged();
+                                databaseHelper.updateRecordAlternate(mSettingParameterResponse.get(selected_pos));
+
+
                             });
 
                             jjj++;
@@ -749,8 +775,7 @@ public class DeviceComponentList extends AppCompatActivity implements ComAdapter
 
         return crc;
     }
-
-
+    
     @Override
     public void onClick(View v) {
         switch (v.getId()){
@@ -763,7 +788,6 @@ public class DeviceComponentList extends AppCompatActivity implements ComAdapter
     private void setAllTheComParameter() {
         mGlobalPositionSet = 0;
         mWriteAllCounterValue = 0;
-        showProgressDialogue();
         if (mSettingParameterResponse.size() > 0) {
 
             try {
@@ -833,7 +857,7 @@ public class DeviceComponentList extends AppCompatActivity implements ComAdapter
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-
+            showProgressDialogue(getResources().getString(R.string.setalldata));
             mMyUDID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
 
         }
@@ -878,6 +902,10 @@ public class DeviceComponentList extends AppCompatActivity implements ComAdapter
 
                     for (int i = 0; i < 1; i++) {
                         try {
+                            for (int j=0; j<6; j++){
+                                int mCharOne1 = iStream.read();
+                                Log.e("istream====>","" + (char) mCharOne1 );
+                            }
 
                             int mCharOne = iStream.read();
                             int mCharTwo = iStream.read();
@@ -906,14 +934,19 @@ public class DeviceComponentList extends AppCompatActivity implements ComAdapter
                             mTotalTimeFloatData = 0;
                             mTotalTimeFloatData = Float.intBitsToFloat(mTotalTime);
 
+                            Log.e("WriteAll====>", String.valueOf(mTotalTimeFloatData));
 
                             mActivity.runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
 
+                                    if(mTotalTimeFloatData == -1.0){
+                                        mSettingParameterResponse.get(mWriteAllCounterValue).setisSet(false);
+                                        comAdapter.notifyDataSetChanged();
+                                    }
                                     Log.e("edtValueFloat===>", String.valueOf(edtValueFloat));
 
-                                    mSettingParameterResponse.get(mWriteAllCounterValue).setpValue((int) edtValueFloat);
+                                    mSettingParameterResponse.get(mWriteAllCounterValue).setpValue((float) edtValueFloat);
                                     databaseHelper.updateRecordAlternate(mSettingParameterResponse.get(mGlobalPosition));
 
                                 }
@@ -945,6 +978,7 @@ public class DeviceComponentList extends AppCompatActivity implements ComAdapter
         {
             super.onPostExecute(result);
 
+
             mWriteAllCounterValue = mWriteAllCounterValue + 1;
             try {
                 hiddeProgressDialogue();
@@ -955,13 +989,11 @@ public class DeviceComponentList extends AppCompatActivity implements ComAdapter
 
                     databaseHelper.updateRecordAlternate(mSettingParameterResponse.get(mGlobalPosition));
 
-
                     if (!mStringCeck.equalsIgnoreCase("") && !mStringCeck.equalsIgnoreCase("0.0")) {
                         edtValueFloat = Float.parseFloat( mSettingParameterResponse.get(mWriteAllCounterValue).getpValue().toString().trim());
                     } else {
                         edtValueFloat = Float.parseFloat(mSettingParameterResponse.get(mWriteAllCounterValue).getOffset() + "");
                     }
-
 
                     counterValue = 0;
                     char[] datar = new char[4];
@@ -1007,7 +1039,7 @@ public class DeviceComponentList extends AppCompatActivity implements ComAdapter
                     System.out.println("222");
                 }
 
-
+                displayNotSetData();
 
             } catch (NumberFormatException e) {
                 e.printStackTrace();
@@ -1016,5 +1048,49 @@ public class DeviceComponentList extends AppCompatActivity implements ComAdapter
 
         }
     }
+
+    private void displayNotSetData() {
+
+    }
+
+    private void ShowAlertResponse(String value) {
+        LayoutInflater inflater = (LayoutInflater) DeviceComponentList.this
+                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View layout = inflater.inflate(R.layout.devicealert,
+                null);
+        final AlertDialog.Builder builder = new AlertDialog.Builder(DeviceComponentList.this, R.style.MyDialogTheme);
+
+        builder.setView(layout);
+        builder.setCancelable(false);
+        alertDialog = builder.create();
+        alertDialog.setCanceledOnTouchOutside(false);
+        alertDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        alertDialog.show();
+
+        ImageView icon = layout.findViewById(R.id.user_img);
+        TextView OK_txt = layout.findViewById(R.id.OK_txt);
+        TextView title_txt = layout.findViewById(R.id.title_txt);
+
+        if(value.equals("-1")){
+            icon.setImageDrawable(getDrawable(R.drawable.cross));
+        }
+
+        if (value.equals("0")) {
+            title_txt.setText(getResources().getString(R.string.alertGetMessage));
+        } else if(value.equals("1")) {
+            title_txt.setText(getResources().getString(R.string.alertSetMessage));
+        }else {
+            title_txt.setText(getResources().getString(R.string.alertNotSetMessage));
+        }
+
+        OK_txt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.dismiss();
+            }
+        });
+
+    }
+
 
 }

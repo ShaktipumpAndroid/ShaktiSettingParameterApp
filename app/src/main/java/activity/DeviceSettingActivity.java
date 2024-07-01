@@ -1049,7 +1049,7 @@ public class DeviceSettingActivity extends AppCompatActivity {
                             mActivity.runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    mSettingParameterResponse.get(mReadAllCounterValue).setpValue((int) mTotalTimeFloatData);
+                                    mSettingParameterResponse.get(mReadAllCounterValue).setpValue((float) mTotalTimeFloatData);
                                      mEditTextList.get(mReadAllCounterValue).setText("" + mTotalTimeFloatData);
                                     System.out.println("mGlobalPosition==>>" + mReadAllCounterValue + "\nmTotalTimeFloatData==>>" + mTotalTimeFloatData);
                                     changeButtonVisibility(true, 1.0f, mTextViewSetIDtList.get(mReadAllCounterValue));
@@ -1250,7 +1250,7 @@ public class DeviceSettingActivity extends AppCompatActivity {
                             mActivity.runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    mSettingParameterResponse.get(mGlobalPosition).setpValue((int) mTotalTimeFloatData);
+                                    mSettingParameterResponse.get(mGlobalPosition).setpValue((float) mTotalTimeFloatData);
                                    // mEditTextList.get(mGlobalPosition).setText("" + mTotalTimeFloatData);
 
                                     Log.e("mGlobalPosition", String.valueOf(mGlobalPosition));
@@ -1379,7 +1379,7 @@ public class DeviceSettingActivity extends AppCompatActivity {
                                 @Override
                                 public void run() {
 
-                                    mSettingParameterResponse.get(mWriteAllCounterValue).setpValue((int) mTotalTimeFloatData);
+                                    mSettingParameterResponse.get(mWriteAllCounterValue).setpValue((float) mTotalTimeFloatData);
 
                                  //   mEditTextList.get(mWriteAllCounterValue).setText("" + mTotalTimeFloatData);
                                      DatabaseRecordInsert(mSettingParameterResponse.get(mWriteAllCounterValue), mEditTextList.get(mWriteAllCounterValue));
@@ -1585,7 +1585,7 @@ public class DeviceSettingActivity extends AppCompatActivity {
                                 @Override
                                 public void run() {
                                     try {
-                                        mSettingParameterResponse.get(mGlobalPosition).setpValue((int) mTotalTimeFloatData);
+                                        mSettingParameterResponse.get(mGlobalPosition).setpValue((float) mTotalTimeFloatData);
                                         Float fgfg;
                                         if ((mSettingParameterResponse.get(mGlobalPosition).getOffset() != 0) || (mSettingParameterResponse.get(mGlobalPosition).getOffset() != 0.0)) {
                                             fgfg = mTotalTimeFloatData;

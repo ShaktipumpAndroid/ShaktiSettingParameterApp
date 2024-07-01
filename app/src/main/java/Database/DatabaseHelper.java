@@ -157,7 +157,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 motorPumpList.setParametersName(mcursor.getString(mcursor.getColumnIndex(COLUMN_ParametersName)));
                 motorPumpList.setModbusaddress(mcursor.getString(mcursor.getColumnIndex(COLUMN_ModBusAddress)));
                 motorPumpList.setMobBTAddress(mcursor.getString(mcursor.getColumnIndex(COLUMN_MobBTAddress)));
-                motorPumpList.setpValue(Math.toIntExact(Math.round(Double.parseDouble(mcursor.getString(mcursor.getColumnIndex(COLUMN_pValue))))));
+                motorPumpList.setpValue(Float.parseFloat(mcursor.getString(mcursor.getColumnIndex(COLUMN_pValue))));
                 motorPumpList.setMaterialCode(mcursor.getString(mcursor.getColumnIndex(COLUMN_MaterialCode)));
                 motorPumpList.setFactor(Integer.parseInt(mcursor.getString(mcursor.getColumnIndex(COLUMN_factor))));
                 motorPumpList.setOffset(Integer.parseInt(mcursor.getString(mcursor.getColumnIndex(COLUMN_offset))));

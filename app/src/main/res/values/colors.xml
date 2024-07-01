@@ -31,6 +31,7 @@
     <color name="signup_normal_text_color">#999999</color>
     <color name="msg_error_color">#e55948</color>
     <color name="msg_success_color">#75bc1e</color>
+    <color name="success_color">#4BB543</color>
     <color name="msg_info_color">#448ed9</color>
     <color name="msg_warning_color">#e7cd54</color>
     <color name="red">#fadc0b01</color>
