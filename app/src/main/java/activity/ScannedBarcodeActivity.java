@@ -60,7 +60,7 @@ public class ScannedBarcodeActivity extends AppCompatActivity {
     String intentData = "";
     RelativeLayout search;
 
-    TextView pumpCodeExt;
+    EditText pumpCodeExt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

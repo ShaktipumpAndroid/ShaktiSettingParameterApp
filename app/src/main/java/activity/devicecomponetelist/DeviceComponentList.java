@@ -16,6 +16,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -33,6 +34,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.AsyncCache;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -40,6 +42,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
+import com.google.zxing.client.androidlegacy.common.executor.AsyncTaskExecInterface;
 import com.vihaan.shaktinewconcept.R;
 
 import org.json.JSONArray;
@@ -262,10 +265,10 @@ public class DeviceComponentList extends AppCompatActivity implements ComAdapter
         showProgressDialogue(getResources().getString(R.string.getComData));
         RequestQueue mRequestQueue = Volley.newRequestQueue(this);
         // String Request initialized
-        Log.e("MOTOR_Par_URL=====>",CustomUtility.getSharedPreferences(this, WebURL.BaseUrl)+WebURL.MOTOR_PERSMETER_LIST + "9500001875");
+        Log.e("MOTOR_Par_URL=====>",CustomUtility.getSharedPreferences(this, WebURL.BaseUrl)+WebURL.MOTOR_PERSMETER_LIST + CustomUtility.getSharedPreferences(getApplicationContext(), Constants.MaterialPumpCode));
 
         //StringRequest mStringRequest = new StringRequest(Request.Method.GET, CustomUtility.getSharedPreferences(this,WebURL.BaseUrl)+WebURL.MOTOR_PERSMETER_LIST + CustomUtility.getSharedPreferences(getApplicationContext(), Constants.MaterialPumpCode), new Response.Listener<String>() {
-        StringRequest mStringRequest = new StringRequest(Request.Method.GET, CustomUtility.getSharedPreferences(this,WebURL.BaseUrl)+WebURL.MOTOR_PERSMETER_LIST + "9500001875" , response -> {
+        StringRequest mStringRequest = new StringRequest(Request.Method.GET, CustomUtility.getSharedPreferences(this,WebURL.BaseUrl)+WebURL.MOTOR_PERSMETER_LIST + CustomUtility.getSharedPreferences(getApplicationContext(), Constants.MaterialPumpCode) , response -> {
             Log.e("response===>", String.valueOf(response.toString()));
             if (!response.isEmpty()) {
                 hiddeProgressDialogue();
@@ -425,10 +428,21 @@ public class DeviceComponentList extends AppCompatActivity implements ComAdapter
     @SuppressLint("StaticFieldLeak")
     private class BluetoothCommunicationForDynamicParameterRead extends AsyncTask<String, Void, Boolean>  // UI thread
     {
+        private static final long TIMEOUT = 20000; // Timeout duration in milliseconds (e.g., 10 seconds)
+        private Handler handler = new Handler(Looper.getMainLooper());
+        private Runnable timeoutRunnable;
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
             mMyUDID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
+            timeoutRunnable = () -> {
+                if (BluetoothCommunicationForDynamicParameterRead.this.getStatus() == Status.RUNNING) {
+                    // Cancel the AsyncTask if it's still running
+                    BluetoothCommunicationForDynamicParameterRead.this.cancel(true);
+                    onTimeout(); // Handle the timeout case
+                }
+            };
+            handler.postDelayed(timeoutRunnable, TIMEOUT);
         }
 
         @SuppressLint("MissingPermission")
@@ -611,6 +625,7 @@ public class DeviceComponentList extends AppCompatActivity implements ComAdapter
                     String modeBusCommand = "0106" + mMOBADDRESS + v1 + v2 + v3 + v4 + v5;//write
                     System.out.println("mTotalTime==>>vvvSet==>> " + modeBusCommand);
                     new DeviceComponentList.BluetoothCommunicationForDynamicParameterWrite().execute(modeBusCommand, modeBusCommand, "OK");
+
                 } else {
                     Toast.makeText(mContext, getResources().getString(R.string.addressnotfound), Toast.LENGTH_SHORT).show();
                 }
@@ -622,11 +637,23 @@ public class DeviceComponentList extends AppCompatActivity implements ComAdapter
     @SuppressLint("StaticFieldLeak")
     private class BluetoothCommunicationForDynamicParameterWrite extends AsyncTask<String, Void, Boolean>  // UI thread
     {
+        private static final long TIMEOUT = 20000; // Timeout duration in milliseconds (e.g., 10 seconds)
+        private Handler handler = new Handler(Looper.getMainLooper());
+        private Runnable timeoutRunnable;
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
             showProgressDialogue(getResources().getString(R.string.sendingData));
             mMyUDID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
+            // Initialize and start the timeout timer
+            timeoutRunnable = () -> {
+                if (BluetoothCommunicationForDynamicParameterWrite.this.getStatus() == Status.RUNNING) {
+                    // Cancel the AsyncTask if it's still running
+                    BluetoothCommunicationForDynamicParameterWrite.this.cancel(true);
+                    onTimeout(); // Handle the timeout case
+                }
+            };
+            handler.postDelayed(timeoutRunnable, TIMEOUT);
 
         }
 
@@ -636,6 +663,7 @@ public class DeviceComponentList extends AppCompatActivity implements ComAdapter
         protected Boolean doInBackground(String... requests) //while the progress dialog is shown, the connection is done in background
         {
             try {
+
                 if (btSocket != null) {
                     if (btSocket.isConnected()) {
 
@@ -754,7 +782,13 @@ public class DeviceComponentList extends AppCompatActivity implements ComAdapter
         {
             super.onPostExecute(result);
             hiddeProgressDialogue();
+            handler.removeCallbacks(timeoutRunnable);
         }
+    }
+    private void onTimeout() {
+        // Additional handling if needed when the task times out
+        CustomUtility.ShowToast("Operation timed out. Please try again.",getApplicationContext());
+        hiddeProgressDialogue();
     }
 
     public static int CRC16_MODBUS(char[] buf, int len) {
@@ -1072,6 +1106,12 @@ public class DeviceComponentList extends AppCompatActivity implements ComAdapter
         TextView title_txt = layout.findViewById(R.id.title_txt);
 
         if(value.equals("-1")){
+            icon.setImageDrawable(getDrawable(R.drawable.cross));
+        }else if(value.equals("0")){
+            icon.setImageDrawable(getDrawable(R.drawable.ic_tick));
+        }else if(value.equals("1")){
+            icon.setImageDrawable(getDrawable(R.drawable.ic_tick));
+        }else{
             icon.setImageDrawable(getDrawable(R.drawable.cross));
         }
 
