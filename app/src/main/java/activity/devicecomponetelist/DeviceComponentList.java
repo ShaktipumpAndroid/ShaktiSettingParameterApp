@@ -787,7 +787,7 @@ public class DeviceComponentList extends AppCompatActivity implements ComAdapter
     }
     private void onTimeout() {
         // Additional handling if needed when the task times out
-        CustomUtility.ShowToast("Operation timed out. Please try again.",getApplicationContext());
+        ShowAlertResponse("-2");
         hiddeProgressDialogue();
     }
 
@@ -888,12 +888,22 @@ public class DeviceComponentList extends AppCompatActivity implements ComAdapter
     @SuppressLint("StaticFieldLeak")
     private class BluetoothCommunicationForDynamicParameterWriteAll extends AsyncTask<String, Void, Boolean>  // UI thread
     {
+        private static final long TIMEOUT = 20000; // Timeout duration in milliseconds (e.g., 10 seconds)
+        private Handler handler = new Handler(Looper.getMainLooper());
+        private Runnable timeoutRunnable;
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
             showProgressDialogue(getResources().getString(R.string.setalldata));
             mMyUDID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
-
+            timeoutRunnable = () -> {
+                if (BluetoothCommunicationForDynamicParameterWriteAll.this.getStatus() == Status.RUNNING) {
+                    // Cancel the AsyncTask if it's still running
+                    BluetoothCommunicationForDynamicParameterWriteAll.this.cancel(true);
+                    onTimeout(); // Handle the timeout case
+                }
+            };
+            handler.postDelayed(timeoutRunnable, TIMEOUT);
         }
 
         @SuppressLint("MissingPermission")
@@ -1016,6 +1026,7 @@ public class DeviceComponentList extends AppCompatActivity implements ComAdapter
             mWriteAllCounterValue = mWriteAllCounterValue + 1;
             try {
                 hiddeProgressDialogue();
+                handler.removeCallbacks(timeoutRunnable);
                 if (mWriteAllCounterValue < mSettingParameterResponse.size()) {
                     String mStringCeck =  mSettingParameterResponse.get(mWriteAllCounterValue).getpValue().toString().trim();
                     System.out.println("Vikas!@#==>>" + mStringCeck);
@@ -1119,8 +1130,10 @@ public class DeviceComponentList extends AppCompatActivity implements ComAdapter
             title_txt.setText(getResources().getString(R.string.alertGetMessage));
         } else if(value.equals("1")) {
             title_txt.setText(getResources().getString(R.string.alertSetMessage));
-        }else {
+        }else if(value.equals("-1")){
             title_txt.setText(getResources().getString(R.string.alertNotSetMessage));
+        }else if(value.equals("-2")){
+            title_txt.setText(getResources().getString(R.string.operationUnsuccessfull));
         }
 
         OK_txt.setOnClickListener(new View.OnClickListener() {
