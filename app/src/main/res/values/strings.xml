@@ -177,6 +177,7 @@
     <string name="sendingData">Sending data....</string>
     <string name="setalldata">Sending all data to drive.</string>
     <string name="operationUnsuccessfull">Operation unsuccessful. Please reconnect the dongle</string>
+    <string name="plsConnectBt">Please connect bluetooth</string>
     <string-array name="array_paymnet_by">
         <item>Pay By</item>
         <item>Return By</item>

@@ -439,7 +439,11 @@ public class DeviceComponentList extends AppCompatActivity implements ComAdapter
                 if (BluetoothCommunicationForDynamicParameterRead.this.getStatus() == Status.RUNNING) {
                     // Cancel the AsyncTask if it's still running
                     BluetoothCommunicationForDynamicParameterRead.this.cancel(true);
-                    onTimeout(); // Handle the timeout case
+                    try {
+                        onTimeout(); // Handle the timeout case
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
                 }
             };
             handler.postDelayed(timeoutRunnable, TIMEOUT);
@@ -650,7 +654,11 @@ public class DeviceComponentList extends AppCompatActivity implements ComAdapter
                 if (BluetoothCommunicationForDynamicParameterWrite.this.getStatus() == Status.RUNNING) {
                     // Cancel the AsyncTask if it's still running
                     BluetoothCommunicationForDynamicParameterWrite.this.cancel(true);
-                    onTimeout(); // Handle the timeout case
+                    try {
+                        onTimeout(); // Handle the timeout case
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
                 }
             };
             handler.postDelayed(timeoutRunnable, TIMEOUT);
@@ -744,10 +752,18 @@ public class DeviceComponentList extends AppCompatActivity implements ComAdapter
                             mActivity.runOnUiThread(() -> {
 
                                 if(mTotalTimeFloatData == edtValueFloat ){
-                                    ShowAlertResponse("1");
+                                    try {
+                                        ShowAlertResponse("1");
+                                    } catch (IOException e) {
+                                        throw new RuntimeException(e);
+                                    }
                                     mSettingParameterResponse.get(mGlobalPosition).setisSet(true);
                                 } else{
-                                    ShowAlertResponse("-1");
+                                    try {
+                                        ShowAlertResponse("-1");
+                                    } catch (IOException e) {
+                                        throw new RuntimeException(e);
+                                    }
                                     mSettingParameterResponse.get(mGlobalPosition).setisSet(false);
                                 }
 
@@ -785,7 +801,7 @@ public class DeviceComponentList extends AppCompatActivity implements ComAdapter
             handler.removeCallbacks(timeoutRunnable);
         }
     }
-    private void onTimeout() {
+    private void onTimeout() throws IOException {
         // Additional handling if needed when the task times out
         ShowAlertResponse("-2");
         hiddeProgressDialogue();
@@ -900,7 +916,11 @@ public class DeviceComponentList extends AppCompatActivity implements ComAdapter
                 if (BluetoothCommunicationForDynamicParameterWriteAll.this.getStatus() == Status.RUNNING) {
                     // Cancel the AsyncTask if it's still running
                     BluetoothCommunicationForDynamicParameterWriteAll.this.cancel(true);
-                    onTimeout(); // Handle the timeout case
+                    try {
+                        onTimeout(); // Handle the timeout case
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
                 }
             };
             handler.postDelayed(timeoutRunnable, TIMEOUT);
@@ -1098,7 +1118,7 @@ public class DeviceComponentList extends AppCompatActivity implements ComAdapter
 
     }
 
-    private void ShowAlertResponse(String value) {
+    private void ShowAlertResponse(String value) throws IOException {
         LayoutInflater inflater = (LayoutInflater) DeviceComponentList.this
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View layout = inflater.inflate(R.layout.devicealert,
@@ -1133,6 +1153,9 @@ public class DeviceComponentList extends AppCompatActivity implements ComAdapter
         }else if(value.equals("-1")){
             title_txt.setText(getResources().getString(R.string.alertNotSetMessage));
         }else if(value.equals("-2")){
+            mSettingParameterResponse.get(mGlobalPosition).setisSet(false);
+            comAdapter.notifyDataSetChanged();
+            btSocket.close();
             title_txt.setText(getResources().getString(R.string.operationUnsuccessfull));
         }
 
