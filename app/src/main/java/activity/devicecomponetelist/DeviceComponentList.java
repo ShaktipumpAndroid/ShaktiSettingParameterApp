@@ -2,6 +2,7 @@ package activity.devicecomponetelist;
 
 import static java.lang.Thread.sleep;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -32,6 +33,7 @@ import android.widget.Toast;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.AsyncCache;
@@ -70,16 +72,16 @@ import webservice.WebURL;
 public class DeviceComponentList extends AppCompatActivity implements ComAdapter.ItemclickListner, View.OnClickListener {
 
     private RecyclerView componentList;
-    int mGlobalPosition = 0,mGlobalPositionSet = 0, mWriteAllCounterValue = 0,counterValue = 0;
+    int mGlobalPosition = 0, mGlobalPositionSet = 0, mWriteAllCounterValue = 0, counterValue = 0;
     String myVersionName, mobileModel, androidVersion;
     DatabaseHelper databaseHelper;
-    private Context mContext ;
+    private Context mContext;
     private float edtValueFloat = 0;
     TextView noDataFound;
     float mTotalTimeFloatData;
     private Activity mActivity;
-    private UUID mMyUDID;
-    private RelativeLayout  rlvSetAllViewID;
+    private UUID mMyUDID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
+    private RelativeLayout rlvSetAllViewID;
     Toolbar toolbar;
     ComAdapter comAdapter;
     int selected_pos = 0;
@@ -91,6 +93,8 @@ public class DeviceComponentList extends AppCompatActivity implements ComAdapter
     private List<MotorParamListModel.Response> mSettingParameterResponse;
     private InputStream iStream;
     AlertDialog alertDialog;
+    boolean ispaired = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,10 +126,10 @@ public class DeviceComponentList extends AppCompatActivity implements ComAdapter
                 if (AllPopupUtil.isOnline(getApplicationContext())) {
 
                     Log.e("DatabaseCount", String.valueOf(databaseHelper.getRecordCount()));
-                    if(databaseHelper.getRecordCount()>0) {
+                    if (databaseHelper.getRecordCount() > 0) {
                         syncOfflineData();
-                    }else {
-                        CustomUtility.ShowToast(getResources().getString(R.string.pleasesetdatafirst),getApplicationContext());
+                    } else {
+                        CustomUtility.ShowToast(getResources().getString(R.string.pleasesetdatafirst), getApplicationContext());
                     }
                 } else {
                     CustomUtility.ShowToast("Please check your internet connection!", getApplicationContext());
@@ -170,8 +174,8 @@ public class DeviceComponentList extends AppCompatActivity implements ComAdapter
             jsonObject.put("AppVersion", myVersionName);
             jsonObject.put("AndroidVersion", androidVersion);
             jsonObject.put("mobileModel", mobileModel);
-            jsonObject.put("Username",CustomUtility.getSharedPreferences(getApplicationContext(),Constants.UserName));
-            jsonObject.put("MobileNo",CustomUtility.getSharedPreferences(getApplicationContext(),Constants.MobileNo));
+            jsonObject.put("Username", CustomUtility.getSharedPreferences(getApplicationContext(), Constants.UserName));
+            jsonObject.put("MobileNo", CustomUtility.getSharedPreferences(getApplicationContext(), Constants.MobileNo));
             jsonObject.put("response", jsonArray);
         } catch (JSONException e) {
             e.printStackTrace();
@@ -179,15 +183,15 @@ public class DeviceComponentList extends AppCompatActivity implements ComAdapter
         Log.e("jsonObject", jsonObject.toString());
 
         RequestQueue queue = Volley.newRequestQueue(DeviceComponentList.this);
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, CustomUtility.getSharedPreferences(this,WebURL.BaseUrl)+WebURL.syncOfflineData, jsonObject,
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, CustomUtility.getSharedPreferences(this, WebURL.BaseUrl) + WebURL.syncOfflineData, jsonObject,
                 response -> {
 
                     Log.e("String Response : ", response.toString());
                     try {
-                        if(response.getString("status").equalsIgnoreCase("true")){
+                        if (response.getString("status").equalsIgnoreCase("true")) {
                             CustomUtility.ShowToast(getResources().getString(R.string.datasaved), DeviceComponentList.this);
-                          //  databaseHelper.deleteDatabase();
-                        }else {
+                            //  databaseHelper.deleteDatabase();
+                        } else {
                             CustomUtility.ShowToast(response.getString("message").toString(), DeviceComponentList.this);
                         }
                     } catch (JSONException e) {
@@ -195,11 +199,11 @@ public class DeviceComponentList extends AppCompatActivity implements ComAdapter
                     }
                     hiddeProgressDialogue();
                 }, error -> {
-                    if (progressDialog != null && progressDialog.isShowing()) {
-                        progressDialog.dismiss();
-                    }
-                    error.toString();
-                });
+            if (progressDialog != null && progressDialog.isShowing()) {
+                progressDialog.dismiss();
+            }
+            error.toString();
+        });
 
         // below line is to make
         // a json object request.
@@ -218,8 +222,9 @@ public class DeviceComponentList extends AppCompatActivity implements ComAdapter
 
     private void inIt() {
 
+        Log.e("macAdd===>", WebURL.BT_DEVICE_MAC_ADDRESS);
         mActivity = this;
-        toolbar =findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -232,13 +237,13 @@ public class DeviceComponentList extends AppCompatActivity implements ComAdapter
         databaseHelper = new DatabaseHelper(this);
         mContext = this;
 
-            if (AllPopupUtil.isOnline(getApplicationContext())) {
-                callgetCompalinAllListAPI();
-            } else {
-                  offlineList();
-            }
+        if (AllPopupUtil.isOnline(getApplicationContext())) {
+            callgetCompalinAllListAPI();
+        } else {
+            offlineList();
+        }
 
-            getDeviceDetail();
+        getDeviceDetail();
     }
 
     private void getDeviceDetail() {
@@ -246,9 +251,9 @@ public class DeviceComponentList extends AppCompatActivity implements ComAdapter
         try {
             myVersionName = getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
             mobileModel = Build.MODEL;
-            androidVersion =  Build.VERSION.RELEASE;
+            androidVersion = Build.VERSION.RELEASE;
 
-            Log.e("VERSION_App",androidVersion);
+            Log.e("VERSION_App", androidVersion);
             Log.e("VERSION_NAME", myVersionName);
             Log.e("MOBILE_MODEL", mobileModel);
         } catch (PackageManager.NameNotFoundException e) {
@@ -265,10 +270,10 @@ public class DeviceComponentList extends AppCompatActivity implements ComAdapter
         showProgressDialogue(getResources().getString(R.string.getComData));
         RequestQueue mRequestQueue = Volley.newRequestQueue(this);
         // String Request initialized
-        Log.e("MOTOR_Par_URL=====>",CustomUtility.getSharedPreferences(this, WebURL.BaseUrl)+WebURL.MOTOR_PERSMETER_LIST + CustomUtility.getSharedPreferences(getApplicationContext(), Constants.MaterialPumpCode));
+        Log.e("MOTOR_Par_URL=====>", CustomUtility.getSharedPreferences(this, WebURL.BaseUrl) + WebURL.MOTOR_PERSMETER_LIST + CustomUtility.getSharedPreferences(getApplicationContext(), Constants.MaterialPumpCode));
 
         //StringRequest mStringRequest = new StringRequest(Request.Method.GET, CustomUtility.getSharedPreferences(this,WebURL.BaseUrl)+WebURL.MOTOR_PERSMETER_LIST + CustomUtility.getSharedPreferences(getApplicationContext(), Constants.MaterialPumpCode), new Response.Listener<String>() {
-        StringRequest mStringRequest = new StringRequest(Request.Method.GET, CustomUtility.getSharedPreferences(this,WebURL.BaseUrl)+WebURL.MOTOR_PERSMETER_LIST + CustomUtility.getSharedPreferences(getApplicationContext(), Constants.MaterialPumpCode) , response -> {
+        StringRequest mStringRequest = new StringRequest(Request.Method.GET, CustomUtility.getSharedPreferences(this, WebURL.BaseUrl) + WebURL.MOTOR_PERSMETER_LIST + CustomUtility.getSharedPreferences(getApplicationContext(), Constants.MaterialPumpCode), response -> {
             Log.e("response===>", String.valueOf(response.toString()));
             if (!response.isEmpty()) {
                 hiddeProgressDialogue();
@@ -283,18 +288,18 @@ public class DeviceComponentList extends AppCompatActivity implements ComAdapter
                     setAdapter();
 
                 } else {
-                     hiddeProgressDialogue();
+                    hiddeProgressDialogue();
                     noDataFound.setVisibility(View.VISIBLE);
                 }
 
             } else {
-                 hiddeProgressDialogue();
+                hiddeProgressDialogue();
                 noDataFound.setVisibility(View.VISIBLE);
             }
 
         }, error -> {
-             hiddeProgressDialogue();
-             noDataFound.setVisibility(View.VISIBLE);
+            hiddeProgressDialogue();
+            noDataFound.setVisibility(View.VISIBLE);
         });
 
         mStringRequest.setRetryPolicy(new DefaultRetryPolicy(
@@ -306,8 +311,8 @@ public class DeviceComponentList extends AppCompatActivity implements ComAdapter
 
     private void insertDataInLocal(List<MotorParamListModel.Response> mSettingParameterResponse) {
         databaseHelper.deleteDatabase();
-        for (int i = 0 ; i < mSettingParameterResponse.size(); i++){
-            DatabaseRecordInsert(mSettingParameterResponse.get(i), String.valueOf(mSettingParameterResponse.get(i).getpValue()*mSettingParameterResponse.get(i).getFactor()));
+        for (int i = 0; i < mSettingParameterResponse.size(); i++) {
+            DatabaseRecordInsert(mSettingParameterResponse.get(i), String.valueOf(mSettingParameterResponse.get(i).getpValue() * mSettingParameterResponse.get(i).getFactor()));
         }
     }
 
@@ -324,7 +329,7 @@ public class DeviceComponentList extends AppCompatActivity implements ComAdapter
     }
 
     private void setAdapter() {
-        Log.e("Setting","List");
+        Log.e("Setting", "List");
         if (mSettingParameterResponse != null && mSettingParameterResponse.size() > 0) {
             comAdapter = new ComAdapter(DeviceComponentList.this, mSettingParameterResponse, noDataFound);
             componentList.setHasFixedSize(true);
@@ -332,7 +337,7 @@ public class DeviceComponentList extends AppCompatActivity implements ComAdapter
             comAdapter.EditItemClick(this);
             noDataFound.setVisibility(View.GONE);
             componentList.setVisibility(View.VISIBLE);
-            Log.e("Set","List");
+            Log.e("Set", "List");
         } else {
             noDataFound.setVisibility(View.VISIBLE);
             componentList.setVisibility(View.GONE);
@@ -353,7 +358,7 @@ public class DeviceComponentList extends AppCompatActivity implements ComAdapter
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                if(progressDialog!=null && progressDialog.isShowing()){
+                if (progressDialog != null && progressDialog.isShowing()) {
                     progressDialog.dismiss();
                 }
             }
@@ -361,7 +366,7 @@ public class DeviceComponentList extends AppCompatActivity implements ComAdapter
     }
 
     @Override
-    public void getBtnMethod(MotorParamListModel.Response response,String editvalue, int position) {
+    public void getBtnMethod(MotorParamListModel.Response response, String editvalue, int position) {
 
         selected_pos = position;
         showProgressDialogue(getResources().getString(R.string.fetchingData));
@@ -431,6 +436,7 @@ public class DeviceComponentList extends AppCompatActivity implements ComAdapter
         private static final long TIMEOUT = 20000; // Timeout duration in milliseconds (e.g., 10 seconds)
         private Handler handler = new Handler(Looper.getMainLooper());
         private Runnable timeoutRunnable;
+
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
@@ -457,18 +463,28 @@ public class DeviceComponentList extends AppCompatActivity implements ComAdapter
             try {
                 if (btSocket != null) {
                     if (!btSocket.isConnected()) {
-                        btSocket.connect();//start connection
+                        connectToBluetoothSocket();
+
+                    } else {
+                        connectToBluetoothSocket();
                     }
                 } else {
-                    myBluetooth = BluetoothAdapter.getDefaultAdapter();//get the mobile bluetooth device
-                    BluetoothDevice dispositivo = myBluetooth.getRemoteDevice(WebURL.BT_DEVICE_MAC_ADDRESS);//connects to the device's address and checks if it's available
-                    btSocket = dispositivo.createRfcommSocketToServiceRecord(mMyUDID);//create a RFCOMM (SPP) connection
-                    myBluetooth.cancelDiscovery();
-
-                    if (!btSocket.isConnected()) {
-                        btSocket.connect();//start connection
-                    }
+                    connectToBluetoothSocket();
                 }
+//                if (btSocket != null) {
+//                    if (!btSocket.isConnected()) {
+//                        btSocket.connect();//start connection
+//                    }
+//                } else {
+//                    myBluetooth = BluetoothAdapter.getDefaultAdapter();//get the mobile bluetooth device
+//                    BluetoothDevice dispositivo = myBluetooth.getRemoteDevice(WebURL.BT_DEVICE_MAC_ADDRESS);//connects to the device's address and checks if it's available
+//                    btSocket = dispositivo.createRfcommSocketToServiceRecord(mMyUDID);//create a RFCOMM (SPP) connection
+//                    myBluetooth.cancelDiscovery();
+//
+//                    if (!btSocket.isConnected()) {
+//                        btSocket.connect();//start connection
+//                    }
+//                }
                 if (btSocket.isConnected()) {
                     byte[] STARTRequest = requests[0].getBytes(StandardCharsets.US_ASCII);
 
@@ -477,7 +493,7 @@ public class DeviceComponentList extends AppCompatActivity implements ComAdapter
                         sleep(100);
 
                         iStream = btSocket.getInputStream();
-                        System.out.println("iStream==>>iStream  " + iStream + " " );
+                        System.out.println("iStream==>>iStream  " + iStream + " ");
 
                     } catch (InterruptedException e1) {
                         e1.printStackTrace();
@@ -490,29 +506,29 @@ public class DeviceComponentList extends AppCompatActivity implements ComAdapter
 
                     for (int i = 0; i < 1; i++) {
                         try {
-                            for (int j=0; j<6; j++){
+                            for (int j = 0; j < 6; j++) {
 
                                 int mCharOne1 = iStream.read();
-                                Log.e("istream====>","" + (char) mCharOne1 );
+                                Log.e("istream====>", "" + (char) mCharOne1);
                             }
 
                             int mCharOne = iStream.read();
                             int mCharTwo = iStream.read();
-                            bytesReaded[i] = Integer.parseInt("" + (char) mCharOne +""+ (char) mCharTwo, 16);
+                            bytesReaded[i] = Integer.parseInt("" + (char) mCharOne + "" + (char) mCharTwo, 16);
                             mCharOne = iStream.read();
                             mCharTwo = iStream.read();
-                            bytesReaded[i + 1] = Integer.parseInt("" + (char) mCharOne +""+ (char) mCharTwo, 16);
+                            bytesReaded[i + 1] = Integer.parseInt("" + (char) mCharOne + "" + (char) mCharTwo, 16);
                             mCharOne = iStream.read();
                             mCharTwo = iStream.read();
-                            bytesReaded[i + 2] = Integer.parseInt("" + (char) mCharOne +""+ (char) mCharTwo, 16);
+                            bytesReaded[i + 2] = Integer.parseInt("" + (char) mCharOne + "" + (char) mCharTwo, 16);
                             mCharOne = iStream.read();
                             mCharTwo = iStream.read();
-                            bytesReaded[i + 3] = Integer.parseInt("" + (char) mCharOne +""+ (char) mCharTwo, 16);
+                            bytesReaded[i + 3] = Integer.parseInt("" + (char) mCharOne + "" + (char) mCharTwo, 16);
 
                             Log.e("byteread0====>", String.valueOf(bytesReaded[i])
-                                    +"byteread1====>"+String.valueOf(bytesReaded[i+1])
-                                    +"byteread2====>"+String.valueOf(bytesReaded[i+2])
-                                    +"byteread3====>"+String.valueOf(bytesReaded[i+3]));
+                                    + "byteread1====>" + String.valueOf(bytesReaded[i + 1])
+                                    + "byteread2====>" + String.valueOf(bytesReaded[i + 2])
+                                    + "byteread3====>" + String.valueOf(bytesReaded[i + 3]));
 
                             Log.e("bytesReaded", bytesReaded.toString());
 
@@ -534,7 +550,7 @@ public class DeviceComponentList extends AppCompatActivity implements ComAdapter
                                 @Override
                                 public void run() {
                                     try {
-                                         ShowAlertResponse("0");
+                                        ShowAlertResponse("0");
 
                                         mSettingParameterResponse.get(mGlobalPosition).setpValue((float) mTotalTimeFloatData);
                                         comAdapter.notifyDataSetChanged();
@@ -551,8 +567,8 @@ public class DeviceComponentList extends AppCompatActivity implements ComAdapter
                             int mCharOne11;
                             //needed to cancel out the extra buffer
                             for (int ii = 0; ii < 4; ii++) {
-                                  mCharOne11 = iStream.read();
-                                Log.e("mCharOne11===>ii>>>>>", String.valueOf(mCharOne11)+"====="+ii);
+                                mCharOne11 = iStream.read();
+                                Log.e("mCharOne11===>ii>>>>>", String.valueOf(mCharOne11) + "=====" + ii);
                             }
 
 
@@ -582,9 +598,8 @@ public class DeviceComponentList extends AppCompatActivity implements ComAdapter
     }
 
 
-
     @Override
-    public void setBtnMethod(MotorParamListModel.Response response,String editvalue, int position) {
+    public void setBtnMethod(MotorParamListModel.Response response, String editvalue, int position) {
 
         try {
             selected_pos = position;
@@ -597,42 +612,42 @@ public class DeviceComponentList extends AppCompatActivity implements ComAdapter
                 edtValueFloat = Float.parseFloat(mSettingParameterResponse.get(pos).getOffset() + "");
             }
 
-                char[] datar = new char[4];
-                int a = Float.floatToIntBits((float) edtValueFloat);
-                datar[0] = (char) (a & 0x000000FF);
-                datar[1] = (char) ((a & 0x0000FF00) >> 8);
-                datar[2] = (char) ((a & 0x00FF0000) >> 16);
-                datar[3] = (char) ((a & 0xFF000000) >> 24);
-                int crc = CRC16_MODBUS(datar, 4);
-                char reciverbyte1 = (char) ((crc >> 8) & 0x00FF);
-                char reciverbyte2 = (char) (crc & 0x00FF);
-                mCRCFinalValue = (char) (reciverbyte1 + reciverbyte2);
-                String v1 = String.format("%02x", (0xff & datar[0]));
-                String v2 = String.format("%02x", (0xff & datar[1])); //String v2 =Integer.toHexString(datar[1]);
-                String v3 = String.format("%02x", (0xff & datar[2]));
-                String v4 = String.format("%02x", (0xff & datar[3]));
-                String v5 = Integer.toHexString(mCRCFinalValue);
-                String mMOBADDRESS = "";
-                String mMobADR = mSettingParameterResponse.get(pos).getMobBTAddress();
-                if (!mMobADR.equalsIgnoreCase("")) {
-                    int mLenth = mMobADR.length();
-                    if (mLenth == 1) {
-                        mMOBADDRESS = "000" + mMobADR;
-                    } else if (mLenth == 2) {
-                        mMOBADDRESS = "00" + mMobADR;
-                    }
-                    if (mLenth == 3) {
-                        mMOBADDRESS = "0" + mMobADR;
-                    } else {
-                        mMOBADDRESS = mMobADR;
-                    }
-                    String modeBusCommand = "0106" + mMOBADDRESS + v1 + v2 + v3 + v4 + v5;//write
-                    System.out.println("mTotalTime==>>vvvSet==>> " + modeBusCommand);
-                    new DeviceComponentList.BluetoothCommunicationForDynamicParameterWrite().execute(modeBusCommand, modeBusCommand, "OK");
-
-                } else {
-                    Toast.makeText(mContext, getResources().getString(R.string.addressnotfound), Toast.LENGTH_SHORT).show();
+            char[] datar = new char[4];
+            int a = Float.floatToIntBits((float) edtValueFloat);
+            datar[0] = (char) (a & 0x000000FF);
+            datar[1] = (char) ((a & 0x0000FF00) >> 8);
+            datar[2] = (char) ((a & 0x00FF0000) >> 16);
+            datar[3] = (char) ((a & 0xFF000000) >> 24);
+            int crc = CRC16_MODBUS(datar, 4);
+            char reciverbyte1 = (char) ((crc >> 8) & 0x00FF);
+            char reciverbyte2 = (char) (crc & 0x00FF);
+            mCRCFinalValue = (char) (reciverbyte1 + reciverbyte2);
+            String v1 = String.format("%02x", (0xff & datar[0]));
+            String v2 = String.format("%02x", (0xff & datar[1])); //String v2 =Integer.toHexString(datar[1]);
+            String v3 = String.format("%02x", (0xff & datar[2]));
+            String v4 = String.format("%02x", (0xff & datar[3]));
+            String v5 = Integer.toHexString(mCRCFinalValue);
+            String mMOBADDRESS = "";
+            String mMobADR = mSettingParameterResponse.get(pos).getMobBTAddress();
+            if (!mMobADR.equalsIgnoreCase("")) {
+                int mLenth = mMobADR.length();
+                if (mLenth == 1) {
+                    mMOBADDRESS = "000" + mMobADR;
+                } else if (mLenth == 2) {
+                    mMOBADDRESS = "00" + mMobADR;
                 }
+                if (mLenth == 3) {
+                    mMOBADDRESS = "0" + mMobADR;
+                } else {
+                    mMOBADDRESS = mMobADR;
+                }
+                String modeBusCommand = "0106" + mMOBADDRESS + v1 + v2 + v3 + v4 + v5;//write
+                System.out.println("mTotalTime==>>vvvSet==>> " + modeBusCommand);
+                new DeviceComponentList.BluetoothCommunicationForDynamicParameterWrite().execute(modeBusCommand, modeBusCommand, "OK");
+
+            } else {
+                Toast.makeText(mContext, getResources().getString(R.string.addressnotfound), Toast.LENGTH_SHORT).show();
+            }
         } catch (NumberFormatException e) {
             e.printStackTrace();
         }
@@ -644,6 +659,7 @@ public class DeviceComponentList extends AppCompatActivity implements ComAdapter
         private static final long TIMEOUT = 20000; // Timeout duration in milliseconds (e.g., 10 seconds)
         private Handler handler = new Handler(Looper.getMainLooper());
         private Runnable timeoutRunnable;
+
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
@@ -671,21 +687,31 @@ public class DeviceComponentList extends AppCompatActivity implements ComAdapter
         protected Boolean doInBackground(String... requests) //while the progress dialog is shown, the connection is done in background
         {
             try {
-
                 if (btSocket != null) {
-                    if (btSocket.isConnected()) {
+                    if (!btSocket.isConnected()) {
+                        connectToBluetoothSocket();
 
+                    } else {
+                        connectToBluetoothSocket();
                     }
                 } else {
-                    myBluetooth = BluetoothAdapter.getDefaultAdapter();//get the mobile bluetooth device
-                    BluetoothDevice dispositivo = myBluetooth.getRemoteDevice(WebURL.BT_DEVICE_MAC_ADDRESS);//connects to the device's address and checks if it's available
-                    btSocket = dispositivo.createRfcommSocketToServiceRecord(mMyUDID);//create a RFCOMM (SPP) connection
-                    myBluetooth.cancelDiscovery();
-
+                    connectToBluetoothSocket();
                 }
 
-                if (!btSocket.isConnected())
-                    btSocket.connect();//start connection
+//                if (btSocket != null) {
+//                    if (btSocket.isConnected()) {
+//
+//                    }
+//                } else {
+//                    myBluetooth = BluetoothAdapter.getDefaultAdapter();//get the mobile bluetooth device
+//                    BluetoothDevice dispositivo = myBluetooth.getRemoteDevice(WebURL.BT_DEVICE_MAC_ADDRESS);//connects to the device's address and checks if it's available
+//                    btSocket = dispositivo.createRfcommSocketToServiceRecord(mMyUDID);//create a RFCOMM (SPP) connection
+//                    myBluetooth.cancelDiscovery();
+//
+//                }
+//
+//                if (!btSocket.isConnected())
+//                    btSocket.connect();//start connection
 
 
                 if (btSocket.isConnected()) {
@@ -696,7 +722,7 @@ public class DeviceComponentList extends AppCompatActivity implements ComAdapter
                         sleep(1000);
                         iStream = btSocket.getInputStream();
 
-                       // Log.e("iStream===>set", String.valueOf(iStream.read()));
+                        // Log.e("iStream===>set", String.valueOf(iStream.read()));
                     } catch (InterruptedException e1) {
 
                         e1.printStackTrace();
@@ -712,9 +738,9 @@ public class DeviceComponentList extends AppCompatActivity implements ComAdapter
 
                     for (int i = 0; i < 1; i++) {
                         try {
-                            for (int j=0; j<6; j++){
+                            for (int j = 0; j < 6; j++) {
                                 int mCharOne1 = iStream.read();
-                                Log.e("istream====>","" + (char) mCharOne1 );
+                                Log.e("istream====>", "" + (char) mCharOne1);
                             }
 
 
@@ -731,10 +757,10 @@ public class DeviceComponentList extends AppCompatActivity implements ComAdapter
                             mCharTwo = iStream.read();
                             bytesReaded[i + 3] = Integer.parseInt("" + (char) mCharOne + (char) mCharTwo, 16);
 
-                            System.out.println("byte0==>  " + jjj + " " +   bytesReaded[i]);
-                            System.out.println("byte1==>  " + jjj + " " +   bytesReaded[i + 1]);
-                            System.out.println("byte2==>  " + jjj + " " +   bytesReaded[i + 2]);
-                            System.out.println("byte3=>  " + jjj + " " +   bytesReaded[i + 3]);
+                            System.out.println("byte0==>  " + jjj + " " + bytesReaded[i]);
+                            System.out.println("byte1==>  " + jjj + " " + bytesReaded[i + 1]);
+                            System.out.println("byte2==>  " + jjj + " " + bytesReaded[i + 2]);
+                            System.out.println("byte3=>  " + jjj + " " + bytesReaded[i + 3]);
 
 
                             mTotalTime = bytesReaded[i];
@@ -751,14 +777,14 @@ public class DeviceComponentList extends AppCompatActivity implements ComAdapter
 
                             mActivity.runOnUiThread(() -> {
 
-                                if(mTotalTimeFloatData == edtValueFloat ){
+                                if (mTotalTimeFloatData == edtValueFloat) {
                                     try {
                                         ShowAlertResponse("1");
                                     } catch (IOException e) {
                                         throw new RuntimeException(e);
                                     }
                                     mSettingParameterResponse.get(mGlobalPosition).setisSet(true);
-                                } else{
+                                } else {
                                     try {
                                         ShowAlertResponse("-1");
                                     } catch (IOException e) {
@@ -781,7 +807,7 @@ public class DeviceComponentList extends AppCompatActivity implements ComAdapter
                             e.printStackTrace();
                         }
                     }
-                    while (iStream.available()>0){
+                    while (iStream.available() > 0) {
                         iStream.read();
                     }
                 }
@@ -801,6 +827,7 @@ public class DeviceComponentList extends AppCompatActivity implements ComAdapter
             handler.removeCallbacks(timeoutRunnable);
         }
     }
+
     private void onTimeout() throws IOException {
         // Additional handling if needed when the task times out
         ShowAlertResponse("-2");
@@ -825,10 +852,10 @@ public class DeviceComponentList extends AppCompatActivity implements ComAdapter
 
         return crc;
     }
-    
+
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.rlvSetAllViewID:
                 setAllTheComParameter();
                 break;
@@ -842,6 +869,7 @@ public class DeviceComponentList extends AppCompatActivity implements ComAdapter
 
             try {
                 String mStringCeck = mSettingParameterResponse.get(mWriteAllCounterValue).getpValue().toString().trim();
+
 
                 System.out.println("Vikas!@#==>>" + mStringCeck);
 
@@ -907,6 +935,7 @@ public class DeviceComponentList extends AppCompatActivity implements ComAdapter
         private static final long TIMEOUT = 20000; // Timeout duration in milliseconds (e.g., 10 seconds)
         private Handler handler = new Handler(Looper.getMainLooper());
         private Runnable timeoutRunnable;
+
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
@@ -933,18 +962,28 @@ public class DeviceComponentList extends AppCompatActivity implements ComAdapter
         {
             try {
                 if (btSocket != null) {
-                    if (btSocket.isConnected()) {
+                    if (!btSocket.isConnected()) {
+                        connectToBluetoothSocket();
 
+                    } else {
+                        connectToBluetoothSocket();
                     }
                 } else {
-                    myBluetooth = BluetoothAdapter.getDefaultAdapter();//get the mobile bluetooth device
-                    BluetoothDevice dispositivo = myBluetooth.getRemoteDevice(WebURL.BT_DEVICE_MAC_ADDRESS);//connects to the device's address and checks if it's available
-                    btSocket = dispositivo.createRfcommSocketToServiceRecord(mMyUDID);//create a RFCOMM (SPP) connection
-                    myBluetooth.cancelDiscovery();
+                    connectToBluetoothSocket();
                 }
-
-                if (!btSocket.isConnected())
-                    btSocket.connect();//start connection
+//                if (btSocket != null) {
+//                    if (btSocket.isConnected()) {
+//
+//                    }
+//                } else {
+//                    myBluetooth = BluetoothAdapter.getDefaultAdapter();//get the mobile bluetooth device
+//                    BluetoothDevice dispositivo = myBluetooth.getRemoteDevice(WebURL.BT_DEVICE_MAC_ADDRESS);//connects to the device's address and checks if it's available
+//                    btSocket = dispositivo.createRfcommSocketToServiceRecord(mMyUDID);//create a RFCOMM (SPP) connection
+//                    myBluetooth.cancelDiscovery();
+//                }
+//
+//                if (!btSocket.isConnected())
+//                    btSocket.connect();//start connection
 
 
                 if (btSocket.isConnected()) {
@@ -966,9 +1005,9 @@ public class DeviceComponentList extends AppCompatActivity implements ComAdapter
 
                     for (int i = 0; i < 1; i++) {
                         try {
-                            for (int j=0; j<6; j++){
+                            for (int j = 0; j < 6; j++) {
                                 int mCharOne1 = iStream.read();
-                                Log.e("istream====>","" + (char) mCharOne1 );
+                                Log.e("istream====>", "" + (char) mCharOne1);
                             }
 
                             int mCharOne = iStream.read();
@@ -1004,7 +1043,7 @@ public class DeviceComponentList extends AppCompatActivity implements ComAdapter
                                 @Override
                                 public void run() {
 
-                                    if(mTotalTimeFloatData == -1.0){
+                                    if (mTotalTimeFloatData == -1.0) {
                                         mSettingParameterResponse.get(mWriteAllCounterValue).setisSet(false);
                                         comAdapter.notifyDataSetChanged();
                                     }
@@ -1024,7 +1063,7 @@ public class DeviceComponentList extends AppCompatActivity implements ComAdapter
                     }
 
                     //needed to cancel out extra buffer
-                    while (iStream.available()>0){
+                    while (iStream.available() > 0) {
                         iStream.read();
                     }
                 }
@@ -1047,64 +1086,63 @@ public class DeviceComponentList extends AppCompatActivity implements ComAdapter
             try {
                 hiddeProgressDialogue();
                 handler.removeCallbacks(timeoutRunnable);
-                if (mWriteAllCounterValue < mSettingParameterResponse.size()) {
-                    String mStringCeck =  mSettingParameterResponse.get(mWriteAllCounterValue).getpValue().toString().trim();
-                    System.out.println("Vikas!@#==>>" + mStringCeck);
-                    System.out.println("Sumit====>" + mSettingParameterResponse.get(mWriteAllCounterValue).getParametersName());
 
-                    databaseHelper.updateRecordAlternate(mSettingParameterResponse.get(mGlobalPosition));
+                    if (mWriteAllCounterValue < mSettingParameterResponse.size() && ispaired) {
+                        String mStringCeck = mSettingParameterResponse.get(mWriteAllCounterValue).getpValue().toString().trim();
+                        System.out.println("Vikas!@#==>>" + mStringCeck);
+                        System.out.println("Sumit====>" + mSettingParameterResponse.get(mWriteAllCounterValue).getParametersName());
 
-                    if (!mStringCeck.equalsIgnoreCase("") && !mStringCeck.equalsIgnoreCase("0.0")) {
-                        edtValueFloat = Float.parseFloat( mSettingParameterResponse.get(mWriteAllCounterValue).getpValue().toString().trim());
-                    } else {
-                        edtValueFloat = Float.parseFloat(mSettingParameterResponse.get(mWriteAllCounterValue).getOffset() + "");
-                    }
+                        databaseHelper.updateRecordAlternate(mSettingParameterResponse.get(mGlobalPosition));
 
-                    counterValue = 0;
-                    char[] datar = new char[4];
-
-                    int a = Float.floatToIntBits((float) edtValueFloat);
-                    datar[0] = (char) (a & 0x000000FF);
-                    datar[1] = (char) ((a & 0x0000FF00) >> 8);
-                    datar[2] = (char) ((a & 0x00FF0000) >> 16);
-                    datar[3] = (char) ((a & 0xFF000000) >> 24);
-                    int crc = CRC16_MODBUS(datar, 4);
-                    char reciverbyte1 = (char) ((crc >> 8) & 0x00FF);
-                    char reciverbyte2 = (char) (crc & 0x00FF);
-                    mCRCFinalValue = (char) (reciverbyte1 + reciverbyte2);
-                    String v1 = String.format("%02x", (0xff & datar[0]));
-                    String v2 = String.format("%02x", (0xff & datar[1])); //String v2 =Integer.toHexString(datar[1]);
-                    String v3 = String.format("%02x", (0xff & datar[2]));
-                    String v4 = String.format("%02x", (0xff & datar[3]));
-                    String v5 = Integer.toHexString(mCRCFinalValue);
-                    String mMOBADDRESS = "";
-                    String mMobADR = mSettingParameterResponse.get(mWriteAllCounterValue).getMobBTAddress();
-                    if (!mMobADR.equalsIgnoreCase("")) {
-                        int mLenth = mMobADR.length();
-                        if (mLenth == 1) {
-                            mMOBADDRESS = "000" + mMobADR;
-                        } else if (mLenth == 2) {
-                            mMOBADDRESS = "00" + mMobADR;
-                        }
-                        if (mLenth == 3) {
-                            mMOBADDRESS = "0" + mMobADR;
+                        if (!mStringCeck.equalsIgnoreCase("") && !mStringCeck.equalsIgnoreCase("0.0")) {
+                            edtValueFloat = Float.parseFloat(mSettingParameterResponse.get(mWriteAllCounterValue).getpValue().toString().trim());
                         } else {
-                            mMOBADDRESS = mMobADR;
+                            edtValueFloat = Float.parseFloat(mSettingParameterResponse.get(mWriteAllCounterValue).getOffset() + "");
                         }
-                        String modeBusCommand = "0106" + mMOBADDRESS + v1 + v2 + v3 + v4 + v5;//write
-                        System.out.println("mTotalTime==>>vvv==>> " + modeBusCommand);
 
-                        new DeviceComponentList.BluetoothCommunicationForDynamicParameterWriteAll().execute(modeBusCommand, modeBusCommand, "OK");
+                        counterValue = 0;
+                        char[] datar = new char[4];
+
+                        int a = Float.floatToIntBits((float) edtValueFloat);
+                        datar[0] = (char) (a & 0x000000FF);
+                        datar[1] = (char) ((a & 0x0000FF00) >> 8);
+                        datar[2] = (char) ((a & 0x00FF0000) >> 16);
+                        datar[3] = (char) ((a & 0xFF000000) >> 24);
+                        int crc = CRC16_MODBUS(datar, 4);
+                        char reciverbyte1 = (char) ((crc >> 8) & 0x00FF);
+                        char reciverbyte2 = (char) (crc & 0x00FF);
+                        mCRCFinalValue = (char) (reciverbyte1 + reciverbyte2);
+                        String v1 = String.format("%02x", (0xff & datar[0]));
+                        String v2 = String.format("%02x", (0xff & datar[1])); //String v2 =Integer.toHexString(datar[1]);
+                        String v3 = String.format("%02x", (0xff & datar[2]));
+                        String v4 = String.format("%02x", (0xff & datar[3]));
+                        String v5 = Integer.toHexString(mCRCFinalValue);
+                        String mMOBADDRESS = "";
+                        String mMobADR = mSettingParameterResponse.get(mWriteAllCounterValue).getMobBTAddress();
+                        if (!mMobADR.equalsIgnoreCase("")) {
+                            int mLenth = mMobADR.length();
+                            if (mLenth == 1) {
+                                mMOBADDRESS = "000" + mMobADR;
+                            } else if (mLenth == 2) {
+                                mMOBADDRESS = "00" + mMobADR;
+                            }
+                            if (mLenth == 3) {
+                                mMOBADDRESS = "0" + mMobADR;
+                            } else {
+                                mMOBADDRESS = mMobADR;
+                            }
+                            String modeBusCommand = "0106" + mMOBADDRESS + v1 + v2 + v3 + v4 + v5;//write
+                            System.out.println("mTotalTime==>>vvv==>> " + modeBusCommand);
+
+                            new DeviceComponentList.BluetoothCommunicationForDynamicParameterWriteAll().execute(modeBusCommand, modeBusCommand, "OK");
+
+                        } else {
+                            Toast.makeText(mContext, getResources().getString(R.string.addressnotfound), Toast.LENGTH_SHORT).show();
+                        }
 
                     } else {
-                        Toast.makeText(mContext, getResources().getString(R.string.addressnotfound), Toast.LENGTH_SHORT).show();
+                        System.out.println("222");
                     }
-
-                } else {
-                    System.out.println("222");
-                }
-
-                displayNotSetData();
 
             } catch (NumberFormatException e) {
                 e.printStackTrace();
@@ -1114,9 +1152,6 @@ public class DeviceComponentList extends AppCompatActivity implements ComAdapter
         }
     }
 
-    private void displayNotSetData() {
-
-    }
 
     private void ShowAlertResponse(String value) throws IOException {
         LayoutInflater inflater = (LayoutInflater) DeviceComponentList.this
@@ -1136,35 +1171,108 @@ public class DeviceComponentList extends AppCompatActivity implements ComAdapter
         TextView OK_txt = layout.findViewById(R.id.OK_txt);
         TextView title_txt = layout.findViewById(R.id.title_txt);
 
-        if(value.equals("-1")){
+        if (value.equals("-1")) {
             icon.setImageDrawable(getDrawable(R.drawable.cross));
-        }else if(value.equals("0")){
+        } else if (value.equals("0")) {
             icon.setImageDrawable(getDrawable(R.drawable.ic_tick));
-        }else if(value.equals("1")){
+        } else if (value.equals("1")) {
             icon.setImageDrawable(getDrawable(R.drawable.ic_tick));
-        }else{
+        } else {
             icon.setImageDrawable(getDrawable(R.drawable.cross));
         }
 
         if (value.equals("0")) {
             title_txt.setText(getResources().getString(R.string.alertGetMessage));
-        } else if(value.equals("1")) {
+        } else if (value.equals("1")) {
             title_txt.setText(getResources().getString(R.string.alertSetMessage));
-        }else if(value.equals("-1")){
+        } else if (value.equals("-1")) {
             title_txt.setText(getResources().getString(R.string.alertNotSetMessage));
-        }else if(value.equals("-2")){
+        } else if (value.equals("-2")) {
             mSettingParameterResponse.get(mGlobalPosition).setisSet(false);
             comAdapter.notifyDataSetChanged();
             btSocket.close();
             title_txt.setText(getResources().getString(R.string.operationUnsuccessfull));
+        } else if (value.equals("-3")) {
+            mSettingParameterResponse.get(mGlobalPosition).setisSet(false);
+            comAdapter.notifyDataSetChanged();
+            btSocket.close();
+            title_txt.setText(getResources().getString(R.string.pairedDevice));
         }
 
-        OK_txt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                alertDialog.dismiss();
+        if (value.equals("-2")) {
+            OK_txt.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    alertDialog.dismiss();
+                    onBackPressed();
+                }
+            });
+        } else {
+            OK_txt.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    alertDialog.dismiss();
+                }
+            });
+        }
+
+    }
+
+
+    private void connectToBluetoothSocket() throws IOException {
+
+
+        try {
+            if (btSocket != null) {
+                if (!btSocket.isConnected()) {
+                    btSocket.connect();//start connection
+                }
+            } else {
+                myBluetooth = BluetoothAdapter.getDefaultAdapter();//get the mobile bluetooth device
+                BluetoothDevice dispositivo = myBluetooth.getRemoteDevice(WebURL.BT_DEVICE_MAC_ADDRESS);//connects to the device's address and checks if it's available
+                btSocket = dispositivo.createRfcommSocketToServiceRecord(mMyUDID);//create a RFCOMM (SPP) connection
+                myBluetooth.cancelDiscovery();
+
+                if (!btSocket.isConnected()) {
+                    btSocket.connect();//start connection
+                }
             }
-        });
+
+
+//            myBluetooth = BluetoothAdapter.getDefaultAdapter();//get the mobile bluetooth device
+//            BluetoothDevice bluetoothDevice = myBluetooth.getRemoteDevice(WebURL.BT_DEVICE_MAC_ADDRESS);//connects to the device's address and checks if it's available
+//
+//            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
+//                // TODO: Consider calling
+//                //    ActivityCompat#requestPermissions
+//                // here to request the missing permissions, and then overriding
+//                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+//                //                                          int[] grantResults)
+//                // to handle the case where the user grants the permission. See the documentation
+//                // for ActivityCompat#requestPermissions for more details.
+//                return;
+//            }
+//            btSocket = bluetoothDevice.createRfcommSocketToServiceRecord(mMyUDID);//create a RFCOMM (SPP) connection
+//            myBluetooth.cancelDiscovery();
+            if (!btSocket.isConnected()){
+                btSocket.connect();
+            }else{
+                ispaired = true;
+            }
+        } catch (Exception e) {
+            CustomUtility.hideProgressDialogue();
+            ispaired = false;
+
+            runOnUiThread(() -> {
+                try {
+                    ShowAlertResponse("-3");
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+            });
+//            runOnUiThread(() -> CustomUtility.ShowToast(getResources().getString(R.string.pairedDevice), getApplicationContext()));
+            e.printStackTrace();
+        }
 
     }
 
