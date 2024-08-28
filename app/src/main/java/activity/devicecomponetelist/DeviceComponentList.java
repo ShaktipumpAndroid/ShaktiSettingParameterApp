@@ -1083,9 +1083,7 @@ public class DeviceComponentList extends AppCompatActivity implements ComAdapter
                 } else {
                     System.out.println("222");
                 }
-
-                displayNotSetData();
-
+                
             } catch (NumberFormatException e) {
                 e.printStackTrace();
                 System.out.println("111");
@@ -1094,9 +1092,7 @@ public class DeviceComponentList extends AppCompatActivity implements ComAdapter
         }
     }
 
-    private void displayNotSetData() {
 
-    }
 
     private void ShowAlertResponse(String value) {
         LayoutInflater inflater = (LayoutInflater) DeviceComponentList.this
