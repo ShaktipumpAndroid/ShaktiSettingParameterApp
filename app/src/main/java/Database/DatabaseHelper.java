@@ -103,6 +103,36 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
+    public void updateRecordAlternate(MotorParamListModel.Response response) {
+
+        SQLiteDatabase database = getWritableDatabase();
+        database.beginTransaction();
+        ContentValues values;
+
+        try {
+
+            values = new ContentValues();
+            values.put(COLUMN_pValue, response.getpValue());
+            values.put(COLUMN_ParametersName,response.getParametersName());
+            String  where = COLUMN_ParametersName + "='" + response.getParametersName() + "'" + " AND " +
+                    COLUMN_pmID + "='" + response.getPmId() + "'" ;
+
+            database.update(TABLE_NAME, values, where, null);
+
+            // Insert into database successfully.
+            database.setTransactionSuccessful();
+
+        } catch (SQLiteException e) {
+            e.printStackTrace();
+        } finally {
+            database.endTransaction();
+            database.close();
+
+
+        }
+
+    }
+
     @SuppressLint("Range")
     public int getRecordCount(){
         database = this.getWritableDatabase();
@@ -127,7 +157,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 motorPumpList.setParametersName(mcursor.getString(mcursor.getColumnIndex(COLUMN_ParametersName)));
                 motorPumpList.setModbusaddress(mcursor.getString(mcursor.getColumnIndex(COLUMN_ModBusAddress)));
                 motorPumpList.setMobBTAddress(mcursor.getString(mcursor.getColumnIndex(COLUMN_MobBTAddress)));
-                motorPumpList.setpValue(Math.toIntExact(Math.round(Double.parseDouble(mcursor.getString(mcursor.getColumnIndex(COLUMN_pValue))))));
+                motorPumpList.setpValue(Float.parseFloat(mcursor.getString(mcursor.getColumnIndex(COLUMN_pValue))));
                 motorPumpList.setMaterialCode(mcursor.getString(mcursor.getColumnIndex(COLUMN_MaterialCode)));
                 motorPumpList.setFactor(Integer.parseInt(mcursor.getString(mcursor.getColumnIndex(COLUMN_factor))));
                 motorPumpList.setOffset(Integer.parseInt(mcursor.getString(mcursor.getColumnIndex(COLUMN_offset))));
@@ -135,6 +165,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             }
 
         }
+
         mcursor.close();
         database.close();
 

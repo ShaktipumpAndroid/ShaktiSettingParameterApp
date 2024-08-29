@@ -1,6 +1,5 @@
 package activity;
 
-
 import static android.Manifest.permission.ACCESS_COARSE_LOCATION;
 import static android.Manifest.permission.BLUETOOTH;
 import static android.Manifest.permission.BLUETOOTH_CONNECT;
@@ -14,12 +13,9 @@ import static android.os.Build.VERSION.SDK_INT;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.Handler;
-import android.provider.Settings;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LinearInterpolator;
@@ -35,6 +31,8 @@ import androidx.core.content.ContextCompat;
 
 import com.vihaan.shaktinewconcept.R;
 
+import activity.devicecomponetelist.DeviceComponentList;
+import activity.pairedDeviceList.PairedDeviceList;
 import activity.utility.CustomUtility;
 import webservice.Constants;
 
@@ -43,8 +41,6 @@ import webservice.Constants;
 public class SplashActivity extends AppCompatActivity {
 
     private final int REQUEST_CODE_PERMISSION = 123;
-    LinearLayout descimage,desctxt;
-    Animation uptodown,downtoup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,17 +48,7 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        ImageView mLogo = findViewById(R.id.imageView2);
-        descimage =  findViewById(R.id.titleimage);
-        desctxt =  findViewById(R.id.titletxt);
-        uptodown = AnimationUtils.loadAnimation(this,R.anim.uptodown);
-        downtoup = AnimationUtils.loadAnimation(this,R.anim.downtoup);
-        descimage.setAnimation(downtoup);
-        desctxt.setAnimation(uptodown);
-        RotateAnimation rotate = new RotateAnimation(0, 720, Animation.RELATIVE_TO_SELF,0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
-        rotate.setDuration(3000);
-        rotate.setInterpolator(new LinearInterpolator());
-        mLogo.startAnimation(rotate);
+
 
         if(checkPermission()){
             checkLogin();
@@ -76,7 +62,7 @@ public class SplashActivity extends AppCompatActivity {
     private void checkLogin() {
         new Handler().postDelayed(() -> {
             if(CustomUtility.getSharedPreferences(getApplicationContext(), Constants.MaterialPumpCode)!=null && !CustomUtility.getSharedPreferences(getApplicationContext(), Constants.MaterialPumpCode).isEmpty()){
-                Intent i = new Intent(SplashActivity.this, DeviceSettingActivity.class);
+                Intent i = new Intent(SplashActivity.this, PairedDeviceList.class);
                 startActivity(i); // invoke the SecondActivity.
                 finish();
             }else {

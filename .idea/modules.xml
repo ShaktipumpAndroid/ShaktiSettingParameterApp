@@ -2,11 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ShaktiSettingParameterApp.iml" filepath="$PROJECT_DIR$/.idea/modules/ShaktiSettingParameterApp.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/ShaktiSettingParameterApp.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/ShaktiSettingParameterApp.app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/ShaktiSettingParameterApp.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/ShaktiSettingParameterApp.app.androidTest.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/ShaktiSettingParameterApp.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/ShaktiSettingParameterApp.app.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/ShaktiSettingParameterApp.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/ShaktiSettingParameterApp.app.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/SettingParameterApp.iml" filepath="$PROJECT_DIR$/.idea/modules/SettingParameterApp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/SettingParameterApp.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/SettingParameterApp.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/SettingParameterApp.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/SettingParameterApp.app.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/SettingParameterApp.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/SettingParameterApp.app.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/SettingParameterApp.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/SettingParameterApp.app.unitTest.iml" />
     </modules>
   </component>
 </project>

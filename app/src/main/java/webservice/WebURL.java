@@ -24,10 +24,10 @@ public class WebURL {
     public static final String deviceOnOffAPI = "RMSApp/DeviceONOFFAdmin";
     
 
-    //Quality
+//Quality
 //https://spquasrvr1.shaktipumps.com:8423/sap/bc/bsp/sap/zemp_hr_portal/setting_parameter_app.htm?lv_sernr=
 
-    //Production
+//Production
 //https://spprdsrvr1.shaktipumps.com:8423/sap/bc/bsp/sap/zemp_hr_portal/setting_parameter_app.htm?lv_sernr=
 
 

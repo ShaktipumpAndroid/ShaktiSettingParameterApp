@@ -4,7 +4,7 @@
 
     <corners android:radius="20dp"/>
 
-    <solid android:color="@color/colorWhite"/>
+    <solid android:color="@color/gray_btn"/>
 
     <size
         android:width="200dp"

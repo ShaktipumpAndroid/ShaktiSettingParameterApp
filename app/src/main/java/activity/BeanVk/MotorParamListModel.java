@@ -59,7 +59,7 @@ public class MotorParamListModel {
         private Integer factor;
         @SerializedName("pValue")
         @Expose
-        private Integer pValue;
+        private Float pValue;
         @SerializedName("materialCode")
         @Expose
         private String materialCode;
@@ -69,6 +69,10 @@ public class MotorParamListModel {
         @SerializedName("offset")
         @Expose
         private Integer offset;
+
+        @SerializedName("isSet")
+        @Expose
+        private Boolean isSet;
 
         public Integer getPmId() {
             return pmId;
@@ -110,11 +114,11 @@ public class MotorParamListModel {
             this.factor = factor;
         }
 
-        public Integer getpValue() {
+        public Float getpValue() {
             return pValue;
         }
 
-        public void setpValue(Integer pValue) {
+        public void setpValue(Float pValue) {
             this.pValue = pValue;
         }
 
@@ -142,5 +146,12 @@ public class MotorParamListModel {
             this.offset = offset;
         }
 
+        public Boolean getisSet() {
+            return isSet;
+        }
+
+        public void setisSet(Boolean set) {
+            isSet = set;
+        }
     }
 }

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardUseCompatPadding="true"
+    android:elevation="@dimen/_5sdp"
+    android:translationZ="@dimen/_2sdp"
+    android:layout_margin="@dimen/_5sdp"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:id="@+id/lvlMainItemViewID"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+        <RelativeLayout
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/_5sdp">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-condensed-medium"
+                android:gravity="center"
+                android:text="Customer Name"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/_14sdp" />
+
+            <LinearLayout
+                android:id="@+id/btnlayout"
+                android:layout_below="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginLeft="@dimen/_3sdp"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:orientation="horizontal"
+                android:weightSum="3">
+
+                <Button
+                    android:id="@+id/getBtn"
+                    android:layout_weight="1"
+                    android:layout_width="@dimen/_60sdp"
+                    android:layout_height="match_parent"
+                    android:padding="@dimen/_5sdp"
+                    android:text="@string/Get_text"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:background="@drawable/rounded_shape"
+                    />
+
+                <EditText
+                    android:id="@+id/editTextValue"
+                    android:layout_width="@dimen/_140sdp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:layout_weight="2"
+                    android:background="@drawable/black_border_text"
+                    android:inputType="numberDecimal"
+                    android:maxLength="9"
+                    android:maxLines="1"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/_14ssp" />
+
+                <Button
+                    android:id="@+id/setBtn"
+                    android:layout_weight="1"
+                    android:layout_width="@dimen/_60sdp"
+                    android:layout_height="match_parent"
+                    android:padding="@dimen/_5sdp"
+                    android:text="@string/Set_text"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:background="@drawable/rounded_shape"/>
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+</androidx.cardview.widget.CardView>

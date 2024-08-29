@@ -124,10 +124,9 @@ public class PairedDeviceActivity extends AppCompatActivity {
                 if (recyclerViewAdapter != null)
                     recyclerViewAdapter = null;
 
-                // recyclerViewAdapter = new HomeOrderAdapter("sss",getActivity());
                 recyclerViewAdapter = new BTPairedDeviceAdapter(mContext, mDeviceNameList,mDeviceMACAddressList);
-
                 rclSettingListViewID.setAdapter(recyclerViewAdapter);
+
             }
             else
             {

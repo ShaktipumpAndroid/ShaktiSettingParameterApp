@@ -99,7 +99,7 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorGray">
+            android:background="@color/grayC">
 
 
             <TextView
@@ -112,7 +112,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_gravity="center_vertical"
                 android:textStyle="bold"
-                android:textColor="@color/colorWhite"
+                android:textColor="@color/black"
                 android:textSize="@dimen/_12sdp"/>
 
             <View
@@ -124,7 +124,7 @@
 
             <RelativeLayout
                 android:layout_above="@+id/rlvShowResultDataID"
-                android:layout_marginTop="@dimen/_5sdp"
+
                 android:layout_marginBottom="@dimen/_5sdp"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_30sdp"
@@ -139,9 +139,9 @@
                     android:layout_marginBottom="@dimen/_2sdp"
                     android:layout_marginStart="@dimen/_10sdp"
                     android:gravity="center_vertical"
-                   android:layout_centerVertical="true"
+                    android:layout_centerVertical="true"
                     android:text=""
-                    android:textColor="@color/colorWhite"
+                    android:textColor="@color/black"
                     android:textSize="@dimen/_10sdp"
                     android:background="@android:color/transparent"/>
 
