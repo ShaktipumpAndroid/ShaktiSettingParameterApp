@@ -21,9 +21,8 @@ public class WebURL {
     public static final String MOTOR_PERSMETER_LIST = "RMSApp/MoterParamList?id=";
     public static final String syncOfflineData = "RMSApp/DeviceParamBLog";
     public static final String VerifyDeviceID = "NewShakti/RMSApp/deviceExist?deviceNo=";
-    public static final String deviceOnOffAPI = "Home/DeviceONOFFAdmin";
-
-
+    public static final String deviceOnOffAPI = "RMSApp/DeviceONOFFAdmin";
+    
 
 //Quality
 //https://spquasrvr1.shaktipumps.com:8423/sap/bc/bsp/sap/zemp_hr_portal/setting_parameter_app.htm?lv_sernr=
